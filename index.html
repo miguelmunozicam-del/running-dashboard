@@ -80,6 +80,20 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14
 .day-detail{font-size:11px;color:var(--text2);line-height:1.4}
 .day-result{font-size:10px;color:var(--green);margin-top:4px;font-family:var(--mono);font-style:italic}
 .day-dot{width:6px;height:6px;border-radius:50%;margin-top:6px}
+.day-card.has-adjust { border-color: var(--amber-bdr); }
+.day-adjust-banner { margin-top:6px; background:var(--amber-dim); border:0.5px solid var(--amber-bdr); border-radius:var(--radius-sm); padding:5px 8px; cursor:pointer; transition:background .15s; }
+.day-adjust-banner:hover { background:#fef3c7; }
+.day-adjust-icon { font-size:11px; }
+.day-adjust-text { font-size:10px; color:var(--amber); line-height:1.4; display:block; margin:2px 0; }
+.day-adjust-toggle { font-size:10px; color:var(--blue); font-family:var(--mono); }
+.day-adjust-detail { display:none; margin-top:6px; }
+.day-adjust-detail.open { display:block; }
+.adjust-table { width:100%; border-collapse:collapse; font-size:11px; }
+.adjust-table th { font-size:10px; color:var(--text3); font-family:var(--mono); text-transform:uppercase; padding:4px 6px; text-align:left; border-bottom:0.5px solid var(--border2); background:var(--bg3); }
+.adjust-table td { padding:5px 6px; border-bottom:0.5px solid var(--border); color:var(--text); vertical-align:top; }
+.adjust-table tr:last-child td { border-bottom:none; }
+.adj-row-del td { color:var(--coral); text-decoration:line-through; opacity:.7; }
+
 .dot-done{background:var(--green)}.dot-modified{background:var(--amber)}.dot-pending{background:var(--text3)}
 
 .load-wrap{margin-bottom:20px}
@@ -239,7 +253,19 @@ const DATA = {
     {name:'Lun',type:'Descanso',detail:'Movilidad torácica + respiración',result:'',status:'done'},
     {name:'Mar',type:'Gym A',detail:'Fuerza principal · Dead bug añadido',result:'Cargas correctas · Dead bug bien ejecutado',status:'modified'},
     {name:'Mié',type:'Calidad',detail:'2×12\'+8\' umbral · rec 3\'',result:'9,45km · 5:45/km media · FC 137bpm · VO2max 47',status:'done'},
-    {name:'Jue',type:'Gym B',detail:'Estabilidad (versión descargada)',result:'',status:'pending'},
+    {name:'Jue',type:'Gym B',detail:'Estabilidad · versión descargada',result:'',status:'pending',
+     adjust:'Eliminar Farmer carry y Press militar · Swing 2×12 · Remo 2×10 · resto 2 series',
+     adjustDetail:[
+       {ejercicio:'Protocolo movilidad torácica',series:'8 min al inicio',nota:'Foam roller dorsal + rotaciones cuadrupedia 2×10/lado + extensión cuña 3×8 respiraciones. OBLIGATORIO.'},
+       {ejercicio:'Swing kettlebell',series:'2×12 (no 3×15)',nota:'16kg. Reducido por carga post-calidad.'},
+       {ejercicio:'Remo unilateral polea',series:'2×10 por brazo',nota:'Carga moderada. Énfasis lado derecho.'},
+       {ejercicio:'Split squat isométrico',series:'2×30" por pierna',nota:'Peso corporal.'},
+       {ejercicio:'Gemelo unilateral',series:'2×12 por pierna',nota:'Peso corporal.'},
+       {ejercicio:'Plancha lateral',series:'2×25" por lado',nota:'Énfasis en elevar cadera derecha activamente.'},
+       {ejercicio:'Face pull',series:'2×12',nota:'Carga ligera. Retracción escapular.'},
+       {ejercicio:'ELIMINAR: Farmer carry',series:'—',nota:'Fuera esta sesión. Se recupera en S4.'},
+       {ejercicio:'ELIMINAR: Press militar',series:'—',nota:'Fuera esta sesión. Se recupera en S4.'},
+     ]},
     {name:'Vie',type:'Descanso',detail:'Descanso completo',result:'',status:'pending'},
     {name:'Sáb',type:'Z2 + técnica',detail:'50\' + 6 rectas de 20"',result:'',status:'pending'},
     {name:'Dom',type:'Tirada larga',detail:'70-75\' progresiva suave',result:'',status:'pending'},
@@ -288,7 +314,19 @@ const DATA = {
             {name:'Lun',type:'Descanso',detail:'Movilidad torácica + respiración',result:'Ejecutado.',status:'done'},
             {name:'Mar',type:'Gym A',detail:'Fuerza principal · algo más intenso · Dead bug añadido',result:'Cargas correctas. Dead bug bien ejecutado.',status:'modified'},
             {name:'Mié',type:'Calidad',detail:'2×12\'+8\' umbral · rec 3\'',result:'9,45km · 5:45/km · FC 137bpm (máx 154) · VO2max 47 · 32\' totales a umbral',status:'done'},
-            {name:'Jue',type:'Gym B',detail:'Estabilidad (versión descargada)',result:'',status:'pending'},
+            {name:'Jue',type:'Gym B',detail:'Estabilidad · versión descargada',result:'',status:'pending',
+             adjust:'Eliminar Farmer carry y Press militar · Swing 2×12 · Remo 2×10 · resto 2 series',
+             adjustDetail:[
+               {ejercicio:'Protocolo movilidad torácica',series:'8 min al inicio',nota:'Foam roller dorsal + rotaciones cuadrupedia 2×10/lado + extensión cuña 3×8 respiraciones. OBLIGATORIO.'},
+               {ejercicio:'Swing kettlebell',series:'2×12 (no 3×15)',nota:'16kg. Reducido por carga post-calidad.'},
+               {ejercicio:'Remo unilateral polea',series:'2×10 por brazo',nota:'Carga moderada. Énfasis lado derecho.'},
+               {ejercicio:'Split squat isométrico',series:'2×30" por pierna',nota:'Peso corporal.'},
+               {ejercicio:'Gemelo unilateral',series:'2×12 por pierna',nota:'Peso corporal.'},
+               {ejercicio:'Plancha lateral',series:'2×25" por lado',nota:'Énfasis en elevar cadera derecha activamente.'},
+               {ejercicio:'Face pull',series:'2×12',nota:'Carga ligera. Retracción escapular.'},
+               {ejercicio:'ELIMINAR: Farmer carry',series:'—',nota:'Fuera esta sesión. Se recupera en S4.'},
+               {ejercicio:'ELIMINAR: Press militar',series:'—',nota:'Fuera esta sesión. Se recupera en S4.'},
+             ]},
             {name:'Vie',type:'Descanso',detail:'Descanso completo',result:'',status:'pending'},
             {name:'Sáb',type:'Z2 + técnica',detail:'50\' + 6 rectas de 20"',result:'',status:'pending'},
             {name:'Dom',type:'Tirada larga',detail:'70-75\' progresiva suave',result:'',status:'pending'},
@@ -474,17 +512,39 @@ function initApp(){
   renderPlanificacion();
 }
 
-function buildDayCards(days, showResult){
+function buildDayCards(days, showResult, ctxId){
   const statusClass={done:'done',modified:'modified',pending:'planned'};
   const dotClass={done:'dot-done',modified:'dot-modified',pending:'dot-pending'};
-  return `<div class="week-grid">${days.map(d=>`
-    <div class="day-card ${statusClass[d.status]}">
+  return `<div class="week-grid">${days.map((d,di)=>{
+    const hasAdjust = d.adjust;
+    const adjId = `adj-${ctxId||'w'}-${di}`;
+    return `<div class="day-card ${statusClass[d.status]}${hasAdjust?' has-adjust':''}">
       <div class="day-name">${d.name}</div>
       <div class="day-type">${d.type}</div>
       <div class="day-detail">${d.detail}</div>
+      ${hasAdjust ? `<div class="day-adjust-banner" onclick="toggleAdjust('${adjId}')">
+        <span class="day-adjust-icon">⚡</span>
+        <span class="day-adjust-text">${d.adjust}</span>
+        <span class="day-adjust-toggle" id="tog-${adjId}">ver detalle ›</span>
+      </div>
+      <div class="day-adjust-detail" id="${adjId}">
+        <table class="adjust-table">
+          <thead><tr><th>Ejercicio</th><th>Series</th><th>Nota</th></tr></thead>
+          <tbody>${d.adjustDetail.map(a=>`<tr class="${a.ejercicio.startsWith('ELIMINAR')?'adj-row-del':''}">
+            <td>${a.ejercicio}</td><td style="font-family:var(--mono);white-space:nowrap">${a.series}</td><td>${a.nota}</td>
+          </tr>`).join('')}</tbody>
+        </table>
+      </div>` : ''}
       ${showResult && d.result ? `<div class="day-result">${d.result}</div>` : ''}
       <div class="day-dot ${dotClass[d.status]}"></div>
-    </div>`).join('')}</div>`;
+    </div>`;
+  }).join('')}</div>`;
+}
+function toggleAdjust(id){
+  const el=document.getElementById(id);
+  const tog=document.getElementById('tog-'+id);
+  const open=el.classList.toggle('open');
+  tog.textContent=open?'ocultar ‹':'ver detalle ›';
 }
 
 function renderSemana(){
@@ -500,7 +560,7 @@ function renderSemana(){
   </div>
   <div class="load-wrap"><div class="load-label"><span>carga acumulada semana</span><span>${d.weekLoad}%</span></div><div class="load-track"><div class="load-fill" style="width:${d.weekLoad}%;background:${loadColor}"></div></div></div>
   <div class="section-label">Semana ${d.weekNumber} — día a día</div>
-  ${buildDayCards(d.weekDays, true)}
+  ${buildDayCards(d.weekDays, true, 'sw')}
   <div class="status-legend">
     <span><span style="width:6px;height:6px;border-radius:50%;background:#16a34a;display:inline-block"></span>ejecutado</span>
     <span><span style="width:6px;height:6px;border-radius:50%;background:#d97706;display:inline-block"></span>ajustado</span>
@@ -629,7 +689,7 @@ function buildExpandableBlocks(blocks, showDoneOnly, filterBlockId){
               <span class="week-chevron" id="chev-wg-${showDoneOnly?'h':'p'}-${bi}-${wi}">›</span>
             </div>
             <div class="week-body" id="wg-${showDoneOnly?'h':'p'}-${bi}-${wi}">
-              ${buildDayCards(week.days, true)}
+              ${buildDayCards(week.days, true, `b${bi}w${wi}`)}
               ${week.notes?`<div class="section-label" style="margin-top:12px">Notas del entrenador</div><div class="notes-box">${week.notes}</div>`:''}
             </div>
           </div>`).join('')}
