@@ -9,74 +9,77 @@
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
 
   :root {
-    --bg: #0f1117;
-    --bg2: #161820;
-    --bg3: #1e2028;
-    --border: rgba(255,255,255,0.07);
-    --border2: rgba(255,255,255,0.12);
-    --text: #e8e9ed;
-    --text2: #9da0b0;
-    --text3: #5c6070;
-    --blue: #4a8ef5;
-    --blue-dim: rgba(74,142,245,0.12);
-    --green: #3ecf8e;
-    --green-dim: rgba(62,207,142,0.12);
-    --amber: #f5a623;
-    --amber-dim: rgba(245,166,35,0.12);
-    --coral: #f5634a;
-    --coral-dim: rgba(245,99,74,0.12);
-    --gray-dim: rgba(255,255,255,0.05);
-    --mono: 'JetBrains Mono', monospace;
-    --sans: 'Inter', sans-serif;
-    --radius: 10px;
-    --radius-sm: 6px;
+    --bg:       #f7f8fa;
+    --bg2:      #ffffff;
+    --bg3:      #f0f2f5;
+    --border:   rgba(0,0,0,0.07);
+    --border2:  rgba(0,0,0,0.12);
+    --text:     #1a1d23;
+    --text2:    #5c6370;
+    --text3:    #9aa0ad;
+    --blue:     #2563eb;
+    --blue-dim: #eff4ff;
+    --blue-bdr: #bfcffe;
+    --green:    #16a34a;
+    --green-dim:#f0fdf4;
+    --green-bdr:#bbf7d0;
+    --amber:    #d97706;
+    --amber-dim:#fffbeb;
+    --amber-bdr:#fde68a;
+    --coral:    #dc2626;
+    --coral-dim:#fef2f2;
+    --coral-bdr:#fecaca;
+    --mono:     'JetBrains Mono', monospace;
+    --sans:     'Inter', sans-serif;
+    --radius:   10px;
+    --radius-sm:6px;
+    --shadow:   0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 14px; line-height: 1.5; min-height: 100vh; }
 
   /* LOGIN */
-  #login-screen { display: flex; align-items: center; justify-content: center; min-height: 100vh; flex-direction: column; gap: 24px; }
-  .login-box { background: var(--bg2); border: 0.5px solid var(--border2); border-radius: var(--radius); padding: 40px; width: 100%; max-width: 360px; }
+  #login-screen { display: flex; align-items: center; justify-content: center; min-height: 100vh; background: var(--bg); }
+  .login-box { background: var(--bg2); border: 0.5px solid var(--border2); border-radius: 14px; padding: 40px; width: 100%; max-width: 360px; box-shadow: var(--shadow); }
   .login-logo { font-family: var(--mono); font-size: 11px; color: var(--text3); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 24px; display: flex; align-items: center; gap: 8px; }
   .login-logo::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--green); }
   .login-title { font-size: 22px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
   .login-sub { font-size: 13px; color: var(--text2); margin-bottom: 28px; }
   .login-box input { width: 100%; background: var(--bg3); border: 0.5px solid var(--border2); border-radius: var(--radius-sm); padding: 10px 14px; color: var(--text); font-size: 14px; font-family: var(--mono); outline: none; transition: border-color .15s; }
-  .login-box input:focus { border-color: var(--blue); }
+  .login-box input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
   .login-box button { width: 100%; margin-top: 12px; background: var(--blue); border: none; border-radius: var(--radius-sm); padding: 10px; color: #fff; font-size: 14px; font-weight: 500; cursor: pointer; font-family: var(--sans); transition: opacity .15s; }
   .login-box button:hover { opacity: .88; }
   .login-error { font-size: 12px; color: var(--coral); margin-top: 8px; display: none; }
 
   /* APP */
   #app { display: none; }
-  .topbar { background: var(--bg2); border-bottom: 0.5px solid var(--border); padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 52px; position: sticky; top: 0; z-index: 10; }
-  .topbar-left { display: flex; align-items: center; gap: 14px; }
+  .topbar { background: var(--bg2); border-bottom: 0.5px solid var(--border2); padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 52px; position: sticky; top: 0; z-index: 10; box-shadow: 0 1px 0 var(--border); }
   .topbar-logo { font-family: var(--mono); font-size: 11px; color: var(--text3); letter-spacing: .1em; text-transform: uppercase; display: flex; align-items: center; gap: 6px; }
   .topbar-logo::before { content: ''; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--green); }
-  .topbar-title { font-size: 14px; font-weight: 500; color: var(--text); }
+  .topbar-title { font-size: 14px; font-weight: 500; color: var(--text); margin-left: 14px; }
   .topbar-right { display: flex; align-items: center; gap: 12px; }
   .last-update { font-size: 11px; color: var(--text3); font-family: var(--mono); }
-  .logout-btn { font-size: 11px; color: var(--text3); background: none; border: 0.5px solid var(--border); border-radius: var(--radius-sm); padding: 4px 10px; cursor: pointer; font-family: var(--sans); transition: color .15s, border-color .15s; }
-  .logout-btn:hover { color: var(--text); border-color: var(--border2); }
+  .logout-btn { font-size: 11px; color: var(--text2); background: none; border: 0.5px solid var(--border2); border-radius: var(--radius-sm); padding: 4px 10px; cursor: pointer; transition: all .15s; }
+  .logout-btn:hover { color: var(--text); background: var(--bg3); }
 
   .main { padding: 24px; max-width: 1100px; margin: 0 auto; }
 
   /* TABS */
-  .tabs { display: flex; gap: 4px; margin-bottom: 24px; background: var(--bg2); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 4px; width: fit-content; }
-  .tab-btn { font-size: 13px; padding: 7px 16px; background: transparent; border: none; color: var(--text2); cursor: pointer; border-radius: 7px; font-family: var(--sans); transition: all .15s; white-space: nowrap; }
-  .tab-btn.active { background: var(--bg3); color: var(--text); font-weight: 500; }
-  .tab-btn:hover:not(.active) { color: var(--text); }
+  .tabs { display: flex; gap: 4px; margin-bottom: 24px; background: var(--bg2); border: 0.5px solid var(--border2); border-radius: var(--radius); padding: 4px; width: fit-content; box-shadow: var(--shadow); }
+  .tab-btn { font-size: 13px; padding: 7px 18px; background: transparent; border: none; color: var(--text2); cursor: pointer; border-radius: 7px; font-family: var(--sans); transition: all .15s; white-space: nowrap; }
+  .tab-btn.active { background: var(--blue); color: #fff; font-weight: 500; }
+  .tab-btn:hover:not(.active) { background: var(--bg3); color: var(--text); }
   .tab-content { display: none; }
   .tab-content.active { display: block; }
 
-  /* METRICS ROW */
+  /* METRICS */
   .metrics { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 12px; margin-bottom: 24px; }
-  .metric-card { background: var(--bg2); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 16px 18px; }
-  .metric-card.accent-blue { border-color: rgba(74,142,245,0.3); background: var(--blue-dim); }
-  .metric-card.accent-green { border-color: rgba(62,207,142,0.3); background: var(--green-dim); }
-  .metric-card.accent-amber { border-color: rgba(245,166,35,0.3); background: var(--amber-dim); }
-  .metric-card.accent-coral { border-color: rgba(245,99,74,0.3); background: var(--coral-dim); }
+  .metric-card { background: var(--bg2); border: 0.5px solid var(--border2); border-radius: var(--radius); padding: 16px 18px; box-shadow: var(--shadow); }
+  .metric-card.accent-blue { background: var(--blue-dim); border-color: var(--blue-bdr); }
+  .metric-card.accent-green { background: var(--green-dim); border-color: var(--green-bdr); }
+  .metric-card.accent-amber { background: var(--amber-dim); border-color: var(--amber-bdr); }
+  .metric-card.accent-coral { background: var(--coral-dim); border-color: var(--coral-bdr); }
   .metric-label { font-size: 11px; color: var(--text3); text-transform: uppercase; letter-spacing: .07em; margin-bottom: 6px; font-family: var(--mono); }
   .metric-val { font-size: 22px; font-weight: 600; color: var(--text); font-family: var(--mono); }
   .metric-val.blue { color: var(--blue); }
@@ -90,9 +93,9 @@
 
   /* WEEK GRID */
   .week-grid { display: grid; grid-template-columns: repeat(7, minmax(0,1fr)); gap: 8px; margin-bottom: 20px; }
-  .day-card { background: var(--bg2); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 12px; min-height: 90px; }
-  .day-card.done { border-color: rgba(62,207,142,0.25); }
-  .day-card.modified { border-color: rgba(245,166,35,0.25); }
+  .day-card { background: var(--bg2); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 12px; min-height: 90px; box-shadow: var(--shadow); }
+  .day-card.done { border-color: var(--green-bdr); background: var(--green-dim); }
+  .day-card.modified { border-color: var(--amber-bdr); background: var(--amber-dim); }
   .day-name { font-family: var(--mono); font-size: 10px; color: var(--text3); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 6px; }
   .day-type { font-size: 12px; font-weight: 500; color: var(--text); margin-bottom: 3px; }
   .day-detail { font-size: 11px; color: var(--text2); line-height: 1.4; }
@@ -104,37 +107,37 @@
   /* LOAD BAR */
   .load-wrap { margin-bottom: 20px; }
   .load-label { display: flex; justify-content: space-between; font-size: 11px; color: var(--text3); margin-bottom: 5px; font-family: var(--mono); }
-  .load-track { height: 6px; background: var(--bg3); border-radius: 3px; overflow: hidden; }
-  .load-fill { height: 100%; border-radius: 3px; transition: width .3s; }
+  .load-track { height: 6px; background: var(--bg3); border-radius: 3px; overflow: hidden; border: 0.5px solid var(--border); }
+  .load-fill { height: 100%; border-radius: 3px; transition: width .4s; }
 
   /* NOTES */
-  .notes-box { background: var(--bg2); border: 0.5px solid var(--border); border-left: 2px solid var(--blue); border-radius: var(--radius); padding: 14px 18px; font-size: 13px; color: var(--text2); line-height: 1.6; border-radius: 0 var(--radius) var(--radius) 0; }
+  .notes-box { background: var(--bg2); border: 0.5px solid var(--border2); border-left: 3px solid var(--blue); border-radius: 0 var(--radius) var(--radius) 0; padding: 14px 18px; font-size: 13px; color: var(--text2); line-height: 1.6; box-shadow: var(--shadow); }
 
   /* ALERT */
-  .alert { background: var(--coral-dim); border: 0.5px solid rgba(245,99,74,0.3); border-radius: var(--radius); padding: 12px 16px; font-size: 12px; color: var(--coral); margin-bottom: 20px; display: flex; gap: 8px; align-items: center; }
+  .alert { background: var(--coral-dim); border: 0.5px solid var(--coral-bdr); border-radius: var(--radius); padding: 12px 16px; font-size: 12px; color: var(--coral); margin-bottom: 20px; display: flex; gap: 8px; align-items: center; }
 
   /* CHART */
-  .chart-card { background: var(--bg2); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 20px; margin-bottom: 24px; }
-  .chart-card-title { font-size: 12px; color: var(--text3); font-family: var(--mono); text-transform: uppercase; letter-spacing: .07em; margin-bottom: 16px; }
+  .chart-card { background: var(--bg2); border: 0.5px solid var(--border2); border-radius: var(--radius); padding: 20px; margin-bottom: 24px; box-shadow: var(--shadow); }
+  .chart-card-title { font-size: 11px; color: var(--text3); font-family: var(--mono); text-transform: uppercase; letter-spacing: .07em; margin-bottom: 16px; }
   .chart-wrap { position: relative; width: 100%; height: 260px; }
-  .chart-legend { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 12px; }
+  .chart-legend { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 14px; }
   .legend-item { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--text2); }
   .legend-dot { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
 
   /* RACE TABLE */
-  .race-table { width: 100%; border-collapse: collapse; }
-  .race-table th { font-size: 11px; color: var(--text3); font-family: var(--mono); text-transform: uppercase; letter-spacing: .07em; padding: 8px 12px; text-align: left; border-bottom: 0.5px solid var(--border2); font-weight: 500; }
-  .race-table td { padding: 12px 12px; border-bottom: 0.5px solid var(--border); font-size: 13px; color: var(--text); vertical-align: middle; }
+  .race-table { width: 100%; border-collapse: collapse; background: var(--bg2); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); border: 0.5px solid var(--border2); }
+  .race-table th { font-size: 11px; color: var(--text3); font-family: var(--mono); text-transform: uppercase; letter-spacing: .07em; padding: 10px 14px; text-align: left; border-bottom: 0.5px solid var(--border2); background: var(--bg3); font-weight: 500; }
+  .race-table td { padding: 12px 14px; border-bottom: 0.5px solid var(--border); font-size: 13px; color: var(--text); vertical-align: middle; }
   .race-table tr:last-child td { border-bottom: none; }
-  .race-table tr:hover td { background: var(--gray-dim); }
-  .race-time { font-family: var(--mono); font-weight: 500; }
-  .race-pace { font-family: var(--mono); color: var(--text2); }
+  .race-table tr:hover td { background: var(--bg3); }
+  .race-time { font-family: var(--mono); font-weight: 600; }
+  .race-pace { font-family: var(--mono); color: var(--text2); font-size: 12px; }
   .race-name-main { font-weight: 500; }
   .race-name-sub { font-size: 11px; color: var(--text3); margin-top: 1px; }
-  .badge { font-size: 10px; padding: 2px 8px; border-radius: 20px; font-weight: 500; font-family: var(--mono); }
-  .badge-best { background: var(--amber-dim); color: var(--amber); border: 0.5px solid rgba(245,166,35,0.3); }
-  .badge-pre { background: var(--green-dim); color: var(--green); border: 0.5px solid rgba(62,207,142,0.3); }
-  .badge-post { background: var(--blue-dim); color: var(--blue); border: 0.5px solid rgba(74,142,245,0.3); }
+  .badge { font-size: 10px; padding: 3px 8px; border-radius: 20px; font-weight: 500; font-family: var(--mono); }
+  .badge-best { background: var(--amber-dim); color: var(--amber); border: 0.5px solid var(--amber-bdr); }
+  .badge-pre  { background: var(--green-dim); color: var(--green); border: 0.5px solid var(--green-bdr); }
+  .badge-post { background: var(--blue-dim);  color: var(--blue);  border: 0.5px solid var(--blue-bdr); }
   .pace-bar { height: 3px; background: var(--bg3); border-radius: 2px; overflow: hidden; margin-top: 4px; width: 80px; }
   .pace-bar-fill { height: 100%; border-radius: 2px; }
 
@@ -145,16 +148,20 @@
   .tl-item:last-child { border-bottom: none; }
   .tl-dot { position: absolute; left: -13px; top: 17px; width: 10px; height: 10px; border-radius: 50%; }
   .tl-period { font-family: var(--mono); font-size: 10px; color: var(--text3); text-transform: uppercase; letter-spacing: .07em; margin-bottom: 3px; }
-  .tl-title { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 3px; display: flex; align-items: center; gap: 8px; }
+  .tl-title { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 3px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
   .tl-desc { font-size: 12px; color: var(--text2); margin-bottom: 6px; }
   .tl-tags { display: flex; gap: 5px; flex-wrap: wrap; }
   .tag { font-size: 10px; padding: 2px 7px; border-radius: 4px; font-family: var(--mono); }
-  .tag-blue { background: var(--blue-dim); color: var(--blue); }
+  .tag-blue  { background: var(--blue-dim);  color: var(--blue); }
   .tag-green { background: var(--green-dim); color: var(--green); }
   .tag-amber { background: var(--amber-dim); color: var(--amber); }
-  .tag-gray { background: var(--gray-dim); color: var(--text3); }
+  .tag-gray  { background: var(--bg3);       color: var(--text3); }
   .tag-coral { background: var(--coral-dim); color: var(--coral); }
-  .current-badge { font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--blue-dim); color: var(--blue); border: 0.5px solid rgba(74,142,245,0.3); font-family: var(--mono); }
+  .current-badge { font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--blue-dim); color: var(--blue); border: 0.5px solid var(--blue-bdr); font-family: var(--mono); }
+
+  /* STATUS DOTS LEGEND */
+  .status-legend { display: flex; gap: 14px; margin-bottom: 20px; font-size: 11px; color: var(--text3); }
+  .status-legend span { display: flex; align-items: center; gap: 5px; }
 
   @media (max-width: 700px) {
     .metrics { grid-template-columns: repeat(2, 1fr); }
@@ -170,22 +177,20 @@
 </head>
 <body>
 
-<!-- LOGIN -->
 <div id="login-screen">
   <div class="login-box">
     <div class="login-logo">running dashboard</div>
     <div class="login-title">Bienvenido</div>
-    <div class="login-sub">Acceso restringido. Introduce la contraseña.</div>
+    <div class="login-sub">Introduce la contraseña para acceder.</div>
     <input type="password" id="pwd-input" placeholder="Contraseña" onkeydown="if(event.key==='Enter')checkLogin()" autofocus />
     <button onclick="checkLogin()">Entrar</button>
     <div class="login-error" id="login-error">Contraseña incorrecta</div>
   </div>
 </div>
 
-<!-- APP -->
 <div id="app">
   <div class="topbar">
-    <div class="topbar-left">
+    <div style="display:flex;align-items:center">
       <div class="topbar-logo">running</div>
       <div class="topbar-title">Miguel · Seguimiento de entrenamiento</div>
     </div>
@@ -197,11 +202,10 @@
 
   <div class="main">
     <div class="tabs">
-      <button class="tab-btn active" onclick="showTab('semana', this)">Estado semanal</button>
-      <button class="tab-btn" onclick="showTab('progresion', this)">Progresión</button>
-      <button class="tab-btn" onclick="showTab('competiciones', this)">Competiciones</button>
+      <button class="tab-btn active" onclick="showTab('semana',this)">Estado semanal</button>
+      <button class="tab-btn" onclick="showTab('progresion',this)">Progresión</button>
+      <button class="tab-btn" onclick="showTab('competiciones',this)">Competiciones</button>
     </div>
-
     <div id="tab-semana" class="tab-content active"></div>
     <div id="tab-progresion" class="tab-content"></div>
     <div id="tab-competiciones" class="tab-content"></div>
@@ -222,41 +226,41 @@ const DATA = {
   dorsalOk: true,
   dorsalStatus: 'Molestia residual manejable',
   weekLoad: 72,
-  weekNotes: 'Sesión de calidad del miércoles (2x12\'+8\'): mejor sesión del bloque. 32\' totales a umbral, VO2max sube a 47. Espalda: molestia inicial al arrancar el domingo S2, cede con corrección postural. Patrón de equilibrio 51/49 confirmado — Dead bug añadido al Gym A como corrector activo.',
+  weekNotes: 'Sesión de calidad del miércoles (2×12\'+8\'): mejor sesión del bloque. 32\' totales a umbral, VO2max sube a 47. Espalda: molestia inicial al arrancar el domingo S2, cede con corrección postural. Patrón de equilibrio 51/49 confirmado — Dead bug añadido al Gym A como corrector activo.',
   weekDays: [
-    {name:'Lun', type:'Descanso', detail:'Movilidad torácica + respiración', status:'done'},
-    {name:'Mar', type:'Gym A', detail:'Fuerza principal · Dead bug añadido', status:'modified'},
-    {name:'Mié', type:'Calidad', detail:'2x12\'+8\' umbral · 9,45km · 5:45/km · FC 137bpm', status:'done'},
-    {name:'Jue', type:'Gym B', detail:'Estabilidad (versión descargada)', status:'pending'},
-    {name:'Vie', type:'Descanso', detail:'Descanso completo', status:'pending'},
-    {name:'Sáb', type:'Z2 + técnica', detail:'50\' + 6 rectas de 20"', status:'pending'},
-    {name:'Dom', type:'Tirada larga', detail:'70-75\' progresiva suave', status:'pending'},
+    {name:'Lun', type:'Descanso',    detail:'Movilidad torácica + respiración',            status:'done'},
+    {name:'Mar', type:'Gym A',       detail:'Fuerza principal · Dead bug añadido',          status:'modified'},
+    {name:'Mié', type:'Calidad',     detail:'2×12\'+8\' umbral · 9,45km · 5:45/km · FC 137bpm', status:'done'},
+    {name:'Jue', type:'Gym B',       detail:'Estabilidad (versión descargada)',              status:'pending'},
+    {name:'Vie', type:'Descanso',    detail:'Descanso completo',                            status:'pending'},
+    {name:'Sáb', type:'Z2 + técnica',detail:'50\' + 6 rectas de 20"',                      status:'pending'},
+    {name:'Dom', type:'Tirada larga',detail:'70-75\' progresiva suave',                     status:'pending'},
   ],
   competitions: [
-    {name:'Carrera de Bombero',date:'Abr 2024',dist:'10K',time:'54:15',pace:5.367,fc:null,desnivel:82,phase:'pre'},
-    {name:'Zara Athletics Speed Run',date:'Nov 2024',dist:'10K',time:'49:55',pace:4.917,fc:146,desnivel:6,phase:'best'},
-    {name:'Carrera Huérfanos',date:'Feb 2025',dist:'10K',time:'52:20',pace:5.183,fc:145,desnivel:95,phase:'pre'},
-    {name:'MetLife 15K',date:'Mar 2025',dist:'15K',time:'1:20:43',pace:5.417,fc:144,desnivel:63,phase:'pre'},
-    {name:'Vintage Run Madrid',date:'Jun 2025',dist:'10K',time:'50:53',pace:5.05,fc:147,desnivel:9,phase:'pre'},
-    {name:'San Silvestre Vallecana',date:'Dic 2025',dist:'10K',time:'59:10',pace:5.883,fc:150,desnivel:64,phase:'post'},
-    {name:'Carrera Huérfanos',date:'Feb 2026',dist:'6,4K',time:'35:34',pace:5.55,fc:149,desnivel:74,phase:'post'},
+    {name:'Carrera de Bombero',    date:'Abr 2024', dist:'10K',  time:'54:15',   pace:5.367, fc:null, desnivel:82,  phase:'pre'},
+    {name:'Zara Athletics',        date:'Nov 2024', dist:'10K',  time:'49:55',   pace:4.917, fc:146,  desnivel:6,   phase:'best'},
+    {name:'Carrera Huérfanos',     date:'Feb 2025', dist:'10K',  time:'52:20',   pace:5.183, fc:145,  desnivel:95,  phase:'pre'},
+    {name:'MetLife 15K',           date:'Mar 2025', dist:'15K',  time:'1:20:43', pace:5.417, fc:144,  desnivel:63,  phase:'pre'},
+    {name:'Vintage Run Madrid',    date:'Jun 2025', dist:'10K',  time:'50:53',   pace:5.05,  fc:147,  desnivel:9,   phase:'pre'},
+    {name:'San Silvestre Vallecana',date:'Dic 2025',dist:'10K',  time:'59:10',   pace:5.883, fc:150,  desnivel:64,  phase:'post'},
+    {name:'Carrera Huérfanos',     date:'Feb 2026', dist:'6,4K', time:'35:34',   pace:5.55,  fc:149,  desnivel:74,  phase:'post'},
   ],
   projection: [
-    {label:'Dic 2025',real:5.883,est:null},
-    {label:'Feb 2026',real:5.55,est:null},
-    {label:'Jun 2026',real:null,est:5.25},
-    {label:'Sep 2026',real:null,est:5.08},
-    {label:'Oct 2026',real:null,est:5.02},
-    {label:'Nov-Dic 2026',real:null,est:4.95},
+    {label:'Dic 2025', real:5.883, est:null},
+    {label:'Feb 2026', real:5.55,  est:null},
+    {label:'Jun 2026', real:null,  est:5.25},
+    {label:'Sep 2026', real:null,  est:5.08},
+    {label:'Oct 2026', real:null,  est:5.02},
+    {label:'Nov-Dic',  real:null,  est:4.95},
   ],
   blocks: [
-    {period:'Jun 2026',title:'Bloque 1 — consolidación',desc:'Umbral 5:10-5:20/km · tiradas 75\' · gym 2x/sem',tags:['VO2max 47','10K ~52:30'],type:'active',current:true},
-    {period:'Jul 2026',title:'Bloque 2 — carga media',desc:'4x8\'→2x15\' umbral · series 5:00-5:10/km · vol +10%',tags:['VO2max ~48','10K ~51:00'],type:'active',current:false},
-    {period:'Ago 2026',title:'Mantenimiento estival',desc:'3-4 días/sem · sin series largas · continuidad sin progresión',tags:['carga -30%','sin pérdida de base'],type:'maint',current:false},
-    {period:'Sep 2026',title:'Bloque 3 — reactivación',desc:'Series 4:55-5:05/km · primer test opcional',tags:['VO2max ~49','10K ~50:30'],type:'active',current:false},
-    {period:'Oct 2026',title:'Bloque 4 — específico 10K',desc:'Ritmo competición · reducción volumen suave',tags:['VO2max ~49-50','10K ~50:00'],type:'active',current:false},
-    {period:'Nov 2026',title:'Afinado / tapering',desc:'-20-25% volumen · mantener intensidad · prevención dorsal',tags:['tapering 2-3 sem'],type:'peak',current:false},
-    {period:'Nov-Dic 2026',title:'Ventana objetivo',desc:'Circuito llano · frío · objetivo 49:55–50:30',tags:['4:55-5:00/km','VO2max ~50-51'],type:'race',current:false},
+    {period:'Jun 2026',    title:'Bloque 1 — consolidación', desc:'Umbral 5:10-5:20/km · tiradas 75\' · gym 2×/sem',       tags:['VO2max 47','10K ~52:30'],          type:'active', current:true},
+    {period:'Jul 2026',    title:'Bloque 2 — carga media',   desc:'4×8\'→2×15\' umbral · series 5:00-5:10/km · vol +10%',  tags:['VO2max ~48','10K ~51:00'],          type:'active', current:false},
+    {period:'Ago 2026',    title:'Mantenimiento estival',     desc:'3-4 días/sem · sin series largas · continuidad',        tags:['carga -30%','sin pérdida de base'], type:'maint',  current:false},
+    {period:'Sep 2026',    title:'Bloque 3 — reactivación',  desc:'Series 4:55-5:05/km · primer test opcional',            tags:['VO2max ~49','10K ~50:30'],          type:'active', current:false},
+    {period:'Oct 2026',    title:'Bloque 4 — específico 10K',desc:'Ritmo competición · reducción volumen suave',           tags:['VO2max ~49-50','10K ~50:00'],       type:'active', current:false},
+    {period:'Nov 2026',    title:'Afinado / tapering',        desc:'-20-25% volumen · mantener intensidad · prevención dorsal',tags:['tapering 2-3 sem'],             type:'peak',   current:false},
+    {period:'Nov-Dic 2026',title:'Ventana objetivo',          desc:'Circuito llano · frío · objetivo 49:55–50:30',          tags:['4:55-5:00/km','VO2max ~50-51'],    type:'race',   current:false},
   ]
 };
 
@@ -266,8 +270,7 @@ function paceStr(v) {
 }
 
 function checkLogin() {
-  const val = document.getElementById('pwd-input').value;
-  if (val === PWD) {
+  if (document.getElementById('pwd-input').value === PWD) {
     sessionStorage.setItem('auth','1');
     document.getElementById('login-screen').style.display = 'none';
     document.getElementById('app').style.display = 'block';
@@ -293,8 +296,6 @@ function showTab(name, btn) {
   if (btn) btn.classList.add('active');
 }
 
-let chartsInit = {prog: false, comp: false};
-
 function initApp() {
   document.getElementById('last-update-label').textContent = 'Actualizado: ' + DATA.lastUpdate;
   renderSemana();
@@ -304,21 +305,40 @@ function initApp() {
 
 function renderSemana() {
   const d = DATA;
-  const statusClass = {done:'done',modified:'modified',pending:''};
-  const dotClass = {done:'dot-done',modified:'dot-modified',pending:'dot-pending'};
-  const loadColor = d.weekLoad > 85 ? '#f5634a' : d.weekLoad > 65 ? '#f5a623' : '#3ecf8e';
+  const loadColor = d.weekLoad > 85 ? '#dc2626' : d.weekLoad > 65 ? '#d97706' : '#16a34a';
+  const statusClass = {done:'done', modified:'modified', pending:''};
+  const dotClass    = {done:'dot-done', modified:'dot-modified', pending:'dot-pending'};
 
   let html = '';
   if (!d.dorsalOk) html += `<div class="alert">⚠ Señal dorsal activa — revisar carga antes de continuar</div>`;
 
   html += `<div class="metrics">
-    <div class="metric-card accent-blue"><div class="metric-label">Bloque actual</div><div class="metric-val blue" style="font-size:16px">${d.currentBlock}</div><div class="metric-sub">Semana ${d.weekNumber} de 4</div></div>
-    <div class="metric-card"><div class="metric-label">Fatiga</div><div class="metric-val ${d.fatigueLevel>=7?'coral':d.fatigueLevel>=5?'amber':'green'}">${d.fatigueLevel}/10</div><div class="metric-sub">${d.fatigueLevel<=4?'baja':d.fatigueLevel<=6?'moderada':'alta'}</div></div>
-    <div class="metric-card"><div class="metric-label">Carga semanal</div><div class="metric-val">${d.weekLoad}%</div><div class="metric-sub">del objetivo</div></div>
-    <div class="metric-card ${d.dorsalOk?'':'accent-coral'}"><div class="metric-label">Espalda dorsal</div><div class="metric-val ${d.dorsalOk?'green':'coral'}" style="font-size:16px">${d.dorsalOk?'OK':'Atención'}</div><div class="metric-sub">${d.dorsalStatus}</div></div>
+    <div class="metric-card accent-blue">
+      <div class="metric-label">Bloque actual</div>
+      <div class="metric-val blue" style="font-size:17px">${d.currentBlock}</div>
+      <div class="metric-sub">Semana ${d.weekNumber} de 4</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Fatiga</div>
+      <div class="metric-val ${d.fatigueLevel>=7?'coral':d.fatigueLevel>=5?'amber':'green'}">${d.fatigueLevel}/10</div>
+      <div class="metric-sub">${d.fatigueLevel<=4?'baja':d.fatigueLevel<=6?'moderada':'alta'}</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Carga semanal</div>
+      <div class="metric-val">${d.weekLoad}%</div>
+      <div class="metric-sub">del objetivo</div>
+    </div>
+    <div class="metric-card ${d.dorsalOk?'accent-green':'accent-coral'}">
+      <div class="metric-label">Espalda dorsal</div>
+      <div class="metric-val ${d.dorsalOk?'green':'coral'}" style="font-size:17px">${d.dorsalOk?'OK':'Atención'}</div>
+      <div class="metric-sub">${d.dorsalStatus}</div>
+    </div>
   </div>`;
 
-  html += `<div class="load-wrap"><div class="load-label"><span>carga acumulada semana</span><span>${d.weekLoad}%</span></div><div class="load-track"><div class="load-fill" style="width:${d.weekLoad}%;background:${loadColor}"></div></div></div>`;
+  html += `<div class="load-wrap">
+    <div class="load-label"><span>carga acumulada semana</span><span>${d.weekLoad}%</span></div>
+    <div class="load-track"><div class="load-fill" style="width:${d.weekLoad}%;background:${loadColor}"></div></div>
+  </div>`;
 
   html += `<div class="section-label">Semana ${d.weekNumber} — día a día</div><div class="week-grid">`;
   d.weekDays.forEach(day => {
@@ -331,10 +351,10 @@ function renderSemana() {
   });
   html += `</div>`;
 
-  html += `<div style="display:flex;gap:14px;margin-bottom:20px;font-size:11px;color:var(--text3)">
-    <span style="display:flex;align-items:center;gap:5px"><span style="width:6px;height:6px;border-radius:50%;background:var(--green);display:inline-block"></span>ejecutado</span>
-    <span style="display:flex;align-items:center;gap:5px"><span style="width:6px;height:6px;border-radius:50%;background:var(--amber);display:inline-block"></span>ajustado</span>
-    <span style="display:flex;align-items:center;gap:5px"><span style="width:6px;height:6px;border-radius:50%;background:var(--text3);display:inline-block"></span>pendiente</span>
+  html += `<div class="status-legend">
+    <span><span style="width:6px;height:6px;border-radius:50%;background:#16a34a;display:inline-block"></span>ejecutado</span>
+    <span><span style="width:6px;height:6px;border-radius:50%;background:#d97706;display:inline-block"></span>ajustado</span>
+    <span><span style="width:6px;height:6px;border-radius:50%;background:#9aa0ad;display:inline-block"></span>pendiente</span>
   </div>`;
 
   if (d.weekNotes) {
@@ -348,18 +368,34 @@ function renderProgresion() {
   const d = DATA;
   document.getElementById('tab-progresion').innerHTML = `
     <div class="metrics">
-      <div class="metric-card accent-blue"><div class="metric-label">Ritmo umbral</div><div class="metric-val blue">${d.currentPace}</div><div class="metric-sub">min/km · jun 2026</div></div>
-      <div class="metric-card"><div class="metric-label">VO2max actual</div><div class="metric-val">${d.currentVo2}</div><div class="metric-sub">vs 51 pre-lesión</div></div>
-      <div class="metric-card"><div class="metric-label">10K estimado hoy</div><div class="metric-val">${d.estRace10k}</div><div class="metric-sub">sin carrera oficial reciente</div></div>
-      <div class="metric-card accent-amber"><div class="metric-label">Objetivo final</div><div class="metric-val amber">49:55</div><div class="metric-sub">4:55/km · nov-dic 2026</div></div>
+      <div class="metric-card accent-blue">
+        <div class="metric-label">Ritmo umbral</div>
+        <div class="metric-val blue">${d.currentPace}</div>
+        <div class="metric-sub">min/km · jun 2026</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">VO2max actual</div>
+        <div class="metric-val">${d.currentVo2}</div>
+        <div class="metric-sub">vs 51 pre-lesión</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">10K estimado hoy</div>
+        <div class="metric-val">${d.estRace10k}</div>
+        <div class="metric-sub">sin carrera reciente</div>
+      </div>
+      <div class="metric-card accent-amber">
+        <div class="metric-label">Objetivo final</div>
+        <div class="metric-val amber">49:55</div>
+        <div class="metric-sub">4:55/km · nov-dic 2026</div>
+      </div>
     </div>
     <div class="chart-card">
       <div class="chart-card-title">evolución de ritmo en 10K — real + proyección</div>
-      <div class="chart-wrap"><canvas id="progChart" role="img" aria-label="Gráfico de progresión de ritmo en 10K"></canvas></div>
+      <div class="chart-wrap"><canvas id="progChart" role="img" aria-label="Progresión de ritmo en 10K y proyección hacia la mejor marca"></canvas></div>
       <div class="chart-legend">
-        <div class="legend-item"><div class="legend-dot" style="background:#4a8ef5"></div>Real (competición)</div>
-        <div class="legend-item"><div class="legend-dot" style="background:#3ecf8e;opacity:.6"></div>Proyección</div>
-        <div class="legend-item"><div class="legend-dot" style="background:#f5a623;opacity:.6"></div>Mejor marca (4:55)</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#2563eb"></div>Real (competición)</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#16a34a;opacity:.7"></div>Proyección</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#d97706;opacity:.7"></div>Mejor marca (4:55)</div>
       </div>
     </div>
     <div class="section-label">Hoja de ruta por bloques</div>
@@ -367,28 +403,30 @@ function renderProgresion() {
   `;
 
   const labels = d.projection.map(p=>p.label);
-  const real = d.projection.map(p=>p.real);
-  const est = d.projection.map(p=>p.est);
-  const ref = d.projection.map(()=>4.917);
-
   if (window._progChart) window._progChart.destroy();
   window._progChart = new Chart(document.getElementById('progChart'), {
     type:'line',
-    data:{labels,datasets:[
-      {label:'Real',data:real,borderColor:'#4a8ef5',backgroundColor:'#4a8ef5',pointRadius:7,pointHoverRadius:9,borderWidth:2.5,tension:0.3,spanGaps:false},
-      {label:'Proyección',data:est,borderColor:'#3ecf8e',borderDash:[6,4],pointRadius:5,pointBorderColor:'#3ecf8e',pointBackgroundColor:'rgba(14,16,24,0.8)',pointBorderWidth:2,borderWidth:2,tension:0.3,spanGaps:false},
-      {label:'Mejor marca',data:ref,borderColor:'#f5a623',borderWidth:1.5,borderDash:[3,3],pointRadius:0,tension:0}
+    data:{labels, datasets:[
+      {label:'Real',data:d.projection.map(p=>p.real),borderColor:'#2563eb',backgroundColor:'#2563eb',pointRadius:7,pointHoverRadius:9,borderWidth:2.5,tension:0.3,spanGaps:false},
+      {label:'Proyección',data:d.projection.map(p=>p.est),borderColor:'#16a34a',borderDash:[6,4],pointRadius:5,pointBorderColor:'#16a34a',pointBackgroundColor:'#fff',pointBorderWidth:2,borderWidth:2,tension:0.3,spanGaps:false},
+      {label:'Mejor marca',data:d.projection.map(()=>4.917),borderColor:'#d97706',borderWidth:1.5,borderDash:[3,3],pointRadius:0,tension:0}
     ]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:(c)=>c.raw===null?'':c.dataset.label+': '+paceStr(c.raw)+'/km'}}},scales:{y:{reverse:true,min:4.6,max:6.2,grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'#5c6070',font:{size:11},callback:(v)=>paceStr(v)}},x:{grid:{display:false},ticks:{color:'#5c6070',font:{size:11},autoSkip:false}}}}
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:(c)=>c.raw===null?'':c.dataset.label+': '+paceStr(c.raw)+'/km'}}},
+      scales:{
+        y:{reverse:true,min:4.6,max:6.2,grid:{color:'rgba(0,0,0,0.04)'},ticks:{color:'#9aa0ad',font:{size:11},callback:(v)=>paceStr(v)}},
+        x:{grid:{display:false},ticks:{color:'#9aa0ad',font:{size:11},autoSkip:false}}
+      }
+    }
   });
 }
 
 function buildTimeline() {
-  const dotColor = {active:'#4a8ef5',maint:'#5c6070',peak:'#f5a623',race:'#f5634a'};
-  const tagClass = {active:'tag-blue',maint:'tag-gray',peak:'tag-amber',race:'tag-coral'};
+  const dotColor = {active:'#2563eb',maint:'#9aa0ad',peak:'#d97706',race:'#dc2626'};
+  const tagClass  = {active:'tag-blue',maint:'tag-gray',peak:'tag-amber',race:'tag-coral'};
   return DATA.blocks.map(b=>`
     <div class="tl-item">
-      <div class="tl-dot" style="background:${dotColor[b.type]};${b.current?'box-shadow:0 0 0 3px rgba(74,142,245,0.2)':''}"></div>
+      <div class="tl-dot" style="background:${dotColor[b.type]};${b.current?'box-shadow:0 0 0 3px rgba(37,99,235,0.15)':''}"></div>
       <div class="tl-period">${b.period}</div>
       <div class="tl-title">${b.title}${b.current?'<span class="current-badge">ahora</span>':''}</div>
       <div class="tl-desc">${b.desc}</div>
@@ -398,17 +436,33 @@ function buildTimeline() {
 
 function renderCompeticiones() {
   const d = DATA;
-  const best = d.competitions.find(c=>c.phase==='best');
-  const lastPre = [...d.competitions].filter(c=>c.phase==='pre'||c.phase==='best').sort((a,b)=>b.pace-a.pace).find(c=>c.phase==='pre');
-  const lastPost = [...d.competitions].filter(c=>c.phase==='post').pop();
-  const recov = Math.round((best.pace / (lastPost ? lastPost.pace : best.pace)) * 100);
+  const best    = d.competitions.find(c=>c.phase==='best');
+  const lastPre = [...d.competitions].filter(c=>c.phase==='pre').pop();
+  const lastPost= [...d.competitions].filter(c=>c.phase==='post').pop();
+  const recov   = Math.round((best.pace / (lastPost ? lastPost.pace : best.pace)) * 100);
 
   document.getElementById('tab-competiciones').innerHTML = `
     <div class="metrics">
-      <div class="metric-card accent-amber"><div class="metric-label">Mejor marca 10K</div><div class="metric-val amber">${best.time}</div><div class="metric-sub">${best.name} · ${best.date}</div></div>
-      <div class="metric-card"><div class="metric-label">Última pre-lesión</div><div class="metric-val">${lastPre?lastPre.time:'—'}</div><div class="metric-sub">${lastPre?lastPre.name+' · '+lastPre.date:'—'}</div></div>
-      <div class="metric-card"><div class="metric-label">Última post-lesión</div><div class="metric-val">${lastPost?lastPost.time:'—'}</div><div class="metric-sub">${lastPost?lastPost.name+' · '+lastPost.date:'—'}</div></div>
-      <div class="metric-card accent-green"><div class="metric-label">Recuperación estimada</div><div class="metric-val green">~${recov}%</div><div class="metric-sub">del nivel de mejor marca</div></div>
+      <div class="metric-card accent-amber">
+        <div class="metric-label">Mejor marca 10K</div>
+        <div class="metric-val amber">${best.time}</div>
+        <div class="metric-sub">${best.name} · ${best.date}</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Última pre-lesión</div>
+        <div class="metric-val">${lastPre?lastPre.time:'—'}</div>
+        <div class="metric-sub">${lastPre?lastPre.name+' · '+lastPre.date:'—'}</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Última post-lesión</div>
+        <div class="metric-val">${lastPost?lastPost.time:'—'}</div>
+        <div class="metric-sub">${lastPost?lastPost.name+' · '+lastPost.date:'—'}</div>
+      </div>
+      <div class="metric-card accent-green">
+        <div class="metric-label">Recuperación estimada</div>
+        <div class="metric-val green">~${recov}%</div>
+        <div class="metric-sub">del nivel de mejor marca</div>
+      </div>
     </div>
     <div class="chart-card">
       <div class="chart-card-title">ritmo por competición (min/km) — menor es mejor</div>
@@ -421,7 +475,10 @@ function renderCompeticiones() {
         <tr>
           <td><div class="race-name-main">${c.name}</div><div class="race-name-sub">${c.date} · ${c.dist}</div></td>
           <td><span class="race-time">${c.time}</span></td>
-          <td><span class="race-pace">${paceStr(c.pace)}/km</span><div class="pace-bar"><div class="pace-bar-fill" style="width:${Math.round((best.pace/c.pace)*100)}%;background:${c.phase==='best'?'#f5a623':c.phase==='post'?'#4a8ef5':'#3ecf8e'}"></div></div></td>
+          <td>
+            <span class="race-pace">${paceStr(c.pace)}/km</span>
+            <div class="pace-bar"><div class="pace-bar-fill" style="width:${Math.round((best.pace/c.pace)*100)}%;background:${c.phase==='best'?'#d97706':c.phase==='post'?'#2563eb':'#16a34a'}"></div></div>
+          </td>
           <td>${c.fc?c.fc+' bpm':'—'}</td>
           <td>+${c.desnivel}m</td>
           <td><span class="badge ${c.phase==='best'?'badge-best':c.phase==='post'?'badge-post':'badge-pre'}">${c.phase==='best'?'mejor marca':c.phase==='post'?'post-lesión':'pre-lesión'}</span></td>
@@ -437,17 +494,23 @@ function renderCompeticiones() {
       labels: d.competitions.map(c=>c.name.split(' ').slice(0,2).join(' ')+'\n'+c.date),
       datasets:[{
         label:'Ritmo',
-        data:d.competitions.map(c=>c.pace),
-        backgroundColor:d.competitions.map(c=>c.phase==='best'?'rgba(245,166,35,0.7)':c.phase==='post'?'rgba(74,142,245,0.6)':'rgba(62,207,142,0.5)'),
-        borderColor:d.competitions.map(c=>c.phase==='best'?'#f5a623':c.phase==='post'?'#4a8ef5':'#3ecf8e'),
-        borderWidth:1.5,borderRadius:5,
+        data: d.competitions.map(c=>c.pace),
+        backgroundColor: d.competitions.map(c=>c.phase==='best'?'rgba(217,119,6,0.7)':c.phase==='post'?'rgba(37,99,235,0.55)':'rgba(22,163,74,0.55)'),
+        borderColor:     d.competitions.map(c=>c.phase==='best'?'#d97706':c.phase==='post'?'#2563eb':'#16a34a'),
+        borderWidth:1.5, borderRadius:5
       }]
     },
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:(c)=>'Ritmo: '+paceStr(c.raw)+'/km'}}},scales:{y:{reverse:true,min:4.5,max:6.4,grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'#5c6070',font:{size:11},callback:(v)=>paceStr(v)}},x:{grid:{display:false},ticks:{color:'#5c6070',font:{size:10},maxRotation:35,autoSkip:false}}}}
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:(c)=>'Ritmo: '+paceStr(c.raw)+'/km'}}},
+      scales:{
+        y:{reverse:true,min:4.5,max:6.4,grid:{color:'rgba(0,0,0,0.04)'},ticks:{color:'#9aa0ad',font:{size:11},callback:(v)=>paceStr(v)}},
+        x:{grid:{display:false},ticks:{color:'#9aa0ad',font:{size:10},maxRotation:35,autoSkip:false}}
+      }
+    }
   });
 }
 
-if (sessionStorage.getItem('auth') === '1') {
+if (sessionStorage.getItem('auth')==='1') {
   document.getElementById('login-screen').style.display = 'none';
   document.getElementById('app').style.display = 'block';
   initApp();
