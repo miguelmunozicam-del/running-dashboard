@@ -6,173 +6,178 @@
 <title>Running Dashboard — Miguel</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+:root{
+  --bg:#f7f8fa;--bg2:#fff;--bg3:#f0f2f5;--bg4:#e8eaed;
+  --border:rgba(0,0,0,0.07);--border2:rgba(0,0,0,0.12);
+  --text:#1a1d23;--text2:#5c6370;--text3:#9aa0ad;
+  --blue:#2563eb;--blue-dim:#eff4ff;--blue-bdr:#bfcffe;
+  --green:#16a34a;--green-dim:#f0fdf4;--green-bdr:#bbf7d0;
+  --amber:#d97706;--amber-dim:#fffbeb;--amber-bdr:#fde68a;
+  --coral:#dc2626;--coral-dim:#fef2f2;--coral-bdr:#fecaca;
+  --purple:#7c3aed;--purple-dim:#f5f3ff;--purple-bdr:#ddd6fe;
+  --mono:'JetBrains Mono',monospace;--sans:'Inter',sans-serif;
+  --radius:10px;--radius-sm:6px;
+  --shadow:0 1px 3px rgba(0,0,0,0.06),0 1px 2px rgba(0,0,0,0.04);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14px;line-height:1.5;min-height:100vh}
 
-  :root {
-    --bg:       #f7f8fa;
-    --bg2:      #ffffff;
-    --bg3:      #f0f2f5;
-    --border:   rgba(0,0,0,0.07);
-    --border2:  rgba(0,0,0,0.12);
-    --text:     #1a1d23;
-    --text2:    #5c6370;
-    --text3:    #9aa0ad;
-    --blue:     #2563eb;
-    --blue-dim: #eff4ff;
-    --blue-bdr: #bfcffe;
-    --green:    #16a34a;
-    --green-dim:#f0fdf4;
-    --green-bdr:#bbf7d0;
-    --amber:    #d97706;
-    --amber-dim:#fffbeb;
-    --amber-bdr:#fde68a;
-    --coral:    #dc2626;
-    --coral-dim:#fef2f2;
-    --coral-bdr:#fecaca;
-    --mono:     'JetBrains Mono', monospace;
-    --sans:     'Inter', sans-serif;
-    --radius:   10px;
-    --radius-sm:6px;
-    --shadow:   0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
-  }
+/* LOGIN */
+#login-screen{display:flex;align-items:center;justify-content:center;min-height:100vh;background:var(--bg)}
+.login-box{background:var(--bg2);border:0.5px solid var(--border2);border-radius:14px;padding:40px;width:100%;max-width:360px;box-shadow:var(--shadow)}
+.login-logo{font-family:var(--mono);font-size:11px;color:var(--text3);letter-spacing:.12em;text-transform:uppercase;margin-bottom:24px;display:flex;align-items:center;gap:8px}
+.login-logo::before{content:'';display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--green)}
+.login-title{font-size:22px;font-weight:600;color:var(--text);margin-bottom:6px}
+.login-sub{font-size:13px;color:var(--text2);margin-bottom:28px}
+.login-box input{width:100%;background:var(--bg3);border:0.5px solid var(--border2);border-radius:var(--radius-sm);padding:10px 14px;color:var(--text);font-size:14px;font-family:var(--mono);outline:none;transition:border-color .15s}
+.login-box input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,0.1)}
+.login-box button{width:100%;margin-top:12px;background:var(--blue);border:none;border-radius:var(--radius-sm);padding:10px;color:#fff;font-size:14px;font-weight:500;cursor:pointer;font-family:var(--sans);transition:opacity .15s}
+.login-box button:hover{opacity:.88}
+.login-error{font-size:12px;color:var(--coral);margin-top:8px;display:none}
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 14px; line-height: 1.5; min-height: 100vh; }
+/* APP */
+#app{display:none}
+.topbar{background:var(--bg2);border-bottom:0.5px solid var(--border2);padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:52px;position:sticky;top:0;z-index:10;box-shadow:0 1px 0 var(--border)}
+.topbar-logo{font-family:var(--mono);font-size:11px;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;display:flex;align-items:center;gap:6px}
+.topbar-logo::before{content:'';display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--green)}
+.topbar-title{font-size:14px;font-weight:500;color:var(--text);margin-left:14px}
+.last-update{font-size:11px;color:var(--text3);font-family:var(--mono)}
+.logout-btn{font-size:11px;color:var(--text2);background:none;border:0.5px solid var(--border2);border-radius:var(--radius-sm);padding:4px 10px;cursor:pointer;transition:all .15s}
+.logout-btn:hover{color:var(--text);background:var(--bg3)}
 
-  /* LOGIN */
-  #login-screen { display: flex; align-items: center; justify-content: center; min-height: 100vh; background: var(--bg); }
-  .login-box { background: var(--bg2); border: 0.5px solid var(--border2); border-radius: 14px; padding: 40px; width: 100%; max-width: 360px; box-shadow: var(--shadow); }
-  .login-logo { font-family: var(--mono); font-size: 11px; color: var(--text3); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 24px; display: flex; align-items: center; gap: 8px; }
-  .login-logo::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--green); }
-  .login-title { font-size: 22px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
-  .login-sub { font-size: 13px; color: var(--text2); margin-bottom: 28px; }
-  .login-box input { width: 100%; background: var(--bg3); border: 0.5px solid var(--border2); border-radius: var(--radius-sm); padding: 10px 14px; color: var(--text); font-size: 14px; font-family: var(--mono); outline: none; transition: border-color .15s; }
-  .login-box input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
-  .login-box button { width: 100%; margin-top: 12px; background: var(--blue); border: none; border-radius: var(--radius-sm); padding: 10px; color: #fff; font-size: 14px; font-weight: 500; cursor: pointer; font-family: var(--sans); transition: opacity .15s; }
-  .login-box button:hover { opacity: .88; }
-  .login-error { font-size: 12px; color: var(--coral); margin-top: 8px; display: none; }
+.main{padding:24px;max-width:1100px;margin:0 auto}
 
-  /* APP */
-  #app { display: none; }
-  .topbar { background: var(--bg2); border-bottom: 0.5px solid var(--border2); padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 52px; position: sticky; top: 0; z-index: 10; box-shadow: 0 1px 0 var(--border); }
-  .topbar-logo { font-family: var(--mono); font-size: 11px; color: var(--text3); letter-spacing: .1em; text-transform: uppercase; display: flex; align-items: center; gap: 6px; }
-  .topbar-logo::before { content: ''; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--green); }
-  .topbar-title { font-size: 14px; font-weight: 500; color: var(--text); margin-left: 14px; }
-  .topbar-right { display: flex; align-items: center; gap: 12px; }
-  .last-update { font-size: 11px; color: var(--text3); font-family: var(--mono); }
-  .logout-btn { font-size: 11px; color: var(--text2); background: none; border: 0.5px solid var(--border2); border-radius: var(--radius-sm); padding: 4px 10px; cursor: pointer; transition: all .15s; }
-  .logout-btn:hover { color: var(--text); background: var(--bg3); }
+/* TABS */
+.tabs{display:flex;gap:4px;margin-bottom:24px;background:var(--bg2);border:0.5px solid var(--border2);border-radius:var(--radius);padding:4px;width:fit-content;box-shadow:var(--shadow);flex-wrap:wrap}
+.tab-btn{font-size:13px;padding:7px 16px;background:transparent;border:none;color:var(--text2);cursor:pointer;border-radius:7px;font-family:var(--sans);transition:all .15s;white-space:nowrap}
+.tab-btn.active{background:var(--blue);color:#fff;font-weight:500}
+.tab-btn:hover:not(.active){background:var(--bg3);color:var(--text)}
+.tab-content{display:none}.tab-content.active{display:block}
 
-  .main { padding: 24px; max-width: 1100px; margin: 0 auto; }
+/* METRICS */
+.metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:24px}
+.metric-card{background:var(--bg2);border:0.5px solid var(--border2);border-radius:var(--radius);padding:16px 18px;box-shadow:var(--shadow)}
+.metric-card.accent-blue{background:var(--blue-dim);border-color:var(--blue-bdr)}
+.metric-card.accent-green{background:var(--green-dim);border-color:var(--green-bdr)}
+.metric-card.accent-amber{background:var(--amber-dim);border-color:var(--amber-bdr)}
+.metric-card.accent-coral{background:var(--coral-dim);border-color:var(--coral-bdr)}
+.metric-label{font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px;font-family:var(--mono)}
+.metric-val{font-size:22px;font-weight:600;color:var(--text);font-family:var(--mono)}
+.metric-val.blue{color:var(--blue)}.metric-val.green{color:var(--green)}.metric-val.amber{color:var(--amber)}.metric-val.coral{color:var(--coral)}
+.metric-sub{font-size:11px;color:var(--text3);margin-top:3px}
 
-  /* TABS */
-  .tabs { display: flex; gap: 4px; margin-bottom: 24px; background: var(--bg2); border: 0.5px solid var(--border2); border-radius: var(--radius); padding: 4px; width: fit-content; box-shadow: var(--shadow); }
-  .tab-btn { font-size: 13px; padding: 7px 18px; background: transparent; border: none; color: var(--text2); cursor: pointer; border-radius: 7px; font-family: var(--sans); transition: all .15s; white-space: nowrap; }
-  .tab-btn.active { background: var(--blue); color: #fff; font-weight: 500; }
-  .tab-btn:hover:not(.active) { background: var(--bg3); color: var(--text); }
-  .tab-content { display: none; }
-  .tab-content.active { display: block; }
+.section-label{font-size:11px;font-weight:500;letter-spacing:.08em;color:var(--text3);text-transform:uppercase;font-family:var(--mono);margin:28px 0 14px}
 
-  /* METRICS */
-  .metrics { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 12px; margin-bottom: 24px; }
-  .metric-card { background: var(--bg2); border: 0.5px solid var(--border2); border-radius: var(--radius); padding: 16px 18px; box-shadow: var(--shadow); }
-  .metric-card.accent-blue { background: var(--blue-dim); border-color: var(--blue-bdr); }
-  .metric-card.accent-green { background: var(--green-dim); border-color: var(--green-bdr); }
-  .metric-card.accent-amber { background: var(--amber-dim); border-color: var(--amber-bdr); }
-  .metric-card.accent-coral { background: var(--coral-dim); border-color: var(--coral-bdr); }
-  .metric-label { font-size: 11px; color: var(--text3); text-transform: uppercase; letter-spacing: .07em; margin-bottom: 6px; font-family: var(--mono); }
-  .metric-val { font-size: 22px; font-weight: 600; color: var(--text); font-family: var(--mono); }
-  .metric-val.blue { color: var(--blue); }
-  .metric-val.green { color: var(--green); }
-  .metric-val.amber { color: var(--amber); }
-  .metric-val.coral { color: var(--coral); }
-  .metric-sub { font-size: 11px; color: var(--text3); margin-top: 3px; }
+/* WEEK GRID */
+.week-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px;margin-bottom:16px}
+.day-card{background:var(--bg2);border:0.5px solid var(--border);border-radius:var(--radius);padding:12px;min-height:90px;box-shadow:var(--shadow)}
+.day-card.done{border-color:var(--green-bdr);background:var(--green-dim)}
+.day-card.modified{border-color:var(--amber-bdr);background:var(--amber-dim)}
+.day-card.planned{border-color:var(--border);background:var(--bg2)}
+.day-name{font-family:var(--mono);font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px}
+.day-type{font-size:12px;font-weight:500;color:var(--text);margin-bottom:3px}
+.day-detail{font-size:11px;color:var(--text2);line-height:1.4}
+.day-result{font-size:10px;color:var(--green);margin-top:4px;font-family:var(--mono);font-style:italic}
+.day-dot{width:6px;height:6px;border-radius:50%;margin-top:6px}
+.dot-done{background:var(--green)}.dot-modified{background:var(--amber)}.dot-pending{background:var(--text3)}
 
-  /* SECTION LABEL */
-  .section-label { font-size: 11px; font-weight: 500; letter-spacing: .08em; color: var(--text3); text-transform: uppercase; font-family: var(--mono); margin: 28px 0 14px; }
+.load-wrap{margin-bottom:20px}
+.load-label{display:flex;justify-content:space-between;font-size:11px;color:var(--text3);margin-bottom:5px;font-family:var(--mono)}
+.load-track{height:6px;background:var(--bg3);border-radius:3px;overflow:hidden;border:0.5px solid var(--border)}
+.load-fill{height:100%;border-radius:3px;transition:width .4s}
+.notes-box{background:var(--bg2);border:0.5px solid var(--border2);border-left:3px solid var(--blue);border-radius:0 var(--radius) var(--radius) 0;padding:14px 18px;font-size:13px;color:var(--text2);line-height:1.6;box-shadow:var(--shadow)}
+.alert{background:var(--coral-dim);border:0.5px solid var(--coral-bdr);border-radius:var(--radius);padding:12px 16px;font-size:12px;color:var(--coral);margin-bottom:20px;display:flex;gap:8px;align-items:center}
+.chart-card{background:var(--bg2);border:0.5px solid var(--border2);border-radius:var(--radius);padding:20px;margin-bottom:24px;box-shadow:var(--shadow)}
+.chart-card-title{font-size:11px;color:var(--text3);font-family:var(--mono);text-transform:uppercase;letter-spacing:.07em;margin-bottom:16px}
+.chart-wrap{position:relative;width:100%;height:260px}
+.chart-legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:14px}
+.legend-item{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--text2)}
+.legend-dot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+.race-table{width:100%;border-collapse:collapse;background:var(--bg2);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);border:0.5px solid var(--border2)}
+.race-table th{font-size:11px;color:var(--text3);font-family:var(--mono);text-transform:uppercase;letter-spacing:.07em;padding:10px 14px;text-align:left;border-bottom:0.5px solid var(--border2);background:var(--bg3);font-weight:500}
+.race-table td{padding:12px 14px;border-bottom:0.5px solid var(--border);font-size:13px;color:var(--text);vertical-align:middle}
+.race-table tr:last-child td{border-bottom:none}
+.race-table tr:hover td{background:var(--bg3)}
+.race-time{font-family:var(--mono);font-weight:600}
+.race-pace{font-family:var(--mono);color:var(--text2);font-size:12px}
+.race-name-main{font-weight:500}.race-name-sub{font-size:11px;color:var(--text3);margin-top:1px}
+.badge{font-size:10px;padding:3px 8px;border-radius:20px;font-weight:500;font-family:var(--mono)}
+.badge-best{background:var(--amber-dim);color:var(--amber);border:0.5px solid var(--amber-bdr)}
+.badge-pre{background:var(--green-dim);color:var(--green);border:0.5px solid var(--green-bdr)}
+.badge-post{background:var(--blue-dim);color:var(--blue);border:0.5px solid var(--blue-bdr)}
+.pace-bar{height:3px;background:var(--bg3);border-radius:2px;overflow:hidden;margin-top:4px;width:80px}
+.pace-bar-fill{height:100%;border-radius:2px}
+.timeline{position:relative;padding-left:20px}
+.tl-line{position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:var(--border2)}
+.tl-item{position:relative;padding:12px 0 12px 24px;border-bottom:0.5px solid var(--border)}
+.tl-item:last-child{border-bottom:none}
+.tl-dot{position:absolute;left:-13px;top:17px;width:10px;height:10px;border-radius:50%}
+.tl-period{font-family:var(--mono);font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:3px}
+.tl-title{font-size:13px;font-weight:500;color:var(--text);margin-bottom:3px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.tl-desc{font-size:12px;color:var(--text2);margin-bottom:6px}
+.tl-tags{display:flex;gap:5px;flex-wrap:wrap}
+.tag{font-size:10px;padding:2px 7px;border-radius:4px;font-family:var(--mono)}
+.tag-blue{background:var(--blue-dim);color:var(--blue)}
+.tag-green{background:var(--green-dim);color:var(--green)}
+.tag-amber{background:var(--amber-dim);color:var(--amber)}
+.tag-gray{background:var(--bg3);color:var(--text3)}
+.tag-coral{background:var(--coral-dim);color:var(--coral)}
+.current-badge{font-size:10px;padding:2px 8px;border-radius:20px;background:var(--blue-dim);color:var(--blue);border:0.5px solid var(--blue-bdr);font-family:var(--mono)}
+.status-legend{display:flex;gap:14px;margin-bottom:20px;font-size:11px;color:var(--text3)}
+.status-legend span{display:flex;align-items:center;gap:5px}
 
-  /* WEEK GRID */
-  .week-grid { display: grid; grid-template-columns: repeat(7, minmax(0,1fr)); gap: 8px; margin-bottom: 20px; }
-  .day-card { background: var(--bg2); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 12px; min-height: 90px; box-shadow: var(--shadow); }
-  .day-card.done { border-color: var(--green-bdr); background: var(--green-dim); }
-  .day-card.modified { border-color: var(--amber-bdr); background: var(--amber-dim); }
-  .day-name { font-family: var(--mono); font-size: 10px; color: var(--text3); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 6px; }
-  .day-type { font-size: 12px; font-weight: 500; color: var(--text); margin-bottom: 3px; }
-  .day-detail { font-size: 11px; color: var(--text2); line-height: 1.4; }
-  .day-dot { width: 6px; height: 6px; border-radius: 50%; margin-top: 6px; }
-  .dot-done { background: var(--green); }
-  .dot-modified { background: var(--amber); }
-  .dot-pending { background: var(--text3); }
+/* EXPANDABLE BLOCKS — shared by Histórico & Planificación */
+.exp-filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;align-items:center}
+.exp-filters label{font-size:12px;color:var(--text2)}
+.exp-filters input[type=date],.exp-filters select{background:var(--bg2);border:0.5px solid var(--border2);border-radius:var(--radius-sm);padding:6px 10px;font-size:12px;color:var(--text);font-family:var(--sans);outline:none}
+.exp-filters input[type=date]:focus,.exp-filters select:focus{border-color:var(--blue)}
+.filter-btn{font-size:12px;padding:6px 14px;background:var(--blue);color:#fff;border:none;border-radius:var(--radius-sm);cursor:pointer;font-family:var(--sans)}
+.filter-btn.secondary{background:var(--bg2);color:var(--text2);border:0.5px solid var(--border2)}
+.filter-btn.secondary:hover{background:var(--bg3)}
 
-  /* LOAD BAR */
-  .load-wrap { margin-bottom: 20px; }
-  .load-label { display: flex; justify-content: space-between; font-size: 11px; color: var(--text3); margin-bottom: 5px; font-family: var(--mono); }
-  .load-track { height: 6px; background: var(--bg3); border-radius: 3px; overflow: hidden; border: 0.5px solid var(--border); }
-  .load-fill { height: 100%; border-radius: 3px; transition: width .4s; }
+.block-group{margin-bottom:16px;border:0.5px solid var(--border2);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+.block-header{background:var(--bg2);padding:14px 18px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;user-select:none;transition:background .15s}
+.block-header:hover{background:var(--bg3)}
+.block-header-left{display:flex;align-items:center;gap:12px}
+.block-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.block-name{font-size:14px;font-weight:500;color:var(--text)}
+.block-meta{font-size:12px;color:var(--text3);font-family:var(--mono)}
+.block-chevron{font-size:14px;color:var(--text3);transition:transform .2s}
+.block-chevron.open{transform:rotate(90deg)}
+.block-body{display:none;border-top:0.5px solid var(--border)}
+.block-body.open{display:block}
 
-  /* NOTES */
-  .notes-box { background: var(--bg2); border: 0.5px solid var(--border2); border-left: 3px solid var(--blue); border-radius: 0 var(--radius) var(--radius) 0; padding: 14px 18px; font-size: 13px; color: var(--text2); line-height: 1.6; box-shadow: var(--shadow); }
+.week-group{border-bottom:0.5px solid var(--border)}
+.week-group:last-child{border-bottom:none}
+.week-header{padding:12px 18px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;background:var(--bg3);user-select:none;transition:background .15s}
+.week-header:hover{background:var(--bg4)}
+.week-header-left{display:flex;align-items:center;gap:10px}
+.week-num{font-size:11px;font-family:var(--mono);color:var(--text3);text-transform:uppercase;letter-spacing:.06em}
+.week-title{font-size:13px;font-weight:500;color:var(--text)}
+.week-obj{font-size:11px;color:var(--text2);margin-top:1px}
+.week-chevron{font-size:13px;color:var(--text3);transition:transform .2s}
+.week-chevron.open{transform:rotate(90deg)}
+.week-body{display:none;padding:16px 18px;background:var(--bg2)}
+.week-body.open{display:block}
+.week-status-badge{font-size:10px;padding:2px 8px;border-radius:20px;font-family:var(--mono);font-weight:500}
+.ws-done{background:var(--green-dim);color:var(--green);border:0.5px solid var(--green-bdr)}
+.ws-current{background:var(--blue-dim);color:var(--blue);border:0.5px solid var(--blue-bdr)}
+.ws-planned{background:var(--bg3);color:var(--text3);border:0.5px solid var(--border2)}
+.no-results{padding:32px;text-align:center;font-size:13px;color:var(--text3)}
 
-  /* ALERT */
-  .alert { background: var(--coral-dim); border: 0.5px solid var(--coral-bdr); border-radius: var(--radius); padding: 12px 16px; font-size: 12px; color: var(--coral); margin-bottom: 20px; display: flex; gap: 8px; align-items: center; }
-
-  /* CHART */
-  .chart-card { background: var(--bg2); border: 0.5px solid var(--border2); border-radius: var(--radius); padding: 20px; margin-bottom: 24px; box-shadow: var(--shadow); }
-  .chart-card-title { font-size: 11px; color: var(--text3); font-family: var(--mono); text-transform: uppercase; letter-spacing: .07em; margin-bottom: 16px; }
-  .chart-wrap { position: relative; width: 100%; height: 260px; }
-  .chart-legend { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 14px; }
-  .legend-item { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--text2); }
-  .legend-dot { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
-
-  /* RACE TABLE */
-  .race-table { width: 100%; border-collapse: collapse; background: var(--bg2); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); border: 0.5px solid var(--border2); }
-  .race-table th { font-size: 11px; color: var(--text3); font-family: var(--mono); text-transform: uppercase; letter-spacing: .07em; padding: 10px 14px; text-align: left; border-bottom: 0.5px solid var(--border2); background: var(--bg3); font-weight: 500; }
-  .race-table td { padding: 12px 14px; border-bottom: 0.5px solid var(--border); font-size: 13px; color: var(--text); vertical-align: middle; }
-  .race-table tr:last-child td { border-bottom: none; }
-  .race-table tr:hover td { background: var(--bg3); }
-  .race-time { font-family: var(--mono); font-weight: 600; }
-  .race-pace { font-family: var(--mono); color: var(--text2); font-size: 12px; }
-  .race-name-main { font-weight: 500; }
-  .race-name-sub { font-size: 11px; color: var(--text3); margin-top: 1px; }
-  .badge { font-size: 10px; padding: 3px 8px; border-radius: 20px; font-weight: 500; font-family: var(--mono); }
-  .badge-best { background: var(--amber-dim); color: var(--amber); border: 0.5px solid var(--amber-bdr); }
-  .badge-pre  { background: var(--green-dim); color: var(--green); border: 0.5px solid var(--green-bdr); }
-  .badge-post { background: var(--blue-dim);  color: var(--blue);  border: 0.5px solid var(--blue-bdr); }
-  .pace-bar { height: 3px; background: var(--bg3); border-radius: 2px; overflow: hidden; margin-top: 4px; width: 80px; }
-  .pace-bar-fill { height: 100%; border-radius: 2px; }
-
-  /* TIMELINE */
-  .timeline { position: relative; padding-left: 20px; }
-  .tl-line { position: absolute; left: 7px; top: 8px; bottom: 8px; width: 1px; background: var(--border2); }
-  .tl-item { position: relative; padding: 12px 0 12px 24px; border-bottom: 0.5px solid var(--border); }
-  .tl-item:last-child { border-bottom: none; }
-  .tl-dot { position: absolute; left: -13px; top: 17px; width: 10px; height: 10px; border-radius: 50%; }
-  .tl-period { font-family: var(--mono); font-size: 10px; color: var(--text3); text-transform: uppercase; letter-spacing: .07em; margin-bottom: 3px; }
-  .tl-title { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 3px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-  .tl-desc { font-size: 12px; color: var(--text2); margin-bottom: 6px; }
-  .tl-tags { display: flex; gap: 5px; flex-wrap: wrap; }
-  .tag { font-size: 10px; padding: 2px 7px; border-radius: 4px; font-family: var(--mono); }
-  .tag-blue  { background: var(--blue-dim);  color: var(--blue); }
-  .tag-green { background: var(--green-dim); color: var(--green); }
-  .tag-amber { background: var(--amber-dim); color: var(--amber); }
-  .tag-gray  { background: var(--bg3);       color: var(--text3); }
-  .tag-coral { background: var(--coral-dim); color: var(--coral); }
-  .current-badge { font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--blue-dim); color: var(--blue); border: 0.5px solid var(--blue-bdr); font-family: var(--mono); }
-
-  /* STATUS DOTS LEGEND */
-  .status-legend { display: flex; gap: 14px; margin-bottom: 20px; font-size: 11px; color: var(--text3); }
-  .status-legend span { display: flex; align-items: center; gap: 5px; }
-
-  @media (max-width: 700px) {
-    .metrics { grid-template-columns: repeat(2, 1fr); }
-    .week-grid { grid-template-columns: repeat(4, 1fr); }
-    .main { padding: 16px; }
-    .topbar { padding: 0 16px; }
-  }
-  @media (max-width: 480px) {
-    .week-grid { grid-template-columns: repeat(2, 1fr); }
-    .metrics { grid-template-columns: 1fr 1fr; }
-  }
+@media(max-width:700px){
+  .metrics{grid-template-columns:repeat(2,1fr)}
+  .week-grid{grid-template-columns:repeat(4,1fr)}
+  .main{padding:16px}
+  .topbar{padding:0 16px}
+  .tabs{gap:2px}
+  .tab-btn{padding:6px 10px;font-size:12px}
+}
+@media(max-width:480px){
+  .week-grid{grid-template-columns:repeat(2,1fr)}
+  .metrics{grid-template-columns:1fr 1fr}
+}
 </style>
 </head>
 <body>
@@ -182,7 +187,7 @@
     <div class="login-logo">running dashboard</div>
     <div class="login-title">Bienvenido</div>
     <div class="login-sub">Introduce la contraseña para acceder.</div>
-    <input type="password" id="pwd-input" placeholder="Contraseña" onkeydown="if(event.key==='Enter')checkLogin()" autofocus />
+    <input type="password" id="pwd-input" placeholder="Contraseña" onkeydown="if(event.key==='Enter')checkLogin()" autofocus/>
     <button onclick="checkLogin()">Entrar</button>
     <div class="login-error" id="login-error">Contraseña incorrecta</div>
   </div>
@@ -194,21 +199,24 @@
       <div class="topbar-logo">running</div>
       <div class="topbar-title">Miguel · Seguimiento de entrenamiento</div>
     </div>
-    <div class="topbar-right">
+    <div style="display:flex;align-items:center;gap:12px">
       <span class="last-update" id="last-update-label"></span>
       <button class="logout-btn" onclick="logout()">Salir</button>
     </div>
   </div>
-
   <div class="main">
     <div class="tabs">
       <button class="tab-btn active" onclick="showTab('semana',this)">Estado semanal</button>
       <button class="tab-btn" onclick="showTab('progresion',this)">Progresión</button>
       <button class="tab-btn" onclick="showTab('competiciones',this)">Competiciones</button>
+      <button class="tab-btn" onclick="showTab('historico',this)">Histórico</button>
+      <button class="tab-btn" onclick="showTab('planificacion',this)">Planificación</button>
     </div>
     <div id="tab-semana" class="tab-content active"></div>
     <div id="tab-progresion" class="tab-content"></div>
     <div id="tab-competiciones" class="tab-content"></div>
+    <div id="tab-historico" class="tab-content"></div>
+    <div id="tab-planificacion" class="tab-content"></div>
   </div>
 </div>
 
@@ -228,170 +236,292 @@ const DATA = {
   weekLoad: 72,
   weekNotes: 'Sesión de calidad del miércoles (2×12\'+8\'): mejor sesión del bloque. 32\' totales a umbral, VO2max sube a 47. Espalda: molestia inicial al arrancar el domingo S2, cede con corrección postural. Patrón de equilibrio 51/49 confirmado — Dead bug añadido al Gym A como corrector activo.',
   weekDays: [
-    {name:'Lun', type:'Descanso',    detail:'Movilidad torácica + respiración',            status:'done'},
-    {name:'Mar', type:'Gym A',       detail:'Fuerza principal · Dead bug añadido',          status:'modified'},
-    {name:'Mié', type:'Calidad',     detail:'2×12\'+8\' umbral · 9,45km · 5:45/km · FC 137bpm', status:'done'},
-    {name:'Jue', type:'Gym B',       detail:'Estabilidad (versión descargada)',              status:'pending'},
-    {name:'Vie', type:'Descanso',    detail:'Descanso completo',                            status:'pending'},
-    {name:'Sáb', type:'Z2 + técnica',detail:'50\' + 6 rectas de 20"',                      status:'pending'},
-    {name:'Dom', type:'Tirada larga',detail:'70-75\' progresiva suave',                     status:'pending'},
+    {name:'Lun',type:'Descanso',detail:'Movilidad torácica + respiración',result:'',status:'done'},
+    {name:'Mar',type:'Gym A',detail:'Fuerza principal · Dead bug añadido',result:'Cargas correctas · Dead bug bien ejecutado',status:'modified'},
+    {name:'Mié',type:'Calidad',detail:'2×12\'+8\' umbral · rec 3\'',result:'9,45km · 5:45/km media · FC 137bpm · VO2max 47',status:'done'},
+    {name:'Jue',type:'Gym B',detail:'Estabilidad (versión descargada)',result:'',status:'pending'},
+    {name:'Vie',type:'Descanso',detail:'Descanso completo',result:'',status:'pending'},
+    {name:'Sáb',type:'Z2 + técnica',detail:'50\' + 6 rectas de 20"',result:'',status:'pending'},
+    {name:'Dom',type:'Tirada larga',detail:'70-75\' progresiva suave',result:'',status:'pending'},
   ],
-  competitions: [
-    {name:'Carrera de Bombero',    date:'Abr 2024', dist:'10K',  time:'54:15',   pace:5.367, fc:null, desnivel:82,  phase:'pre'},
-    {name:'Zara Athletics',        date:'Nov 2024', dist:'10K',  time:'49:55',   pace:4.917, fc:146,  desnivel:6,   phase:'best'},
-    {name:'Carrera Huérfanos',     date:'Feb 2025', dist:'10K',  time:'52:20',   pace:5.183, fc:145,  desnivel:95,  phase:'pre'},
-    {name:'MetLife 15K',           date:'Mar 2025', dist:'15K',  time:'1:20:43', pace:5.417, fc:144,  desnivel:63,  phase:'pre'},
-    {name:'Vintage Run Madrid',    date:'Jun 2025', dist:'10K',  time:'50:53',   pace:5.05,  fc:147,  desnivel:9,   phase:'pre'},
-    {name:'San Silvestre Vallecana',date:'Dic 2025',dist:'10K',  time:'59:10',   pace:5.883, fc:150,  desnivel:64,  phase:'post'},
-    {name:'Carrera Huérfanos',     date:'Feb 2026', dist:'6,4K', time:'35:34',   pace:5.55,  fc:149,  desnivel:74,  phase:'post'},
-  ],
-  projection: [
-    {label:'Dic 2025', real:5.883, est:null},
-    {label:'Feb 2026', real:5.55,  est:null},
-    {label:'Jun 2026', real:null,  est:5.25},
-    {label:'Sep 2026', real:null,  est:5.08},
-    {label:'Oct 2026', real:null,  est:5.02},
-    {label:'Nov-Dic',  real:null,  est:4.95},
-  ],
+
   blocks: [
-    {period:'Jun 2026',    title:'Bloque 1 — consolidación', desc:'Umbral 5:10-5:20/km · tiradas 75\' · gym 2×/sem',       tags:['VO2max 47','10K ~52:30'],          type:'active', current:true},
-    {period:'Jul 2026',    title:'Bloque 2 — carga media',   desc:'4×8\'→2×15\' umbral · series 5:00-5:10/km · vol +10%',  tags:['VO2max ~48','10K ~51:00'],          type:'active', current:false},
-    {period:'Ago 2026',    title:'Mantenimiento estival',     desc:'3-4 días/sem · sin series largas · continuidad',        tags:['carga -30%','sin pérdida de base'], type:'maint',  current:false},
-    {period:'Sep 2026',    title:'Bloque 3 — reactivación',  desc:'Series 4:55-5:05/km · primer test opcional',            tags:['VO2max ~49','10K ~50:30'],          type:'active', current:false},
-    {period:'Oct 2026',    title:'Bloque 4 — específico 10K',desc:'Ritmo competición · reducción volumen suave',           tags:['VO2max ~49-50','10K ~50:00'],       type:'active', current:false},
-    {period:'Nov 2026',    title:'Afinado / tapering',        desc:'-20-25% volumen · mantener intensidad · prevención dorsal',tags:['tapering 2-3 sem'],             type:'peak',   current:false},
-    {period:'Nov-Dic 2026',title:'Ventana objetivo',          desc:'Circuito llano · frío · objetivo 49:55–50:30',          tags:['4:55-5:00/km','VO2max ~50-51'],    type:'race',   current:false},
+    {
+      id:'b1', name:'Bloque 1 — Consolidación', period:'Jun 2026',
+      dotColor:'#2563eb', type:'current',
+      weeks:[
+        {
+          num:1, label:'Semana 1 de 4', dateStart:'26 may 2026',
+          objetivo:'Reactivar la carga tras la semana de descarga. Establecer referencias de ritmo y carga.',
+          status:'done',
+          days:[
+            {name:'Lun',type:'Gym A',detail:'Step-up 3x8 · Búlgara 3x8 · Jalón 3x10 · Press banca 3x8 · PM hex 3x5 · Pallof 3x12 · Plancha 3x35"',result:'Cargas orientativas correctas. Referencia de bloque establecida.',status:'done'},
+            {name:'Mar',type:'Descanso',detail:'Movilidad cadera + torácica + respiración',result:'Ejecutado.',status:'done'},
+            {name:'Mié',type:'Calidad',detail:'3x8\' umbral a 5:05-5:20/km · rec 2\'',result:'Ritmo real 5:08-5:35/km. S3 terminó en 4:48/km. FC umbral 139-145bpm. Desnivel +69m.',status:'done'},
+            {name:'Jue',type:'Gym B',detail:'Swing KB 3x15 · Remo unilateral 3x10 · Press militar 3x6 · Split squat iso 3x30" · Gemelo 3x12 · Farmer carry 3x30m · Plancha lat 3x30"',result:'Ejecutado. Face pull añadido como prevención dorsal.',status:'done'},
+            {name:'Vie',type:'Descanso',detail:'Paseo o movilidad suave',result:'Ejecutado.',status:'done'},
+            {name:'Sáb',type:'Z2',detail:'45-50\' a 6:00-6:25/km',result:'Ejecutado. Ritmo en zona correcta.',status:'done'},
+            {name:'Dom',type:'Tirada',detail:'65\' con últimos 10-12\' algo más ágiles',result:'Ejecutado. Tirada de referencia del bloque.',status:'done'},
+          ],
+          notes:'Semana de referencia. Cargas orientativas correctas en gym. Series reales 5:08-5:35/km vs objetivo 5:05-5:20/km — ligeramente por debajo, correcto para S1. Patrón de equilibrio 51/49 detectado por primera vez. VO2max 46.',
+        },
+        {
+          num:2, label:'Semana 2 de 4', dateStart:'2 jun 2026',
+          objetivo:'Progresar ligeramente en carga de gym. Consolidar el ritmo de umbral con una sesión de pirámide.',
+          status:'done',
+          days:[
+            {name:'Lun',type:'Gym A',detail:'Misma estructura S1 (+1 rep o +2,5kg si fácil)',result:'Pequeña progresión de carga sobre S1.',status:'done'},
+            {name:'Mar',type:'Descanso',detail:'Core + movilidad',result:'Ejecutado.',status:'done'},
+            {name:'Mié',type:'Calidad',detail:'Pirámide 2\'-3\'-4\'-5\'-4\'-3\'-2\' · rec 90"',result:'Series 5:02-5:16/km. Punta 4:37/km en 2\' final. FC 138-145bpm. VO2max 46. Rec 18h.',status:'done'},
+            {name:'Jue',type:'Gym B',detail:'Igual semana 1',result:'Ejecutado. Misma carga que S1.',status:'done'},
+            {name:'Vie',type:'Descanso',detail:'Movilidad ligera',result:'Ejecutado.',status:'done'},
+            {name:'Sáb',type:'Z2',detail:'45-50\' muy cómodos',result:'Ejecutado. Ritmo correcto.',status:'done'},
+            {name:'Dom',type:'Tirada larga',detail:'70\' suaves',result:'11,5km ejecutados. FC 132bpm. VO2max 46.',status:'done'},
+          ],
+          notes:'Progresión correcta sobre S1. Pirámide: ritmo 5:02-5:16/km en tramos 3-5\'. Punta de 4:37/km. Patrón 51,2/48,8 confirmado. Equilibrio consistente en todas las sesiones — se confirma como firma biomecánica.',
+        },
+        {
+          num:3, label:'Semana 3 de 4', dateStart:'9 jun 2026',
+          objetivo:'Sesión de calidad más larga del bloque. Primer test real de tolerancia a bloques sostenidos de umbral.',
+          status:'current',
+          days:[
+            {name:'Lun',type:'Descanso',detail:'Movilidad torácica + respiración',result:'Ejecutado.',status:'done'},
+            {name:'Mar',type:'Gym A',detail:'Fuerza principal · algo más intenso · Dead bug añadido',result:'Cargas correctas. Dead bug bien ejecutado.',status:'modified'},
+            {name:'Mié',type:'Calidad',detail:'2×12\'+8\' umbral · rec 3\'',result:'9,45km · 5:45/km · FC 137bpm (máx 154) · VO2max 47 · 32\' totales a umbral',status:'done'},
+            {name:'Jue',type:'Gym B',detail:'Estabilidad (versión descargada)',result:'',status:'pending'},
+            {name:'Vie',type:'Descanso',detail:'Descanso completo',result:'',status:'pending'},
+            {name:'Sáb',type:'Z2 + técnica',detail:'50\' + 6 rectas de 20"',result:'',status:'pending'},
+            {name:'Dom',type:'Tirada larga',detail:'70-75\' progresiva suave',result:'',status:'pending'},
+          ],
+          notes:'Mejor sesión del bloque el miércoles. 32\' totales a umbral vs 24\' en S1 — progresión real. VO2max sube a 47. Espalda: molestia inicial que cede con corrección postural. Patrón 51/49 estable.',
+        },
+        {
+          num:4, label:'Semana 4 de 4', dateStart:'16 jun 2026',
+          objetivo:'Semana de descarga. Reducir volumen 40%. Mantener activación sin acumular fatiga.',
+          status:'planned',
+          days:[
+            {name:'Lun',type:'Gym suave',detail:'60% volumen habitual · Dead bug · sin peso muerto',result:'',status:'pending'},
+            {name:'Mar',type:'Descanso',detail:'Movilidad muy suave 15-20\'',result:'',status:'pending'},
+            {name:'Mié',type:'Calidad',detail:'10×1\' rápido + 1\' suave a 5:00-5:10/km',result:'',status:'pending'},
+            {name:'Jue',type:'Gym ligero',detail:'Core + movilidad · poco peso',result:'',status:'pending'},
+            {name:'Vie',type:'Descanso',detail:'Descanso completo',result:'',status:'pending'},
+            {name:'Sáb',type:'Z2',detail:'40\' a 6:20-6:35/km',result:'',status:'pending'},
+            {name:'Dom',type:'Tirada corta',detail:'60\' suaves',result:'',status:'pending'},
+          ],
+          notes:'',
+        },
+      ]
+    },
+    {
+      id:'b2', name:'Bloque 2 — Carga media', period:'Jul 2026',
+      dotColor:'#16a34a', type:'planned',
+      weeks:[
+        {num:1,label:'Semana 1 de 4',dateStart:'Jun-Jul 2026',objetivo:'Reactivación tras descarga. Primer 4×8\' a umbral del bloque.',status:'planned',days:[
+          {name:'Lun',type:'Gym A',detail:'Carga completa + Dead bug',result:'',status:'pending'},
+          {name:'Mar',type:'Descanso',detail:'Movilidad torácica',result:'',status:'pending'},
+          {name:'Mié',type:'Calidad',detail:'4×8\' umbral 5:10-5:20/km · rec 2\'',result:'',status:'pending'},
+          {name:'Jue',type:'Gym B',detail:'Estabilidad + potencia',result:'',status:'pending'},
+          {name:'Vie',type:'Descanso',detail:'Recuperación',result:'',status:'pending'},
+          {name:'Sáb',type:'Z2',detail:'50\' a 6:10-6:25/km',result:'',status:'pending'},
+          {name:'Dom',type:'Tirada',detail:'70\' suave',result:'',status:'pending'},
+        ],notes:''},
+        {num:2,label:'Semana 2 de 4',dateStart:'Jul 2026',objetivo:'Progresión de carga. Pirámide hasta 6\'.',status:'planned',days:[
+          {name:'Lun',type:'Gym A',detail:'Progresión +2,5kg donde corresponda',result:'',status:'pending'},
+          {name:'Mar',type:'Descanso',detail:'Movilidad',result:'',status:'pending'},
+          {name:'Mié',type:'Calidad',detail:'3\'+4\'+5\'+6\'+5\'+4\'+3\' pirámide',result:'',status:'pending'},
+          {name:'Jue',type:'Gym B',detail:'Estabilidad + potencia',result:'',status:'pending'},
+          {name:'Vie',type:'Descanso',detail:'Recuperación',result:'',status:'pending'},
+          {name:'Sáb',type:'Z2 + técnica',detail:'50\' + 8 rectas de 20"',result:'',status:'pending'},
+          {name:'Dom',type:'Tirada',detail:'72\' con últimos 10\' progresivos',result:'',status:'pending'},
+        ],notes:''},
+        {num:3,label:'Semana 3 de 4',dateStart:'Jul 2026',objetivo:'Carga alta del bloque. Primer 2×15\' + 10\' a umbral.',status:'planned',days:[
+          {name:'Lun',type:'Gym A',detail:'Carga máxima del bloque',result:'',status:'pending'},
+          {name:'Mar',type:'Descanso',detail:'Movilidad cadera + lumbar',result:'',status:'pending'},
+          {name:'Mié',type:'Calidad',detail:'2×15\' + 10\' umbral · rec 3\'',result:'',status:'pending'},
+          {name:'Jue',type:'Gym B',detail:'Más ligera que lunes',result:'',status:'pending'},
+          {name:'Vie',type:'Descanso',detail:'Paseo o movilidad',result:'',status:'pending'},
+          {name:'Sáb',type:'Z2 + técnica',detail:'50\' + 8 rectas de 20"',result:'',status:'pending'},
+          {name:'Dom',type:'Tirada',detail:'75\' con últimos 12\' vivos controlados',result:'',status:'pending'},
+        ],notes:''},
+        {num:4,label:'Semana 4 de 4',dateStart:'Jul 2026',objetivo:'Descarga. Reducir volumen 40%. Mantener activación.',status:'planned',days:[
+          {name:'Lun',type:'Gym suave',detail:'60% volumen habitual',result:'',status:'pending'},
+          {name:'Mar',type:'Descanso',detail:'Movilidad muy suave',result:'',status:'pending'},
+          {name:'Mié',type:'Calidad',detail:'10×1\' rápido + 1\' suave',result:'',status:'pending'},
+          {name:'Jue',type:'Gym ligero',detail:'Core + movilidad',result:'',status:'pending'},
+          {name:'Vie',type:'Descanso',detail:'Descanso completo',result:'',status:'pending'},
+          {name:'Sáb',type:'Z2',detail:'40\' cómodos',result:'',status:'pending'},
+          {name:'Dom',type:'Tirada corta',detail:'60\' suaves',result:'',status:'pending'},
+        ],notes:''},
+      ]
+    },
+    {
+      id:'b-ago', name:'Agosto — Mantenimiento', period:'Ago 2026',
+      dotColor:'#9aa0ad', type:'maint',
+      weeks:[
+        {num:1,label:'Semana 1',dateStart:'Ago 2026',objetivo:'Mantener actividad. Sin progresión. 3-4 días/sem.',status:'planned',days:[
+          {name:'Lun',type:'Rodaje',detail:'40\' Z2 suave',result:'',status:'pending'},
+          {name:'Mar',type:'Descanso',detail:'',result:'',status:'pending'},
+          {name:'Mié',type:'Rodaje',detail:'35-40\' Z2',result:'',status:'pending'},
+          {name:'Jue',type:'Gym',detail:'Movilidad + fuerza ligera',result:'',status:'pending'},
+          {name:'Vie',type:'Descanso',detail:'',result:'',status:'pending'},
+          {name:'Sáb',type:'Rodaje',detail:'45\' Z2',result:'',status:'pending'},
+          {name:'Dom',type:'Descanso',detail:'',result:'',status:'pending'},
+        ],notes:''},
+      ]
+    },
+    {
+      id:'b3', name:'Bloque 3 — Reactivación otoño', period:'Sep 2026',
+      dotColor:'#7c3aed', type:'planned',
+      weeks:[
+        {num:1,label:'Semana 1 de 4',dateStart:'Sep 2026',objetivo:'Retomar carga progresiva. Series 4:55-5:05/km.',status:'planned',days:[
+          {name:'Lun',type:'Gym A',detail:'Retomar carga completa',result:'',status:'pending'},
+          {name:'Mar',type:'Descanso',detail:'Movilidad torácica',result:'',status:'pending'},
+          {name:'Mié',type:'Calidad',detail:'4×8\' a 4:55-5:05/km · rec 2\'',result:'',status:'pending'},
+          {name:'Jue',type:'Gym B',detail:'Estabilidad + potencia',result:'',status:'pending'},
+          {name:'Vie',type:'Descanso',detail:'Recuperación',result:'',status:'pending'},
+          {name:'Sáb',type:'Z2',detail:'50\' cómodos',result:'',status:'pending'},
+          {name:'Dom',type:'Tirada',detail:'70\' suave · test opcional últimos 10\'',result:'',status:'pending'},
+        ],notes:''},
+      ]
+    },
+    {
+      id:'b4', name:'Bloque 4 — Específico 10K', period:'Oct 2026',
+      dotColor:'#d97706', type:'planned',
+      weeks:[
+        {num:1,label:'Semana 1 de 4',dateStart:'Oct 2026',objetivo:'Series a ritmo competición. Primer bloque específico de 10K.',status:'planned',days:[
+          {name:'Lun',type:'Gym A',detail:'Carga completa · énfasis unilateral',result:'',status:'pending'},
+          {name:'Mar',type:'Descanso',detail:'Movilidad',result:'',status:'pending'},
+          {name:'Mié',type:'Calidad',detail:'3×10\' a 4:50-5:00/km · rec 3\'',result:'',status:'pending'},
+          {name:'Jue',type:'Gym B',detail:'Estabilidad',result:'',status:'pending'},
+          {name:'Vie',type:'Descanso',detail:'Recuperación',result:'',status:'pending'},
+          {name:'Sáb',type:'Z2 + técnica',detail:'50\' + rectas',result:'',status:'pending'},
+          {name:'Dom',type:'Tirada',detail:'75\' progresiva',result:'',status:'pending'},
+        ],notes:''},
+      ]
+    },
+    {
+      id:'b-tap', name:'Afinado / Tapering', period:'Nov 2026',
+      dotColor:'#dc2626', type:'peak',
+      weeks:[
+        {num:1,label:'Semana 1 de 2-3',dateStart:'Nov 2026',objetivo:'Reducir volumen -20-25%. Mantener intensidad. Prevención dorsal activa.',status:'planned',days:[
+          {name:'Lun',type:'Gym suave',detail:'60% volumen · énfasis movilidad dorsal',result:'',status:'pending'},
+          {name:'Mar',type:'Descanso',detail:'Movilidad completa',result:'',status:'pending'},
+          {name:'Mié',type:'Calidad',detail:'3×8\' a ritmo competición · rec 2\'',result:'',status:'pending'},
+          {name:'Jue',type:'Gym muy ligero',detail:'Core + movilidad únicamente',result:'',status:'pending'},
+          {name:'Vie',type:'Descanso',detail:'Descanso completo',result:'',status:'pending'},
+          {name:'Sáb',type:'Z2',detail:'35\' muy suave',result:'',status:'pending'},
+          {name:'Dom',type:'Activación',detail:'20\' suave + 4 rectas · piernas frescas',result:'',status:'pending'},
+        ],notes:''},
+      ]
+    },
+  ],
+
+  competitions: [
+    {name:'Carrera de Bombero',date:'Abr 2024',dist:'10K',time:'54:15',pace:5.367,fc:null,desnivel:82,phase:'pre'},
+    {name:'Zara Athletics',date:'Nov 2024',dist:'10K',time:'49:55',pace:4.917,fc:146,desnivel:6,phase:'best'},
+    {name:'Carrera Huérfanos',date:'Feb 2025',dist:'10K',time:'52:20',pace:5.183,fc:145,desnivel:95,phase:'pre'},
+    {name:'MetLife 15K',date:'Mar 2025',dist:'15K',time:'1:20:43',pace:5.417,fc:144,desnivel:63,phase:'pre'},
+    {name:'Vintage Run Madrid',date:'Jun 2025',dist:'10K',time:'50:53',pace:5.05,fc:147,desnivel:9,phase:'pre'},
+    {name:'San Silvestre Vallecana',date:'Dic 2025',dist:'10K',time:'59:10',pace:5.883,fc:150,desnivel:64,phase:'post'},
+    {name:'Carrera Huérfanos',date:'Feb 2026',dist:'6,4K',time:'35:34',pace:5.55,fc:149,desnivel:74,phase:'post'},
+  ],
+  projection:[
+    {label:'Dic 2025',real:5.883,est:null},
+    {label:'Feb 2026',real:5.55,est:null},
+    {label:'Jun 2026',real:null,est:5.25},
+    {label:'Sep 2026',real:null,est:5.08},
+    {label:'Oct 2026',real:null,est:5.02},
+    {label:'Nov-Dic',real:null,est:4.95},
+  ],
+  projBlocks:[
+    {period:'Jun 2026',title:'Bloque 1 — consolidación',desc:'Umbral 5:10-5:20/km · tiradas 75\' · gym 2×/sem',tags:['VO2max 47','10K ~52:30'],type:'active',current:true},
+    {period:'Jul 2026',title:'Bloque 2 — carga media',desc:'4×8\'→2×15\' umbral · series 5:00-5:10/km · vol +10%',tags:['VO2max ~48','10K ~51:00'],type:'active',current:false},
+    {period:'Ago 2026',title:'Mantenimiento estival',desc:'3-4 días/sem · sin series largas · continuidad',tags:['carga -30%','sin pérdida de base'],type:'maint',current:false},
+    {period:'Sep 2026',title:'Bloque 3 — reactivación',desc:'Series 4:55-5:05/km · primer test opcional',tags:['VO2max ~49','10K ~50:30'],type:'active',current:false},
+    {period:'Oct 2026',title:'Bloque 4 — específico 10K',desc:'Ritmo competición · reducción volumen suave',tags:['VO2max ~49-50','10K ~50:00'],type:'active',current:false},
+    {period:'Nov 2026',title:'Afinado / tapering',desc:'-20-25% volumen · mantener intensidad · prevención dorsal',tags:['tapering 2-3 sem'],type:'peak',current:false},
+    {period:'Nov-Dic 2026',title:'Ventana objetivo',desc:'Circuito llano · frío · objetivo 49:55–50:30',tags:['4:55-5:00/km','VO2max ~50-51'],type:'race',current:false},
   ]
 };
 
-function paceStr(v) {
-  const m = Math.floor(v), s = Math.round((v-m)*60);
-  return m+':'+String(s).padStart(2,'0');
-}
-
-function checkLogin() {
-  if (document.getElementById('pwd-input').value === PWD) {
+function paceStr(v){const m=Math.floor(v),s=Math.round((v-m)*60);return m+':'+String(s).padStart(2,'0')}
+function checkLogin(){
+  if(document.getElementById('pwd-input').value===PWD){
     sessionStorage.setItem('auth','1');
-    document.getElementById('login-screen').style.display = 'none';
-    document.getElementById('app').style.display = 'block';
+    document.getElementById('login-screen').style.display='none';
+    document.getElementById('app').style.display='block';
     initApp();
-  } else {
-    document.getElementById('login-error').style.display = 'block';
-    document.getElementById('pwd-input').value = '';
+  }else{
+    document.getElementById('login-error').style.display='block';
+    document.getElementById('pwd-input').value='';
     document.getElementById('pwd-input').focus();
   }
 }
-
-function logout() {
-  sessionStorage.removeItem('auth');
-  document.getElementById('app').style.display = 'none';
-  document.getElementById('login-screen').style.display = 'flex';
-  document.getElementById('pwd-input').value = '';
-}
-
-function showTab(name, btn) {
+function logout(){sessionStorage.removeItem('auth');document.getElementById('app').style.display='none';document.getElementById('login-screen').style.display='flex';document.getElementById('pwd-input').value=''}
+function showTab(name,btn){
   document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
   document.getElementById('tab-'+name).classList.add('active');
-  if (btn) btn.classList.add('active');
+  if(btn)btn.classList.add('active');
 }
 
-function initApp() {
-  document.getElementById('last-update-label').textContent = 'Actualizado: ' + DATA.lastUpdate;
+function initApp(){
+  document.getElementById('last-update-label').textContent='Actualizado: '+DATA.lastUpdate;
   renderSemana();
   renderProgresion();
   renderCompeticiones();
+  renderHistorico();
+  renderPlanificacion();
 }
 
-function renderSemana() {
-  const d = DATA;
-  const loadColor = d.weekLoad > 85 ? '#dc2626' : d.weekLoad > 65 ? '#d97706' : '#16a34a';
-  const statusClass = {done:'done', modified:'modified', pending:''};
-  const dotClass    = {done:'dot-done', modified:'dot-modified', pending:'dot-pending'};
+function buildDayCards(days, showResult){
+  const statusClass={done:'done',modified:'modified',pending:'planned'};
+  const dotClass={done:'dot-done',modified:'dot-modified',pending:'dot-pending'};
+  return `<div class="week-grid">${days.map(d=>`
+    <div class="day-card ${statusClass[d.status]}">
+      <div class="day-name">${d.name}</div>
+      <div class="day-type">${d.type}</div>
+      <div class="day-detail">${d.detail}</div>
+      ${showResult && d.result ? `<div class="day-result">${d.result}</div>` : ''}
+      <div class="day-dot ${dotClass[d.status]}"></div>
+    </div>`).join('')}</div>`;
+}
 
-  let html = '';
-  if (!d.dorsalOk) html += `<div class="alert">⚠ Señal dorsal activa — revisar carga antes de continuar</div>`;
-
-  html += `<div class="metrics">
-    <div class="metric-card accent-blue">
-      <div class="metric-label">Bloque actual</div>
-      <div class="metric-val blue" style="font-size:17px">${d.currentBlock}</div>
-      <div class="metric-sub">Semana ${d.weekNumber} de 4</div>
-    </div>
-    <div class="metric-card">
-      <div class="metric-label">Fatiga</div>
-      <div class="metric-val ${d.fatigueLevel>=7?'coral':d.fatigueLevel>=5?'amber':'green'}">${d.fatigueLevel}/10</div>
-      <div class="metric-sub">${d.fatigueLevel<=4?'baja':d.fatigueLevel<=6?'moderada':'alta'}</div>
-    </div>
-    <div class="metric-card">
-      <div class="metric-label">Carga semanal</div>
-      <div class="metric-val">${d.weekLoad}%</div>
-      <div class="metric-sub">del objetivo</div>
-    </div>
-    <div class="metric-card ${d.dorsalOk?'accent-green':'accent-coral'}">
-      <div class="metric-label">Espalda dorsal</div>
-      <div class="metric-val ${d.dorsalOk?'green':'coral'}" style="font-size:17px">${d.dorsalOk?'OK':'Atención'}</div>
-      <div class="metric-sub">${d.dorsalStatus}</div>
-    </div>
-  </div>`;
-
-  html += `<div class="load-wrap">
-    <div class="load-label"><span>carga acumulada semana</span><span>${d.weekLoad}%</span></div>
-    <div class="load-track"><div class="load-fill" style="width:${d.weekLoad}%;background:${loadColor}"></div></div>
-  </div>`;
-
-  html += `<div class="section-label">Semana ${d.weekNumber} — día a día</div><div class="week-grid">`;
-  d.weekDays.forEach(day => {
-    html += `<div class="day-card ${statusClass[day.status]}">
-      <div class="day-name">${day.name}</div>
-      <div class="day-type">${day.type}</div>
-      <div class="day-detail">${day.detail}</div>
-      <div class="day-dot ${dotClass[day.status]}"></div>
-    </div>`;
-  });
-  html += `</div>`;
-
-  html += `<div class="status-legend">
+function renderSemana(){
+  const d=DATA;
+  const loadColor=d.weekLoad>85?'#dc2626':d.weekLoad>65?'#d97706':'#16a34a';
+  let html='';
+  if(!d.dorsalOk)html+=`<div class="alert">⚠ Señal dorsal activa — revisar carga antes de continuar</div>`;
+  html+=`<div class="metrics">
+    <div class="metric-card accent-blue"><div class="metric-label">Bloque actual</div><div class="metric-val blue" style="font-size:17px">${d.currentBlock}</div><div class="metric-sub">Semana ${d.weekNumber} de 4</div></div>
+    <div class="metric-card"><div class="metric-label">Fatiga</div><div class="metric-val ${d.fatigueLevel>=7?'coral':d.fatigueLevel>=5?'amber':'green'}">${d.fatigueLevel}/10</div><div class="metric-sub">${d.fatigueLevel<=4?'baja':d.fatigueLevel<=6?'moderada':'alta'}</div></div>
+    <div class="metric-card"><div class="metric-label">Carga semanal</div><div class="metric-val">${d.weekLoad}%</div><div class="metric-sub">del objetivo</div></div>
+    <div class="metric-card ${d.dorsalOk?'accent-green':'accent-coral'}"><div class="metric-label">Espalda dorsal</div><div class="metric-val ${d.dorsalOk?'green':'coral'}" style="font-size:17px">${d.dorsalOk?'OK':'Atención'}</div><div class="metric-sub">${d.dorsalStatus}</div></div>
+  </div>
+  <div class="load-wrap"><div class="load-label"><span>carga acumulada semana</span><span>${d.weekLoad}%</span></div><div class="load-track"><div class="load-fill" style="width:${d.weekLoad}%;background:${loadColor}"></div></div></div>
+  <div class="section-label">Semana ${d.weekNumber} — día a día</div>
+  ${buildDayCards(d.weekDays, true)}
+  <div class="status-legend">
     <span><span style="width:6px;height:6px;border-radius:50%;background:#16a34a;display:inline-block"></span>ejecutado</span>
     <span><span style="width:6px;height:6px;border-radius:50%;background:#d97706;display:inline-block"></span>ajustado</span>
     <span><span style="width:6px;height:6px;border-radius:50%;background:#9aa0ad;display:inline-block"></span>pendiente</span>
   </div>`;
-
-  if (d.weekNotes) {
-    html += `<div class="section-label">Notas del entrenador</div><div class="notes-box">${d.weekNotes}</div>`;
-  }
-
-  document.getElementById('tab-semana').innerHTML = html;
+  if(d.weekNotes)html+=`<div class="section-label">Notas del entrenador</div><div class="notes-box">${d.weekNotes}</div>`;
+  document.getElementById('tab-semana').innerHTML=html;
 }
 
-function renderProgresion() {
-  const d = DATA;
-  document.getElementById('tab-progresion').innerHTML = `
+function renderProgresion(){
+  const d=DATA;
+  document.getElementById('tab-progresion').innerHTML=`
     <div class="metrics">
-      <div class="metric-card accent-blue">
-        <div class="metric-label">Ritmo umbral</div>
-        <div class="metric-val blue">${d.currentPace}</div>
-        <div class="metric-sub">min/km · jun 2026</div>
-      </div>
-      <div class="metric-card">
-        <div class="metric-label">VO2max actual</div>
-        <div class="metric-val">${d.currentVo2}</div>
-        <div class="metric-sub">vs 51 pre-lesión</div>
-      </div>
-      <div class="metric-card">
-        <div class="metric-label">10K estimado hoy</div>
-        <div class="metric-val">${d.estRace10k}</div>
-        <div class="metric-sub">sin carrera reciente</div>
-      </div>
-      <div class="metric-card accent-amber">
-        <div class="metric-label">Objetivo final</div>
-        <div class="metric-val amber">49:55</div>
-        <div class="metric-sub">4:55/km · nov-dic 2026</div>
-      </div>
+      <div class="metric-card accent-blue"><div class="metric-label">Ritmo umbral</div><div class="metric-val blue">${d.currentPace}</div><div class="metric-sub">min/km · jun 2026</div></div>
+      <div class="metric-card"><div class="metric-label">VO2max actual</div><div class="metric-val">${d.currentVo2}</div><div class="metric-sub">vs 51 pre-lesión</div></div>
+      <div class="metric-card"><div class="metric-label">10K estimado hoy</div><div class="metric-val">${d.estRace10k}</div><div class="metric-sub">sin carrera reciente</div></div>
+      <div class="metric-card accent-amber"><div class="metric-label">Objetivo final</div><div class="metric-val amber">49:55</div><div class="metric-sub">4:55/km · nov-dic 2026</div></div>
     </div>
     <div class="chart-card">
       <div class="chart-card-title">evolución de ritmo en 10K — real + proyección</div>
-      <div class="chart-wrap"><canvas id="progChart" role="img" aria-label="Progresión de ritmo en 10K y proyección hacia la mejor marca"></canvas></div>
+      <div class="chart-wrap"><canvas id="progChart" role="img" aria-label="Progresión ritmo 10K"></canvas></div>
       <div class="chart-legend">
         <div class="legend-item"><div class="legend-dot" style="background:#2563eb"></div>Real (competición)</div>
         <div class="legend-item"><div class="legend-dot" style="background:#16a34a;opacity:.7"></div>Proyección</div>
@@ -399,70 +529,40 @@ function renderProgresion() {
       </div>
     </div>
     <div class="section-label">Hoja de ruta por bloques</div>
-    <div class="timeline"><div class="tl-line"></div>${buildTimeline()}</div>
-  `;
-
-  const labels = d.projection.map(p=>p.label);
-  if (window._progChart) window._progChart.destroy();
-  window._progChart = new Chart(document.getElementById('progChart'), {
+    <div class="timeline"><div class="tl-line"></div>${d.projBlocks.map(b=>{
+      const dc={active:'#2563eb',maint:'#9aa0ad',peak:'#d97706',race:'#dc2626'};
+      const tc={active:'tag-blue',maint:'tag-gray',peak:'tag-amber',race:'tag-coral'};
+      return`<div class="tl-item">
+        <div class="tl-dot" style="background:${dc[b.type]};${b.current?'box-shadow:0 0 0 3px rgba(37,99,235,0.15)':''}"></div>
+        <div class="tl-period">${b.period}</div>
+        <div class="tl-title">${b.title}${b.current?'<span class="current-badge">ahora</span>':''}</div>
+        <div class="tl-desc">${b.desc}</div>
+        <div class="tl-tags">${b.tags.map(t=>`<span class="tag ${tc[b.type]}">${t}</span>`).join('')}</div>
+      </div>`;}).join('')}</div>`;
+  if(window._progChart)window._progChart.destroy();
+  window._progChart=new Chart(document.getElementById('progChart'),{
     type:'line',
-    data:{labels, datasets:[
+    data:{labels:d.projection.map(p=>p.label),datasets:[
       {label:'Real',data:d.projection.map(p=>p.real),borderColor:'#2563eb',backgroundColor:'#2563eb',pointRadius:7,pointHoverRadius:9,borderWidth:2.5,tension:0.3,spanGaps:false},
       {label:'Proyección',data:d.projection.map(p=>p.est),borderColor:'#16a34a',borderDash:[6,4],pointRadius:5,pointBorderColor:'#16a34a',pointBackgroundColor:'#fff',pointBorderWidth:2,borderWidth:2,tension:0.3,spanGaps:false},
       {label:'Mejor marca',data:d.projection.map(()=>4.917),borderColor:'#d97706',borderWidth:1.5,borderDash:[3,3],pointRadius:0,tension:0}
     ]},
-    options:{responsive:true,maintainAspectRatio:false,
-      plugins:{legend:{display:false},tooltip:{callbacks:{label:(c)=>c.raw===null?'':c.dataset.label+': '+paceStr(c.raw)+'/km'}}},
-      scales:{
-        y:{reverse:true,min:4.6,max:6.2,grid:{color:'rgba(0,0,0,0.04)'},ticks:{color:'#9aa0ad',font:{size:11},callback:(v)=>paceStr(v)}},
-        x:{grid:{display:false},ticks:{color:'#9aa0ad',font:{size:11},autoSkip:false}}
-      }
-    }
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:(c)=>c.raw===null?'':c.dataset.label+': '+paceStr(c.raw)+'/km'}}},scales:{y:{reverse:true,min:4.6,max:6.2,grid:{color:'rgba(0,0,0,0.04)'},ticks:{color:'#9aa0ad',font:{size:11},callback:(v)=>paceStr(v)}},x:{grid:{display:false},ticks:{color:'#9aa0ad',font:{size:11},autoSkip:false}}}}
   });
 }
 
-function buildTimeline() {
-  const dotColor = {active:'#2563eb',maint:'#9aa0ad',peak:'#d97706',race:'#dc2626'};
-  const tagClass  = {active:'tag-blue',maint:'tag-gray',peak:'tag-amber',race:'tag-coral'};
-  return DATA.blocks.map(b=>`
-    <div class="tl-item">
-      <div class="tl-dot" style="background:${dotColor[b.type]};${b.current?'box-shadow:0 0 0 3px rgba(37,99,235,0.15)':''}"></div>
-      <div class="tl-period">${b.period}</div>
-      <div class="tl-title">${b.title}${b.current?'<span class="current-badge">ahora</span>':''}</div>
-      <div class="tl-desc">${b.desc}</div>
-      <div class="tl-tags">${b.tags.map(t=>`<span class="tag ${tagClass[b.type]}">${t}</span>`).join('')}</div>
-    </div>`).join('');
-}
-
-function renderCompeticiones() {
-  const d = DATA;
-  const best    = d.competitions.find(c=>c.phase==='best');
-  const lastPre = [...d.competitions].filter(c=>c.phase==='pre').pop();
-  const lastPost= [...d.competitions].filter(c=>c.phase==='post').pop();
-  const recov   = Math.round((best.pace / (lastPost ? lastPost.pace : best.pace)) * 100);
-
-  document.getElementById('tab-competiciones').innerHTML = `
+function renderCompeticiones(){
+  const d=DATA;
+  const best=d.competitions.find(c=>c.phase==='best');
+  const lastPre=[...d.competitions].filter(c=>c.phase==='pre').pop();
+  const lastPost=[...d.competitions].filter(c=>c.phase==='post').pop();
+  const recov=Math.round((best.pace/(lastPost?lastPost.pace:best.pace))*100);
+  document.getElementById('tab-competiciones').innerHTML=`
     <div class="metrics">
-      <div class="metric-card accent-amber">
-        <div class="metric-label">Mejor marca 10K</div>
-        <div class="metric-val amber">${best.time}</div>
-        <div class="metric-sub">${best.name} · ${best.date}</div>
-      </div>
-      <div class="metric-card">
-        <div class="metric-label">Última pre-lesión</div>
-        <div class="metric-val">${lastPre?lastPre.time:'—'}</div>
-        <div class="metric-sub">${lastPre?lastPre.name+' · '+lastPre.date:'—'}</div>
-      </div>
-      <div class="metric-card">
-        <div class="metric-label">Última post-lesión</div>
-        <div class="metric-val">${lastPost?lastPost.time:'—'}</div>
-        <div class="metric-sub">${lastPost?lastPost.name+' · '+lastPost.date:'—'}</div>
-      </div>
-      <div class="metric-card accent-green">
-        <div class="metric-label">Recuperación estimada</div>
-        <div class="metric-val green">~${recov}%</div>
-        <div class="metric-sub">del nivel de mejor marca</div>
-      </div>
+      <div class="metric-card accent-amber"><div class="metric-label">Mejor marca 10K</div><div class="metric-val amber">${best.time}</div><div class="metric-sub">${best.name} · ${best.date}</div></div>
+      <div class="metric-card"><div class="metric-label">Última pre-lesión</div><div class="metric-val">${lastPre?lastPre.time:'—'}</div><div class="metric-sub">${lastPre?lastPre.name+' · '+lastPre.date:'—'}</div></div>
+      <div class="metric-card"><div class="metric-label">Última post-lesión</div><div class="metric-val">${lastPost?lastPost.time:'—'}</div><div class="metric-sub">${lastPost?lastPost.name+' · '+lastPost.date:'—'}</div></div>
+      <div class="metric-card accent-green"><div class="metric-label">Recuperación estimada</div><div class="metric-val green">~${recov}%</div><div class="metric-sub">del nivel de mejor marca</div></div>
     </div>
     <div class="chart-card">
       <div class="chart-card-title">ritmo por competición (min/km) — menor es mejor</div>
@@ -471,50 +571,483 @@ function renderCompeticiones() {
     <div class="section-label">Historial completo</div>
     <table class="race-table">
       <thead><tr><th>Carrera</th><th>Tiempo</th><th>Ritmo</th><th>FC media</th><th>Desnivel</th><th>Fase</th></tr></thead>
-      <tbody>${d.competitions.map(c=>`
-        <tr>
-          <td><div class="race-name-main">${c.name}</div><div class="race-name-sub">${c.date} · ${c.dist}</div></td>
-          <td><span class="race-time">${c.time}</span></td>
-          <td>
-            <span class="race-pace">${paceStr(c.pace)}/km</span>
-            <div class="pace-bar"><div class="pace-bar-fill" style="width:${Math.round((best.pace/c.pace)*100)}%;background:${c.phase==='best'?'#d97706':c.phase==='post'?'#2563eb':'#16a34a'}"></div></div>
-          </td>
-          <td>${c.fc?c.fc+' bpm':'—'}</td>
-          <td>+${c.desnivel}m</td>
-          <td><span class="badge ${c.phase==='best'?'badge-best':c.phase==='post'?'badge-post':'badge-pre'}">${c.phase==='best'?'mejor marca':c.phase==='post'?'post-lesión':'pre-lesión'}</span></td>
-        </tr>`).join('')}
-      </tbody>
-    </table>
-  `;
-
-  if (window._compChart) window._compChart.destroy();
-  window._compChart = new Chart(document.getElementById('compChart'), {
+      <tbody>${d.competitions.map(c=>`<tr>
+        <td><div class="race-name-main">${c.name}</div><div class="race-name-sub">${c.date} · ${c.dist}</div></td>
+        <td><span class="race-time">${c.time}</span></td>
+        <td><span class="race-pace">${paceStr(c.pace)}/km</span><div class="pace-bar"><div class="pace-bar-fill" style="width:${Math.round((best.pace/c.pace)*100)}%;background:${c.phase==='best'?'#d97706':c.phase==='post'?'#2563eb':'#16a34a'}"></div></div></td>
+        <td>${c.fc?c.fc+' bpm':'—'}</td><td>+${c.desnivel}m</td>
+        <td><span class="badge ${c.phase==='best'?'badge-best':c.phase==='post'?'badge-post':'badge-pre'}">${c.phase==='best'?'mejor marca':c.phase==='post'?'post-lesión':'pre-lesión'}</span></td>
+      </tr>`).join('')}</tbody>
+    </table>`;
+  if(window._compChart)window._compChart.destroy();
+  window._compChart=new Chart(document.getElementById('compChart'),{
     type:'bar',
-    data:{
-      labels: d.competitions.map(c=>c.name.split(' ').slice(0,2).join(' ')+'\n'+c.date),
-      datasets:[{
-        label:'Ritmo',
-        data: d.competitions.map(c=>c.pace),
-        backgroundColor: d.competitions.map(c=>c.phase==='best'?'rgba(217,119,6,0.7)':c.phase==='post'?'rgba(37,99,235,0.55)':'rgba(22,163,74,0.55)'),
-        borderColor:     d.competitions.map(c=>c.phase==='best'?'#d97706':c.phase==='post'?'#2563eb':'#16a34a'),
-        borderWidth:1.5, borderRadius:5
-      }]
-    },
-    options:{responsive:true,maintainAspectRatio:false,
-      plugins:{legend:{display:false},tooltip:{callbacks:{label:(c)=>'Ritmo: '+paceStr(c.raw)+'/km'}}},
-      scales:{
-        y:{reverse:true,min:4.5,max:6.4,grid:{color:'rgba(0,0,0,0.04)'},ticks:{color:'#9aa0ad',font:{size:11},callback:(v)=>paceStr(v)}},
-        x:{grid:{display:false},ticks:{color:'#9aa0ad',font:{size:10},maxRotation:35,autoSkip:false}}
-      }
-    }
+    data:{labels:d.competitions.map(c=>c.name.split(' ').slice(0,2).join(' ')+'\n'+c.date),
+      datasets:[{label:'Ritmo',data:d.competitions.map(c=>c.pace),
+        backgroundColor:d.competitions.map(c=>c.phase==='best'?'rgba(217,119,6,0.7)':c.phase==='post'?'rgba(37,99,235,0.55)':'rgba(22,163,74,0.55)'),
+        borderColor:d.competitions.map(c=>c.phase==='best'?'#d97706':c.phase==='post'?'#2563eb':'#16a34a'),
+        borderWidth:1.5,borderRadius:5}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:(c)=>'Ritmo: '+paceStr(c.raw)+'/km'}}},
+      scales:{y:{reverse:true,min:4.5,max:6.4,grid:{color:'rgba(0,0,0,0.04)'},ticks:{color:'#9aa0ad',font:{size:11},callback:(v)=>paceStr(v)}},x:{grid:{display:false},ticks:{color:'#9aa0ad',font:{size:10},maxRotation:35,autoSkip:false}}}}
   });
 }
 
-if (sessionStorage.getItem('auth')==='1') {
-  document.getElementById('login-screen').style.display = 'none';
-  document.getElementById('app').style.display = 'block';
+function buildExpandableBlocks(blocks, showDoneOnly, filterBlockId){
+  const blockTypeColor={current:'#2563eb',planned:'#16a34a',maint:'#9aa0ad',peak:'#d97706',race:'#dc2626'};
+  const weekStatusLabel={done:'ejecutada',current:'en curso',planned:'planificada'};
+  const weekStatusClass={done:'ws-done',current:'ws-current',planned:'ws-planned'};
+
+  let filtered = blocks;
+  if(filterBlockId) filtered = blocks.filter(b=>b.id===filterBlockId);
+  if(showDoneOnly) filtered = filtered.map(b=>({...b,weeks:b.weeks.filter(w=>w.status==='done'||w.status==='current')})).filter(b=>b.weeks.length>0);
+
+  if(!filtered.length) return '<div class="no-results">No hay semanas que mostrar con los filtros seleccionados.</div>';
+
+  return filtered.map((block,bi)=>`
+    <div class="block-group">
+      <div class="block-header" onclick="toggleBlock('bg-${showDoneOnly?'h':'p'}-${bi}')">
+        <div class="block-header-left">
+          <span class="block-dot" style="background:${blockTypeColor[block.type]||'#9aa0ad'}"></span>
+          <span class="block-name">${block.name}</span>
+          <span class="block-meta">${block.period}</span>
+        </div>
+        <span class="block-chevron" id="chev-bg-${showDoneOnly?'h':'p'}-${bi}">›</span>
+      </div>
+      <div class="block-body" id="bg-${showDoneOnly?'h':'p'}-${bi}">
+        ${block.weeks.map((week,wi)=>`
+          <div class="week-group">
+            <div class="week-header" onclick="toggleWeek('wg-${showDoneOnly?'h':'p'}-${bi}-${wi}')">
+              <div class="week-header-left">
+                <div>
+                  <div style="display:flex;align-items:center;gap:8px">
+                    <span class="week-title">${week.label}</span>
+                    <span class="week-status-badge ${weekStatusClass[week.status]}">${weekStatusLabel[week.status]}</span>
+                  </div>
+                  <div class="week-obj">${week.dateStart} · <em>${week.objetivo}</em></div>
+                </div>
+              </div>
+              <span class="week-chevron" id="chev-wg-${showDoneOnly?'h':'p'}-${bi}-${wi}">›</span>
+            </div>
+            <div class="week-body" id="wg-${showDoneOnly?'h':'p'}-${bi}-${wi}">
+              ${buildDayCards(week.days, true)}
+              ${week.notes?`<div class="section-label" style="margin-top:12px">Notas del entrenador</div><div class="notes-box">${week.notes}</div>`:''}
+            </div>
+          </div>`).join('')}
+      </div>
+    </div>`).join('');
+}
+
+function toggleBlock(id){
+  const body=document.getElementById(id);
+  const chev=document.getElementById('chev-'+id);
+  body.classList.toggle('open');
+  chev.classList.toggle('open');
+}
+function toggleWeek(id){
+  const body=document.getElementById(id);
+  const chev=document.getElementById('chev-'+id);
+  body.classList.toggle('open');
+  chev.classList.toggle('open');
+}
+
+function renderHistorico(){
+  const blockOptions = DATA.blocks.map(b=>`<option value="${b.id}">${b.name}</option>`).join('');
+  let html=`
+    <div class="exp-filters">
+      <label>Desde</label>
+      <input type="date" id="hist-from" />
+      <label>Hasta</label>
+      <input type="date" id="hist-to" />
+      <label>Bloque</label>
+      <select id="hist-block"><option value="">Todos los bloques</option>${blockOptions}</select>
+      <button class="filter-btn" onclick="applyHistorico()">Filtrar</button>
+      <button class="filter-btn secondary" onclick="resetHistorico()">Limpiar</button>
+    </div>
+    <div id="hist-content">${buildExpandableBlocks(DATA.blocks, true, '')}</div>`;
+  document.getElementById('tab-historico').innerHTML=html;
+}
+function applyHistorico(){
+  const blockId=document.getElementById('hist-block').value;
+  document.getElementById('hist-content').innerHTML=buildExpandableBlocks(DATA.blocks,true,blockId);
+}
+function resetHistorico(){
+  document.getElementById('hist-block').value='';
+  document.getElementById('hist-from').value='';
+  document.getElementById('hist-to').value='';
+  document.getElementById('hist-content').innerHTML=buildExpandableBlocks(DATA.blocks,true,'');
+}
+
+function renderPlanificacion(){
+  const blockOptions=DATA.blocks.map(b=>`<option value="${b.id}">${b.name}</option>`).join('');
+  let html=`
+    <div class="exp-filters">
+      <label>Bloque</label>
+      <select id="plan-block"><option value="">Todos los bloques</option>${blockOptions}</select>
+      <button class="filter-btn" onclick="applyPlan()">Filtrar</button>
+      <button class="filter-btn secondary" onclick="resetPlan()">Ver todos</button>
+    </div>
+    <div id="plan-content">${buildExpandableBlocks(DATA.blocks,false,'')}</div>`;
+  document.getElementById('tab-planificacion').innerHTML=html;
+}
+function applyPlan(){
+  const blockId=document.getElementById('plan-block').value;
+  document.getElementById('plan-content').innerHTML=buildExpandableBlocks(DATA.blocks,false,blockId);
+}
+function resetPlan(){
+  document.getElementById('plan-block').value='';
+  document.getElementById('plan-content').innerHTML=buildExpandableBlocks(DATA.blocks,false,'');
+}
+
+if(sessionStorage.getItem('auth')==='1'){
+  document.getElementById('login-screen').style.display='none';
+  document.getElementById('app').style.display='block';
   initApp();
 }
 </script>
 </body>
 </html>
+<!-- PATCH: inject RUTINAS tab -->
+<script>
+(function(){
+const RUTINAS = [
+  {
+    id:'gym-a',
+    name:'Gym A — Fuerza principal',
+    icon:'🏋️',
+    objetivo:'Fuerza funcional para running + estabilidad lumbo-pélvica',
+    ejercicios:[
+      {
+        nombre:'Step-up con mancuernas',
+        peso:'8 kg por mano (orientativo)',
+        series:'3×8 por pierna',
+        descanso:"2'",
+        descripcion:'De pie frente a un cajón o banco estable. Sube apoyando completamente el pie de la pierna de trabajo, empuja con el talón para subir y controla el descenso. La rodilla no debe sobrepasar la punta del pie en exceso.',
+        claves:['Mantén el torso erguido durante todo el movimiento','No uses el impulso de la pierna de abajo para subir','Al bajar, controla el descenso — no dejes caer el peso','Alterna la pierna de trabajo entre series o haz las repeticiones completas por lado'],
+        prevencion:'Fortalece el glúteo medio y el cuádriceps — clave para la estabilidad en la fase de apoyo de carrera.'
+      },
+      {
+        nombre:'Sentadilla búlgara',
+        peso:'8 kg por mano (orientativo)',
+        series:'3×8 por pierna',
+        descanso:"2'",
+        descripcion:'Pie trasero elevado sobre banco, pie delantero adelantado. Baja en línea recta hasta que la rodilla trasera casi toque el suelo. El torso ligeramente inclinado hacia adelante es normal.',
+        claves:['La rodilla delantera no debe irse hacia dentro (valgo)','El pie delantero debe estar suficientemente adelantado para que la tibia no se incline exageradamente','Controla la bajada en 2-3 segundos','Si hay molestia en la rodilla delantera, adelanta más el pie'],
+        prevencion:'Ejercicio unilateral excelente para detectar y corregir asimetrías de fuerza entre piernas. Especialmente relevante dado el patrón 51/49 de equilibrio.'
+      },
+      {
+        nombre:'Jalón al pecho',
+        peso:'100 lb aprox (orientativo)',
+        series:'3×10',
+        descanso:"2'",
+        descripcion:'Sentado en polea alta, agarre prono ligeramente más ancho que los hombros. Tira de la barra hacia el pecho alto manteniendo el torso ligeramente inclinado hacia atrás. Controla el retorno.',
+        claves:['Los codos bajan y se retraen — no tire con los brazos, inicia con los dorsales','El pecho se abre al final del movimiento','No arquear excesivamente la espalda baja','Retorno controlado — no dejar que el peso suba solo'],
+        prevencion:'Refuerza la cadena posterior alta y los estabilizadores de la escápula — directamente relacionado con la prevención de la cifosis bajo fatiga al correr.'
+      },
+      {
+        nombre:'Press banca',
+        peso:'45 kg aprox',
+        series:'3×8',
+        descanso:"2'",
+        descripcion:'Tumbado en banco, agarre ligeramente más ancho que los hombros. Baja la barra de forma controlada hasta el pecho alto (no el esternón bajo). Empuja de forma explosiva hacia arriba.',
+        claves:['Los omóplatos deben estar retraídos y apoyados en el banco durante todo el movimiento','Los pies planos en el suelo','No rebotar la barra en el pecho','Precaución: evitar cerrar mucho el agarre para no sobrecargar la zona dorsal'],
+        prevencion:'Antecedente dorsal: usar agarre medio-amplio. Si aparece tensión entre escápulas, reducir carga inmediatamente.'
+      },
+      {
+        nombre:'Peso muerto hexagonal',
+        peso:'Carga moderada — énfasis en técnica',
+        series:'3×5-6',
+        descanso:"2'30\"",
+        descripcion:'Dentro del hexabar, pies a la anchura de las caderas. Empuña las asas, activa el core, pecho hacia arriba, rodillas ligeramente flexionadas. Empuja el suelo hacia abajo (no tires hacia arriba) para iniciar el movimiento.',
+        claves:['La espalda permanece neutra durante todo el rango — ni hiperextendida ni redondeada','Las caderas y hombros suben al mismo ritmo — no dejes que las caderas suban primero','Activa el core antes de despegar el peso','En la bajada: caderas primero, luego rodillas'],
+        prevencion:'La hexabar reduce el estrés en la columna respecto al peso muerto convencional. Aun así: ante cualquier molestia dorsal, parar y comunicar antes de continuar.'
+      },
+      {
+        nombre:'Pallof press en polea',
+        peso:'11,3 kg aprox',
+        series:'3×12 por lado',
+        descanso:"90\"",
+        descripcion:'De pie de lado a la polea, pies a la anchura de los hombros. Agarra el mango con ambas manos frente al pecho. Extiende los brazos hacia adelante sin girar el torso, aguanta 1-2 segundos y vuelve al pecho.',
+        claves:['El torso no debe girar en ningún momento — ese es el punto del ejercicio','Los pies permanecen fijos, la presión es simétrica en ambos pies','Respiración: exhala al extender, inhala al recoger','Cuanto más lejos estés de la polea, más difícil'],
+        prevencion:'Entrena la resistencia a la rotación del core — esencial para la estabilidad lumbo-pélvica en carrera y para proteger la zona dorsal bajo carga.'
+      },
+      {
+        nombre:'Plancha frontal',
+        peso:'Peso corporal',
+        series:'3×35"',
+        descanso:"60\"-90\"",
+        descripcion:'Apoyado en antebrazos y puntas de los pies. Cuerpo en línea recta de cabeza a talones. Activa el core, glúteos y cuádriceps simultáneamente. Mantén la posición sin que las caderas suban o bajen.',
+        claves:['No dejes que las caderas caigan — es la señal de que el core ha cedido','La cabeza en posición neutra — no mirar hacia arriba ni hacia abajo','Respira con normalidad durante la plancha','Si no puedes mantener la forma, termina la serie aunque no hayas llegado al tiempo'],
+        prevencion:'Refuerzo directo del core anterior. Complementa el Dead bug en la corrección del patrón de equilibrio 51/49.'
+      },
+    ]
+  },
+  {
+    id:'gym-b',
+    name:'Gym B — Estabilidad y potencia',
+    icon:'⚡',
+    objetivo:'Estabilidad, potencia y prevención específica para running',
+    ejercicios:[
+      {
+        nombre:'Swing con kettlebell',
+        peso:'16-20 kg (orientativo)',
+        series:'3×15',
+        descanso:"90\"",
+        descripcion:'Pies a la anchura de los hombros, KB entre los pies. Bisagra de cadera (no sentadilla): empuja las caderas hacia atrás manteniendo la espalda neutra. Al balancear hacia adelante, las caderas empujan explosivamente. La KB sube por la fuerza de las caderas, no de los brazos.',
+        claves:['El movimiento es una bisagra de cadera — las rodillas se doblan ligeramente pero no es una sentadilla','Al llegar arriba (hombros), aprieta glúteos y activa el core','No redondear la espalda baja en el fondo del swing','Los brazos son solo correas — no los uses para levantar la KB'],
+        prevencion:'Activa los glúteos y los isquiotibiales de forma explosiva — directamente transferible a la fase de propulsión en carrera. Mejora la potencia de zancada.'
+      },
+      {
+        nombre:'Remo unilateral en polea',
+        peso:'Carga moderada',
+        series:'3×10 por brazo',
+        descanso:"90\"",
+        descripcion:'De pie o semiarrodillado frente a la polea baja. Tira del mango hacia el costado del torso con el codo pegado al cuerpo. El torso permanece estable — no rotar para ganar recorrido.',
+        claves:['Inicia el movimiento con la escápula (retracción), luego dobla el codo','El torso no rota ni se inclina para "ayudar"','En la extensión, deja que la escápula se separe completamente para trabajar el rango completo','Especial atención al lado derecho — puede ser el déficit relacionado con el patrón 51/49'],
+        prevencion:'Fortalece los retractores escapulares y corrige asimetrías de la cadena posterior alta. Directamente relacionado con la postura dorsal en carrera.'
+      },
+      {
+        nombre:'Press militar con mancuernas',
+        peso:'14 kg por brazo aprox',
+        series:'3×6',
+        descanso:"2'",
+        descripcion:'De pie o sentado, mancuernas a la altura de los hombros con los codos a 45°. Empuja hacia arriba hasta extensión completa. Baja de forma controlada.',
+        claves:['No arquear la zona lumbar para empujar — activa el core antes de subir','Los codos no deben irse demasiado hacia atrás en el punto de inicio','Bajar de forma controlada — no dejar caer las mancuernas','Precaución antecedente dorsal: si aparece tensión dorsal, reducir peso y comunicar'],
+        prevencion:'Refuerza el deltoides y el trapecio superior. Mantiene la postura de hombros en carrera y previene la caída de hombros bajo fatiga.'
+      },
+      {
+        nombre:'Split squat isométrico',
+        peso:'Peso corporal o ligero',
+        series:'3×30" por pierna',
+        descanso:"90\"",
+        descripcion:'Posición de zancada larga. Baja hasta que la rodilla trasera casi toque el suelo y mantén la posición. El torso erguido, la rodilla delantera en línea con el pie.',
+        claves:['La rodilla delantera no debe irse hacia dentro','Distribuye el peso entre ambas piernas de forma equilibrada','Respira con normalidad durante la isometría','Si tiembla el cuádriceps delantero, es normal — es la señal de que está trabajando'],
+        prevencion:'Isometría bajo carga para el cuádriceps y el glúteo. Especialmente útil para la prevención de lesiones de rodilla y para fortalecer los tendones en el corredor.'
+      },
+      {
+        nombre:'Elevación de gemelo unilateral',
+        peso:'Peso corporal o mancuerna ligera',
+        series:'3×12 por pierna',
+        descanso:"60\"-90\"",
+        descripcion:'De pie sobre el borde de un escalón o plataforma, talón colgando. Baja el talón por debajo de la plataforma (carga excéntrica) y sube hasta la punta del pie. Hazlo con una sola pierna.',
+        claves:['El movimiento excéntrico (bajada) es el más importante — hazlo en 3-4 segundos','No usar impulso para subir','Si hay dolor en el tendón de Aquiles, reducir el rango de movimiento excéntrico','La rodilla permanece ligeramente flexionada para activar también el sóleo'],
+        prevencion:'Fortalecimiento excéntrico del complejo gemelo-sóleo. Prevención directa de la tendinopatía del Aquiles — riesgo habitual en corredores en fase de aumento de carga.'
+      },
+      {
+        nombre:'Farmer carry unilateral',
+        peso:'Mancuerna o KB pesada',
+        series:'3×30-40m por lado',
+        descanso:"90\"",
+        descripcion:'Agarra una mancuerna o KB pesada en una mano y camina manteniendo el torso completamente vertical. El lado que carga el peso intentará que el hombro caiga — resiste activamente.',
+        claves:['El hombro del lado cargado no debe caer — activa activamente el trapecio medio','El torso no debe inclinarse lateralmente','La cadera no debe escaparse hacia el lado libre','Camina con zancada normal, no excesivamente lenta'],
+        prevencion:'Entrena la estabilidad lateral del core y el glúteo medio bajo carga asimétrica — directamente transferible a la estabilidad pélvica en carrera. Corrector del patrón 51/49.'
+      },
+      {
+        nombre:'Plancha lateral',
+        peso:'Peso corporal',
+        series:'3×25-35" por lado',
+        descanso:"60\"-90\"",
+        descripcion:'Apoyado sobre el codo y el borde externo del pie inferior. Cuerpo en línea recta lateral. Eleva activamente la cadera — no dejes que cuelgue.',
+        claves:['Énfasis especial en el lado DERECHO — es el lado deficitario según los datos de equilibrio','La cadera no debe caer ni sobreelevarse','El hombro de apoyo activo, no hundido','Variación: añadir elevación de cadera (bajar y subir) para trabajo dinámico'],
+        prevencion:'Activa directamente el glúteo medio — el músculo más relacionado con el control de la pelvis en carrera y con la corrección del desequilibrio 51/49 detectado.'
+      },
+      {
+        nombre:'Face pull en polea',
+        peso:'Polea alta, carga ligera',
+        series:'3×12',
+        descanso:"90\"",
+        descripcion:'De pie frente a la polea alta con cuerda. Tira hacia la cara con los codos altos (a la altura de los hombros o por encima). Al final del movimiento, los pulgares apuntan hacia atrás y las manos quedan a los lados de la cara.',
+        claves:['Los codos se mantienen altos durante todo el movimiento','Al final, retrae y deprime las escápulas activamente','No uses la inercia — movimiento lento y controlado','Carga ligera: el objetivo es activación, no fuerza máxima'],
+        prevencion:'Prevención activa de la lesión dorsal: activa los rotadores externos del hombro y los retractores escapulares. Contrarresta directamente la cifosis torácica bajo fatiga.'
+      },
+    ]
+  },
+  {
+    id:'mov',
+    name:'Protocolo de movilidad',
+    icon:'🔄',
+    objetivo:'Mínimo 3 veces por semana. Prioridad: columna torácica y cadena posterior alta. Duración: 15-20 min.',
+    ejercicios:[
+      {
+        nombre:'Extensión torácica en foam roller',
+        peso:'—',
+        series:'1 serie',
+        descanso:'—',
+        descripcion:'Foam roller perpendicular a la columna a la altura dorsal media (T4-T8). Brazos cruzados en el pecho o manos en nuca. Deja caer el peso hacia atrás sobre el roller con respiración lenta y profunda.',
+        claves:['NO forzar con las manos — la gravedad hace el trabajo','Exhala lento en cada extensión','Desplaza el roller 2-3 cm hacia arriba entre puntos','4-5 puntos diferentes a lo largo de la dorsal'],
+        prevencion:'Prioritario siempre. Si solo puedes hacer un ejercicio de movilidad, es este. Combate directamente la restricción torácica post-entrenamiento.'
+      },
+      {
+        nombre:'Rotaciones torácicas en cuadrupedia',
+        peso:'—',
+        series:'2×10 por lado',
+        descanso:'—',
+        descripcion:'A cuatro patas, mano detrás de la cabeza. Rota el codo hacia el techo hasta el máximo rango disponible. Vuelve al centro controladamente. Las caderas permanecen quietas.',
+        claves:['La cadera NO rota — solo la zona dorsal trabaja','Si notas compensación lumbar, reduce el rango','Movimiento lento y controlado','Obligatorio antes de gym y antes de rodar'],
+        prevencion:'Mejora la movilidad de rotación torácica — esencial para la mecánica de brazos en carrera y para prevenir compensaciones lumbares.'
+      },
+      {
+        nombre:'Camel-cat',
+        peso:'—',
+        series:'2×10 repeticiones completas',
+        descanso:'—',
+        descripcion:'A cuatro patas. Alterna entre extensión dorsal completa (camel: cabeza arriba, pelvis hacia arriba) y flexión completa (cat: espalda redondeada, cabeza abajo). Movimiento fluido.',
+        claves:['El movimiento recorre TODA la columna — no solo la lumbar','Inicio de cada sesión de movilidad','Fluido, sin pausa brusca entre posiciones','Respira: inhala en camel, exhala en cat'],
+        prevencion:'Activa toda la cadena de la columna. Ideal como primer ejercicio de cualquier sesión de movilidad para despertar el sistema.'
+      },
+      {
+        nombre:'Dead bug',
+        peso:'Peso corporal',
+        series:'2×8 por lado',
+        descanso:'—',
+        descripcion:'Tumbado boca arriba, rodillas a 90°, brazos al techo. Extiende simultáneamente brazo derecho hacia atrás y pierna izquierda hacia adelante SIN que la zona lumbar se despegue del suelo. Vuelve al centro. Alterna.',
+        claves:['La zona lumbar debe permanecer pegada al suelo en todo momento','Si se despega → reduce el rango hasta que no ocurra','Respiración: exhala al extender, inhala al recoger','Ejercicio clave para corregir el patrón de desequilibrio 51/49'],
+        prevencion:'Activa el core profundo de forma que obliga a estabilizar la pelvis simétricamente. Corrector directo del patrón de asimetría detectado en las sesiones de running.'
+      },
+      {
+        nombre:'Estiramiento isquiotibiales activo',
+        peso:'—',
+        series:'2×30" por lado',
+        descanso:'—',
+        descripcion:'De pie, apoya el talón sobre una superficie a la altura de la cadera. Mantén la rodilla extendida y flexiona el tronco hacia adelante con la ESPALDA RECTA.',
+        claves:['Espalda recta obligatoria — si se redondea la dorsal, baja la altura del apoyo','El objetivo es sentir el estiramiento en la parte trasera del muslo, no en la espalda','Post-rodaje siempre','No forzar el rango — el estiramiento debe ser tolerable'],
+        prevencion:'Mantiene la extensibilidad de los isquiotibiales — cadena posterior clave para la prevención de lesiones en corredor y para la postura dorsal.'
+      },
+      {
+        nombre:'Estiramiento piriforme / glúteo profundo',
+        peso:'—',
+        series:'1×45" por lado',
+        descanso:'—',
+        descripcion:'Tumbado boca arriba. Cruza el tobillo derecho sobre la rodilla izquierda (postura "4"). Empuja suavemente la rodilla derecha hacia fuera mientras acercas las piernas al pecho.',
+        claves:['Respiración lenta — no forzar el rango','El glúteo profundo es clave para la estabilidad pélvica en running','Post-rodaje y días de descanso','Si hay ciática conocida, consultar antes de hacerlo'],
+        prevencion:'Libera el piriforme y el glúteo profundo — músculos que se sobrecargan en el corredor y que pueden comprimir el nervio ciático si están tensos.'
+      },
+    ]
+  },
+  {
+    id:'prerodaje',
+    name:'Protocolo pre-rodaje',
+    icon:'🏃',
+    objetivo:'5-7 minutos obligatorios antes de cada salida. Activa el patrón postural dorsal antes de que la fatiga lo comprometa.',
+    ejercicios:[
+      {
+        nombre:'1. Activación escapular',
+        peso:'—',
+        series:'30 segundos',
+        descanso:'—',
+        descripcion:'De pie, brazos extendidos a los lados a la altura del hombro. Describe círculos pequeños hacia atrás (10 rep) y luego hacia adelante (10 rep). Termina con las palmas hacia arriba y los hombros conscientemente abajo.',
+        claves:['Los hombros deben terminar MÁS BAJOS que al inicio','Si siguen elevados → repetir hasta conseguirlo','Este es el punto de partida: hombros abajo y atrás'],
+        prevencion:'Activa los depresores y retractores escapulares antes de que el patrón de elevación de hombros aparezca bajo fatiga.'
+      },
+      {
+        nombre:'2. Extensión torácica rápida',
+        peso:'—',
+        series:'4-5 respiraciones profundas',
+        descanso:'—',
+        descripcion:'Foam roller perpendicular a T5-T7. Brazos cruzados o manos en nuca. 4-5 respiraciones profundas y lentas dejando que la gravedad extienda la zona dorsal. Sin forzar con las manos.',
+        claves:['Notar apertura en el pecho y entre escápulas','Si no hay foam roller: respaldo de silla rígido, 8 respiraciones','No sustituible — es el ejercicio más importante del protocolo'],
+        prevencion:'Abre la zona torácica antes del rodaje. Previene la cifosis que aparece bajo fatiga y que ha generado la molestia dorsal recurrente.'
+      },
+      {
+        nombre:'3. Rotaciones torácicas activas',
+        peso:'—',
+        series:'10 por lado',
+        descanso:'—',
+        descripcion:'A cuatro patas, mano derecha detrás de la cabeza. Rota el codo hacia el techo 10 veces. Repite lado izquierdo. Movimiento lento y controlado. Las caderas permanecen quietas.',
+        claves:['Si un lado tiene menos rango → ese lado necesita más atención ese día','Las caderas quietas en todo momento','Identifica la asimetría antes de salir a correr'],
+        prevencion:'Detecta asimetrías de movilidad del día. Si el lado derecho está más restringido, estará más propenso a compensar durante el rodaje.'
+      },
+      {
+        nombre:'4. Puente de glúteo con pausa',
+        peso:'—',
+        series:'10 repeticiones',
+        descanso:'—',
+        descripcion:'Tumbado boca arriba, rodillas flexionadas, pies en el suelo. Eleva las caderas hasta línea recta rodilla-cadera-hombro. Aguanta 2 segundos arriba, baja despacio. 10 repeticiones.',
+        claves:['Al llegar arriba: apretar glúteos activamente','Verificar que la pelvis está nivelada (no cae hacia ningún lado)','Conecta con el patrón 50/50 que buscamos en carrera','Bajada controlada: 2-3 segundos'],
+        prevencion:'Activa los glúteos antes de correr — los estabilizadores principales de la pelvis. Mejora directamente el patrón de equilibrio durante la carrera.'
+      },
+      {
+        nombre:'5. Check postural de salida',
+        peso:'—',
+        series:'30 segundos',
+        descanso:'—',
+        descripcion:'De pie, pies a la anchura de las caderas. Secuencia: (1) hombros abajo y atrás conscientemente, (2) pecho ligeramente abierto, (3) cabeza neutra con mirada al frente, (4) activar suavemente el core, (5) arrancar.',
+        claves:['Esta postura es tu referencia durante el rodaje','Si notas tensión dorsal al correr → reproducir mentalmente este check y corregir sin parar','Si no cede en 5 min → reducir ritmo y evaluar'],
+        prevencion:'Graba el patrón postural correcto antes de arrancar. Reduce el tiempo hasta que aparece la compensación dorsal bajo fatiga.'
+      },
+      {
+        nombre:'POST: Extensión torácica (foam roller)',
+        peso:'—',
+        series:'2-3 minutos',
+        descanso:'—',
+        descripcion:'Igual que en el pre-rodaje pero con más tiempo. 5-6 respiraciones profundas en cada punto desde T4 a T8. Si solo puedes hacer un ejercicio post-rodaje, es este.',
+        claves:['Prioritario siempre después de rodar','Más tiempo que en el pre porque la musculatura está más tensa','Respiración profunda: inhala expandiendo el pecho, exhala dejando caer el peso'],
+        prevencion:'Revierte la compresión torácica acumulada durante el rodaje. Especialmente importante en sesiones de calidad o tiradas largas.'
+      },
+    ]
+  },
+];
+
+// Inject tab button
+const tabsEl = document.querySelector('.tabs');
+const btn = document.createElement('button');
+btn.className = 'tab-btn';
+btn.textContent = 'Rutinas';
+btn.onclick = function(){ showTab('rutinas', this); };
+tabsEl.appendChild(btn);
+
+// Inject tab content div
+const main = document.querySelector('.main');
+const div = document.createElement('div');
+div.id = 'tab-rutinas';
+div.className = 'tab-content';
+main.appendChild(div);
+
+function renderRutinas(){
+  let html = '';
+  RUTINAS.forEach((rutina, ri) => {
+    html += `
+      <div class="block-group">
+        <div class="block-header" onclick="toggleBlock('rut-${ri}')">
+          <div class="block-header-left">
+            <span style="font-size:18px;line-height:1">${rutina.icon}</span>
+            <span class="block-name">${rutina.name}</span>
+          </div>
+          <span class="block-chevron" id="chev-rut-${ri}">›</span>
+        </div>
+        <div class="block-body" id="rut-${ri}">
+          <div style="padding:12px 18px 4px;font-size:12px;color:var(--text2);border-bottom:0.5px solid var(--border);font-style:italic">${rutina.objetivo}</div>
+          ${rutina.ejercicios.map((ej, ei) => `
+            <div style="border-bottom:0.5px solid var(--border)">
+              <div style="padding:11px 18px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;background:var(--bg3);transition:background .15s"
+                   onmouseover="this.style.background='var(--bg4)'" onmouseout="this.style.background='var(--bg3)'"
+                   onclick="toggleWeek('ej-${ri}-${ei}')">
+                <div style="display:flex;align-items:center;gap:14px;flex:1">
+                  <span style="font-size:13px;font-weight:500;color:var(--text)">${ej.nombre}</span>
+                  <span style="font-size:11px;font-family:var(--mono);color:var(--text3)">${ej.series}</span>
+                  ${ej.peso !== '—' ? `<span style="font-size:11px;font-family:var(--mono);color:var(--text3)">${ej.peso}</span>` : ''}
+                  ${ej.descanso !== '—' ? `<span style="font-size:11px;font-family:var(--mono);color:var(--blue);background:var(--blue-dim);padding:1px 7px;border-radius:4px;border:0.5px solid var(--blue-bdr)">desc ${ej.descanso}</span>` : ''}
+                </div>
+                <span class="week-chevron" id="chev-ej-${ri}-${ei}">›</span>
+              </div>
+              <div class="week-body" id="ej-${ri}-${ei}" style="background:var(--bg2);padding:16px 18px">
+                <p style="font-size:13px;color:var(--text2);line-height:1.65;margin-bottom:14px">${ej.descripcion}</p>
+                <div style="margin-bottom:12px">
+                  <div style="font-size:11px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.07em;color:var(--text3);margin-bottom:8px">Claves de ejecución</div>
+                  <ul style="list-style:none;display:flex;flex-direction:column;gap:5px">
+                    ${ej.claves.map(c=>`<li style="font-size:12px;color:var(--text);display:flex;gap:8px;align-items:flex-start"><span style="color:var(--green);font-size:14px;line-height:1.2;flex-shrink:0">›</span>${c}</li>`).join('')}
+                  </ul>
+                </div>
+                <div style="background:var(--green-dim);border:0.5px solid var(--green-bdr);border-radius:var(--radius-sm);padding:9px 13px;font-size:11px;color:var(--green)">
+                  <strong>Para el running:</strong> ${ej.prevencion}
+                </div>
+              </div>
+            </div>`).join('')}
+        </div>
+      </div>`;
+  });
+  document.getElementById('tab-rutinas').innerHTML = html;
+}
+
+renderRutinas();
+})();
+</script>
