@@ -80,6 +80,16 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14
 .day-detail{font-size:11px;color:var(--text2);line-height:1.4}
 .day-result{font-size:10px;color:var(--green);margin-top:4px;font-family:var(--mono);font-style:italic}
 .day-dot{width:6px;height:6px;border-radius:50%;margin-top:6px}
+.day-card { cursor:pointer; }
+.day-card-header { display:flex; align-items:flex-start; justify-content:space-between; gap:4px; }
+.day-expand-icon { font-size:11px; color:var(--text3); flex-shrink:0; margin-top:1px; transition:transform .2s; }
+.day-expand-icon.open { transform:rotate(90deg); }
+.day-expanded { display:none; margin-top:8px; padding-top:8px; border-top:0.5px solid var(--border); }
+.day-expanded.open { display:block; }
+.day-detail-full { font-size:11px; color:var(--text2); line-height:1.5; margin-bottom:6px; }
+.day-comment { font-size:10px; color:var(--green); font-family:var(--mono); font-style:italic; margin-bottom:4px; }
+.day-comment.pending { color:var(--text3); }
+
 .day-card.has-adjust { border-color: var(--amber-bdr); }
 .day-adjust-banner { margin-top:6px; background:var(--amber-dim); border:0.5px solid var(--amber-bdr); border-radius:var(--radius-sm); padding:5px 8px; cursor:pointer; transition:background .15s; }
 .day-adjust-banner:hover { background:#fef3c7; }
@@ -518,27 +528,46 @@ function buildDayCards(days, showResult, ctxId){
   return `<div class="week-grid">${days.map((d,di)=>{
     const hasAdjust = d.adjust;
     const adjId = `adj-${ctxId||'w'}-${di}`;
-    return `<div class="day-card ${statusClass[d.status]}${hasAdjust?' has-adjust':''}">
-      <div class="day-name">${d.name}</div>
-      <div class="day-type">${d.type}</div>
-      <div class="day-detail">${d.detail}</div>
-      ${hasAdjust ? `<div class="day-adjust-banner" onclick="toggleAdjust('${adjId}')">
-        <span class="day-adjust-icon">⚡</span>
-        <span class="day-adjust-text">${d.adjust}</span>
-        <span class="day-adjust-toggle" id="tog-${adjId}">ver detalle ›</span>
+    const expId = `exp-${ctxId||'w'}-${di}`;
+    const resultText = d.result || 'Pendiente';
+    const resultClass = d.result ? 'day-comment' : 'day-comment pending';
+    return `<div class="day-card ${statusClass[d.status]}${hasAdjust?' has-adjust':''}" onclick="toggleDayExpand('${expId}',event)">
+      <div class="day-card-header">
+        <div>
+          <div class="day-name">${d.name}</div>
+          <div class="day-type">${d.type}</div>
+          <div class="day-detail">${d.detail.length>40?d.detail.substring(0,38)+'…':d.detail}</div>
+        </div>
+        <span class="day-expand-icon" id="icon-${expId}">›</span>
       </div>
-      <div class="day-adjust-detail" id="${adjId}">
-        <table class="adjust-table">
-          <thead><tr><th>Ejercicio</th><th>Series</th><th>Nota</th></tr></thead>
-          <tbody>${d.adjustDetail.map(a=>`<tr class="${a.ejercicio.startsWith('ELIMINAR')?'adj-row-del':''}">
-            <td>${a.ejercicio}</td><td style="font-family:var(--mono);white-space:nowrap">${a.series}</td><td>${a.nota}</td>
-          </tr>`).join('')}</tbody>
-        </table>
-      </div>` : ''}
-      ${showResult && d.result ? `<div class="day-result">${d.result}</div>` : ''}
+      <div class="day-expanded" id="${expId}" onclick="event.stopPropagation()">
+        <div class="day-detail-full">${d.detail}</div>
+        ${showResult ? `<div class="${resultClass}"><strong>Estado:</strong> ${resultText}</div>` : ''}
+        ${hasAdjust ? `<div class="day-adjust-banner" onclick="toggleAdjust('${adjId}')">
+          <span class="day-adjust-icon">⚡</span>
+          <span class="day-adjust-text">${d.adjust}</span>
+          <span class="day-adjust-toggle" id="tog-${adjId}">ver detalle ›</span>
+        </div>
+        <div class="day-adjust-detail" id="${adjId}">
+          <table class="adjust-table">
+            <thead><tr><th>Ejercicio</th><th>Series</th><th>Nota</th></tr></thead>
+            <tbody>${d.adjustDetail.map(a=>`<tr class="${a.ejercicio.startsWith('ELIMINAR')?'adj-row-del':''}">
+              <td>${a.ejercicio}</td><td style="font-family:var(--mono);white-space:nowrap">${a.series}</td><td>${a.nota}</td>
+            </tr>`).join('')}</tbody>
+          </table>
+        </div>` : ''}
+      </div>
       <div class="day-dot ${dotClass[d.status]}"></div>
     </div>`;
   }).join('')}</div>`;
+}
+function toggleDayExpand(id, event){
+  if(event) event.stopPropagation();
+  const el=document.getElementById(id);
+  const icon=document.getElementById('icon-'+id);
+  if(!el) return;
+  const open=el.classList.toggle('open');
+  if(icon) icon.classList.toggle('open', open);
 }
 function toggleAdjust(id){
   const el=document.getElementById(id);
