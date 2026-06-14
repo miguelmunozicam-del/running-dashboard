@@ -148,17 +148,17 @@
 const PWD = `271975`;
 
 const DATA = {
-  lastUpdate: `11 jun 2026 — 20:00`,
+  lastUpdate: `14 jun 2026 — semana 3 cerrada`,
   currentBlock: `Bloque 1`,
-  weekNumber: 3,
+  weekNumber: 4,
   currentVo2: 47,
   currentPace: `5:10-5:20`,
   estRace10k: `~52:30`,
-  fatigueLevel: 6,
+  fatigueLevel: 7,
   dorsalOk: true,
   dorsalStatus: `Molestia residual manejable`,
-  weekLoad: 85,
-  weekNotes: `Tres días consecutivos Mar-Mié-Jue ejecutados. Calidad miércoles: mejor sesión del bloque (ER 73, PR en segmento). Gym B jueves: FC 84bpm confirma esfuerzo contenido — correcto con cuerpo en recuperación post-calidad. Sin molestias dorsales en remo ni swing. Viernes descanso obligatorio. Sábado y domingo pendientes.`,
+  weekLoad: 100,
+  weekNotes: `Semana 3 completada al 100%. Mejor semana del bloque: calidad miércoles (ER 73, PR, 32 min a umbral), tirada domingo 11,71km a 6:02/km con km 11 a 5:27/km (PR). VO2max estable en 47. Espalda dorsal sin incidencias en ninguna sesión. Patrón 51/49 estable — pico de desequilibrio en min 50-53 explicado por subida pronunciada bajo fatiga (normal). ER acumulado semana: el más alto del bloque.`,
   weekDays: [
     {name:`Lun`,type:`Descanso`,detail:`Movilidad torácica + respiración`,result:`Ejecutado`,status:`done`},
     {name:`Mar`,type:`Gym A`,detail:`Fuerza principal + Dead bug añadido`,result:`Cargas correctas · Dead bug bien ejecutado`,status:`modified`,
@@ -179,7 +179,7 @@ const DATA = {
        {ejercicio:`ELIMINAR: Press militar`,series:`—`,nota:`Se recupera en S4.`},
      ]},
     {name:`Vie`,type:`Descanso`,detail:`Descanso completo. No sustituir por movilidad activa esta semana.`,result:``,status:`pending`},
-    {name:`Sáb`,type:`Z2 + técnica`,detail:`50 min a 6:20-6:30/km + 6 rectas de 20 seg`,result:``,status:`pending`,
+    {name:`Sáb`,type:`Z2 + técnica`,detail:`50 min a 6:20-6:30/km + 6 rectas de 20 seg`,result:`8,05km · 6:13/km · FC 130bpm · ER 50 · VO2max 47. Piernas algo pesadas inicio (cuesta). Rectas cómodas. Espalda sin molestias.`,status:`done`,
      adjust:`Rectas a 5:20/km máximo (no sprint) · Protocolo dorsal 5 min pre-rodaje obligatorio`,
      adjustDetail:[
        {ejercicio:`Rodaje Z2`,series:`50 min`,nota:`Ritmo 6:20-6:30/km. Cómodo, conversacional.`},
@@ -263,14 +263,14 @@ const DATA = {
            {ejercicio:`ELIMINAR: Press militar`,series:`—`,nota:`Se recupera en S4.`},
          ]},
         {name:`Vie`,type:`Descanso`,detail:`Descanso completo. No sustituir por movilidad esta semana.`,result:``,status:`pending`},
-        {name:`Sáb`,type:`Z2 + técnica`,detail:`50 min a 6:20-6:30/km + 6 rectas de 20 seg`,result:``,status:`pending`,
+        {name:`Sáb`,type:`Z2 + técnica`,detail:`50 min a 6:20-6:30/km + 6 rectas de 20 seg`,result:`8,05km · 6:13/km · FC 130bpm · ER 50. Piernas pesadas inicio (cuesta). Rectas cómodas. Espalda OK.`,status:`done`,
          adjust:`Rectas a 5:20/km máximo (no sprint) · Protocolo dorsal 5 min pre-rodaje obligatorio`,
          adjustDetail:[
            {ejercicio:`Rodaje Z2`,series:`50 min`,nota:`6:20-6:30/km.`},
            {ejercicio:`Rectas`,series:`6 x 20 seg`,nota:`Hasta 5:20/km máximo. Énfasis en técnica.`},
            {ejercicio:`Protocolo dorsal`,series:`5 min pre-rodaje`,nota:`Rotaciones + activación escapular + check postural.`},
          ]},
-        {name:`Dom`,type:`Tirada larga`,detail:`70-75 min a ~6:15/km · últimos 15 min más ágiles si fatiga 4 o menos`,result:``,status:`pending`,
+        {name:`Dom`,type:`Tirada larga`,detail:`70-75 min a ~6:15/km · últimos 15 min más ágiles si fatiga 4 o menos`,result:`11,71km · 1:10:38 · 6:02/km · FC 134bpm · ER 91 · PR. Piernas pesadas km 1-3 (cuesta +63m). Km 4-10 cómodo. Km 11 a 5:27/km. Espalda sin incidencias.`,status:`done`,
          adjust:`Si molestia dorsal no cede en 5 min → reducir a 60 min e informar`,
          adjustDetail:[
            {ejercicio:`Rodaje suave`,series:`70-75 min`,nota:`~6:15/km. Protocolo dorsal pre-rodaje.`},
