@@ -478,294 +478,39 @@ const DATA = {
 const RUTINAS = [
   {
     id:`gym-a`,
-    name:`Gym A — Fuerza principal`,
+    name:`Gym A — Fuerza y potencia`,
     icon:`🏋️`,
-    objetivo:`Fuerza funcional para running + estabilidad lumbo-pélvica`,
+    objetivo:`Cadena posterior + empuje + core + brazos. Sesión principal de fuerza. 80-90 min.`,
     ejercicios:[
-      {
-        nombre:`Step-up con mancuernas`,
-        peso:`8 kg por mano (orientativo)`,
-        series:`3×8 por pierna`,
-        descanso:`2'`,
-        descripcion:`De pie frente a un cajón o banco estable. Sube apoyando completamente el pie de la pierna de trabajo, empuja con el talón para subir y controla el descenso. La rodilla no debe sobrepasar la punta del pie en exceso.`,
-        claves:[`Mantén el torso erguido durante todo el movimiento`,`No uses el impulso de la pierna de abajo para subir`,`Al bajar, controla el descenso — no dejes caer el peso`,`Alterna la pierna de trabajo entre series o haz las repeticiones completas por lado`],
-        prevencion:`Fortalece el glúteo medio y el cuádriceps — clave para la estabilidad en la fase de apoyo de carrera.`
-      },
-      {
-        nombre:`Sentadilla búlgara`,
-        peso:`8 kg por mano (orientativo)`,
-        series:`3×8 por pierna`,
-        descanso:`2'`,
-        descripcion:`Pie trasero elevado sobre banco, pie delantero adelantado. Baja en línea recta hasta que la rodilla trasera casi toque el suelo. El torso ligeramente inclinado hacia adelante es normal.`,
-        claves:[`La rodilla delantera no debe irse hacia dentro (valgo)`,`El pie delantero debe estar suficientemente adelantado para que la tibia no se incline exageradamente`,`Controla la bajada en 2-3 segundos`,`Si hay molestia en la rodilla delantera, adelanta más el pie`],
-        prevencion:`Ejercicio unilateral excelente para detectar y corregir asimetrías de fuerza entre piernas. Especialmente relevante dado el patrón 51/49 de equilibrio.`
-      },
-      {
-        nombre:`Jalón al pecho`,
-        peso:`100 lb aprox (orientativo)`,
-        series:`3×10`,
-        descanso:`2'`,
-        descripcion:`Sentado en polea alta, agarre prono ligeramente más ancho que los hombros. Tira de la barra hacia el pecho alto manteniendo el torso ligeramente inclinado hacia atrás. Controla el retorno.`,
-        claves:[`Los codos bajan y se retraen — no tire con los brazos, inicia con los dorsales`,`El pecho se abre al final del movimiento`,`No arquear excesivamente la espalda baja`,`Retorno controlado — no dejar que el peso suba solo`],
-        prevencion:`Refuerza la cadena posterior alta y los estabilizadores de la escápula — directamente relacionado con la prevención de la cifosis bajo fatiga al correr.`
-      },
-      {
-        nombre:`Press banca`,
-        peso:`45 kg aprox`,
-        series:`3×8`,
-        descanso:`2'`,
-        descripcion:`Tumbado en banco, agarre ligeramente más ancho que los hombros. Baja la barra de forma controlada hasta el pecho alto (no el esternón bajo). Empuja de forma explosiva hacia arriba.`,
-        claves:[`Los omóplatos deben estar retraídos y apoyados en el banco durante todo el movimiento`,`Los pies planos en el suelo`,`No rebotar la barra en el pecho`,`Precaución: evitar cerrar mucho el agarre para no sobrecargar la zona dorsal`],
-        prevencion:`Antecedente dorsal: usar agarre medio-amplio. Si aparece tensión entre escápulas, reducir carga inmediatamente.`
-      },
-      {
-        nombre:`Peso muerto hexagonal`,
-        peso:`Carga moderada — énfasis en técnica`,
-        series:`3×5-6`,
-        descanso:`2'30"`,
-        descripcion:`Dentro del hexabar, pies a la anchura de las caderas. Empuña las asas, activa el core, pecho hacia arriba, rodillas ligeramente flexionadas. Empuja el suelo hacia abajo (no tires hacia arriba) para iniciar el movimiento.`,
-        claves:[`La espalda permanece neutra durante todo el rango — ni hiperextendida ni redondeada`,`Las caderas y hombros suben al mismo ritmo — no dejes que las caderas suban primero`,`Activa el core antes de despegar el peso`,`En la bajada: caderas primero, luego rodillas`],
-        prevencion:`La hexabar reduce el estrés en la columna respecto al peso muerto convencional. Aun así: ante cualquier molestia dorsal, parar y comunicar antes de continuar.`
-      },
-      {
-        nombre:`Pallof press en polea`,
-        peso:`11,3 kg aprox`,
-        series:`3×12 por lado`,
-        descanso:`90"`,
-        descripcion:`De pie de lado a la polea, pies a la anchura de los hombros. Agarra el mango con ambas manos frente al pecho. Extiende los brazos hacia adelante sin girar el torso, aguanta 1-2 segundos y vuelve al pecho.`,
-        claves:[`El torso no debe girar en ningún momento — ese es el punto del ejercicio`,`Los pies permanecen fijos, la presión es simétrica en ambos pies`,`Respiración: exhala al extender, inhala al recoger`,`Cuanto más lejos estés de la polea, más difícil`],
-        prevencion:`Entrena la resistencia a la rotación del core — esencial para la estabilidad lumbo-pélvica en carrera y para proteger la zona dorsal bajo carga.`
-      },
-      {
-        nombre:`Plancha frontal`,
-        peso:`Peso corporal`,
-        series:`3×35"`,
-        descanso:`60"-90"`,
-        descripcion:`Apoyado en antebrazos y puntas de los pies. Cuerpo en línea recta de cabeza a talones. Activa el core, glúteos y cuádriceps simultáneamente. Mantén la posición sin que las caderas suban o bajen.`,
-        claves:[`No dejes que las caderas caigan — es la señal de que el core ha cedido`,`La cabeza en posición neutra — no mirar hacia arriba ni hacia abajo`,`Respira con normalidad durante la plancha`,`Si no puedes mantener la forma, termina la serie aunque no hayas llegado al tiempo`],
-        prevencion:`Refuerzo directo del core anterior. Complementa el Dead bug en la corrección del patrón de equilibrio 51/49.`
-      },
-      {
-        nombre:`Press de pecho en máquina`,
-        peso:`45 kg (primera sesión — ajustar según sensación en últimas reps)`,
-        series:`3×10`,
-        descanso:`2'`,
-        descripcion:`Sentado en la máquina de pecho (chest press), espalda apoyada en el respaldo, agarras las asas a la altura del pecho y empujas hacia adelante extendiendo los brazos. El movimiento es guiado, sin necesidad de estabilizar lateralmente.`,
-        claves:[`Omóplatos retraídos y apoyados en el respaldo antes de empujar — no dejar que los hombros vayan hacia adelante`,`Pies planos en el suelo, postura natural`,`Controla el retorno — no dejar que el peso tire de los brazos hacia atrás`,`Si las últimas 2-3 reps de la tercera serie no cuestan, subir 5kg la siguiente sesión`],
-        prevencion:`Más seguro que el press banca libre para el antecedente dorsal — no hay carga axial ni flexión torácica sostenida. Va siempre después del press banca para llegar fresco a la carga principal.`
-      },
-      {
-        nombre:`Curl con mancuernas`,
-        peso:`10-12 kg por mano`,
-        series:`3×10`,
-        descanso:`90"`,
-        descripcion:`De pie o sentado, mancuerna en cada mano con agarre supino (palmas hacia arriba). Flexiona el codo subiendo la mancuerna hacia el hombro, contrae el bíceps en la parte alta, y baja de forma controlada.`,
-        claves:[`Codo fijo — no lo adelantes al subir`,`Sin balanceo de tronco para ayudarse`,`El bíceps llega algo prefatigado del jalón y el remo — es normal, no significa que el peso sea excesivo`,`Si las últimas reps no cuestan, subir 2kg la siguiente sesión`],
-        prevencion:`Trabaja el bíceps como grupo principal, no solo como asistente del jalón y el remo. Complementa la cadena de tracción del tren superior.`
-      },
+      {nombre:`Movilidad torácica`,peso:`—`,series:`8 min al inicio`,descanso:`—`,descripcion:`Foam roller dorsal + rotaciones en cuadrupedia 2x10 + cat-camel 2x12. Obligatorio antes de cargar. Prioridad máxima por antecedente dorsal.`,claves:[`Foam roller: 2 min rodando zona media-alta`,`Rotaciones cuadrupedia: codo al techo, lento y controlado`,`Cat-camel: 12 repeticiones lentas, respirando en cada extremo`,`No sustituir por estiramientos estáticos — el movimiento activo es clave`],prevencion:`Prevención activa de la zona torácica antes de cualquier carga. Reduce el riesgo de molestia entre escápulas durante el press y el hexagonal.`},
+      {nombre:`Peso muerto hexagonal`,peso:`65 kg (Bloque 1) → 70 kg (Bloque 2)`,series:`4×6`,descanso:`2'30"`,descripcion:`Barra hexagonal, pie dentro del hexágono. Caderas atrás al bajar, extensión de cadera al subir. Espalda neutra en todo momento. Si no disponible → Press de pierna 4x10.`,claves:[`Espalda neutra — nunca redondear lumbar`,`Caderas atrás al bajar (no flexión de rodilla pura)`,`Extensión de cadera al subir — glúteo activo en la parte alta`,`Mirada al frente, no abajo`],prevencion:`La barra hexagonal reduce la carga en columna respecto a la barra convencional. Si hay molestia dorsal post-sesión, bajar a 60kg hasta resolución.`},
+      {nombre:`Press banca guiado (Smith)`,peso:`40 kg (Bloque 1) → 42,5-45 kg (Bloque 2)`,series:`4×8`,descanso:`2'`,descripcion:`Smith machine. Pies planos en el suelo, omóplatos retraídos y apoyados en el banco. Curva lumbar natural — no forzar ni aplanar. Bajar la barra hasta el pecho de forma controlada.`,claves:[`Pies planos en el suelo — nunca subirlos al banco`,`Omóplatos retraídos antes de descolgar la barra`,`Curva lumbar natural, no exagerada ni aplanada`,`Bajar en 2-3 seg, subir con potencia controlada`],prevencion:`La Smith machine reduce la demanda de estabilización de hombro respecto a barra libre — correcto para el antecedente dorsal. Vigilar tensión entre escápulas después de la sesión.`},
+      {nombre:`Búlgara con mancuernas`,peso:`10 kg/mano (Bloque 1) → 12 kg/mano (Bloque 2)`,series:`4×8 por lado`,descanso:`2'`,descripcion:`Pie trasero en banco o step, pie delantero adelantado. Bajar hasta que la rodilla trasera casi toque el suelo. Torso erguido. La pierna delantera es la que trabaja.`,claves:[`Torso erguido, no inclinado hacia adelante`,`Rodilla delantera no sobrepasa excesivamente la punta del pie`,`Controlar el descenso — 2-3 seg bajando`,`Completar todas las reps de un lado antes de cambiar`],prevencion:`Ejercicio unilateral clave para el corredor. Fortalece glúteo, isquio y cuádriceps de forma asimétrica, igual que en la carrera. Vigilar respuesta de rodilla izquierda (antecedente tendinopatía).`},
+      {nombre:`Jalón con polea`,peso:`40 kg (Bloque 1) → 42,5 kg (Bloque 2)`,series:`4×10`,descanso:`90"`,descripcion:`Agarre medio-ancho, palmas hacia adelante. Tirar de los codos hacia abajo y atrás. No balancear el torso.`,claves:[`Codos hacia abajo y atrás — no hacia los lados`,`Sin balanceo de tronco para ayudarse`,`Retracción escapular en la parte baja del movimiento`,`Volver arriba de forma controlada, sin dejar caer el peso`],prevencion:`Tracción vertical prioritaria. Activa dorsal y bíceps. Equilibra el empuje del press banca.`},
+      {nombre:`Remo en polea sentado`,peso:`20 kg`,series:`3×10`,descanso:`90"`,descripcion:`Sentado frente a la polea baja, agarre neutro. Tirar de los codos hacia atrás manteniendo la espalda erguida. Tracción horizontal que contrarresta directamente el press banca.`,claves:[`Espalda erguida — no redondear para ganar rango`,`Codos hacia atrás, no hacia arriba`,`Retracción escapular al final del movimiento`,`Sin balanceo de torso`],prevencion:`Tracción horizontal clave para compensar el press banca y prevenir la protracción de hombros típica del corredor. Ratio empuje/tracción global: 1:1,36 a favor de tracción.`},
+      {nombre:`Press militar con mancuernas`,peso:`10 kg/mano (Bloque 1) → 12 kg/mano (Bloque 2)`,series:`4×10`,descanso:`90"`,descripcion:`De pie o sentado. Mancuernas a la altura de los hombros, empujar hacia arriba hasta extensión completa de codos. Core activo durante todo el movimiento.`,claves:[`Core activo — no arquear la espalda baja`,`Mancuernas ligeramente delante del plano de los hombros, no detrás`,`Bajar de forma controlada`,`Respirar: inhalar antes de empujar, exhalar en la subida`],prevencion:`Trabaja hombro anterior y tríceps. Carga moderada — con antecedente dorsal, vigilar que no haya compensación lumbar en el movimiento.`},
+      {nombre:`Curl con mancuernas`,peso:`12 kg`,series:`3×10`,descanso:`90"`,descripcion:`De pie o sentado. Agarre supino (palmas hacia arriba). Flexionar el codo subiendo la mancuerna hacia el hombro. Codo fijo — no adelantarlo al subir.`,claves:[`Codo fijo durante todo el movimiento`,`Sin balanceo de tronco para ayudarse`,`El bíceps llega algo prefatigado del jalón — es normal`,`Si no se completan las 3 series a 12kg, bajar a 10kg`],prevencion:`Bíceps como grupo principal. Va antes del hexagonal en el orden de la sesión para que llegue más fresco.`},
+      {nombre:`Pallof Press`,peso:`11,5 kg`,series:`3×12 por lado`,descanso:`60"`,descripcion:`De pie lateral a la polea, agarre a la altura del pecho. Empujar hacia adelante y volver. El core resiste la rotación — anti-rotación pura.`,claves:[`No rotar el torso durante el movimiento`,`Brazos extendidos en la posición final 1-2 segundos`,`Pies a la anchura de caderas, posición estable`,`Al final de la sesión si hay espera por la máquina`],prevencion:`Core funcional anti-rotación. Muy específico para la estabilidad en la fase de apoyo de carrera.`},
+      {nombre:`Plancha lateral`,peso:`Peso corporal`,series:`3×40s por lado`,descanso:`60"`,descripcion:`Apoyo en antebrazo y borde del pie. Cadera activa — empujar hacia arriba, no dejar que caiga. Cuerpo en línea recta de cabeza a pies.`,claves:[`Cadera activa — no hundida ni elevada`,`Cuerpo en línea recta en todo momento`,`Mirada al frente o ligeramente hacia abajo`,`Si aparece molestia dorsal, reducir el tiempo`],prevencion:`Estabilización lateral de cadera y core. Complementa el Pallof Press para la estabilidad lateral de carrera.`},
+      {nombre:`Estiramientos + foam roller dorsal`,peso:`—`,series:`10 min al final`,descanso:`—`,descripcion:`Foam roller dorsal zona media-alta + apertura de cadera (flexor) + estiramiento de gemelo. Obligatorio al final del Gym A por la combinación de press banca y hexagonal.`,claves:[`Foam roller: no rodar sobre la zona lumbar`,`Apertura de cadera: 30-45 seg por lado`,`Gemelo: pie apoyado, talón en el suelo, rodilla extendida`,`No omitir aunque haya prisa`],prevencion:`Descarga activa post-sesión. Previene la tensión acumulada en zona dorsal después del press y el hexagonal.`},
     ]
   },
   {
-    name:`Gym B — Estabilidad y potencia`,
+    id:`gym-b`,
+    name:`Gym B — Estabilidad y volumen`,
     icon:`⚡`,
-    objetivo:`Estabilidad, potencia y prevención específica para running`,
+    objetivo:`Cadena posterior corredor + tracción + potencia + prevención dorsal. 70-80 min.`,
     ejercicios:[
-      {
-        nombre:`Swing con kettlebell`,
-        peso:`16-20 kg (orientativo)`,
-        series:`3×15`,
-        descanso:`90"`,
-        descripcion:`Pies a la anchura de los hombros, KB entre los pies. Bisagra de cadera (no sentadilla): empuja las caderas hacia atrás manteniendo la espalda neutra. Al balancear hacia adelante, las caderas empujan explosivamente. La KB sube por la fuerza de las caderas, no de los brazos.`,
-        claves:[`El movimiento es una bisagra de cadera — las rodillas se doblan ligeramente pero no es una sentadilla`,`Al llegar arriba (hombros), aprieta glúteos y activa el core`,`No redondear la espalda baja en el fondo del swing`,`Los brazos son solo correas — no los uses para levantar la KB`],
-        prevencion:`Activa los glúteos y los isquiotibiales de forma explosiva — directamente transferible a la fase de propulsión en carrera. Mejora la potencia de zancada.`
-      },
-      {
-        nombre:`Remo unilateral en polea`,
-        peso:`Carga moderada`,
-        series:`3×10 por brazo`,
-        descanso:`90"`,
-        descripcion:`De pie o semiarrodillado frente a la polea baja. Tira del mango hacia el costado del torso con el codo pegado al cuerpo. El torso permanece estable — no rotar para ganar recorrido.`,
-        claves:[`Inicia el movimiento con la escápula (retracción), luego dobla el codo`,`El torso no rota ni se inclina para "ayudar"`,`En la extensión, deja que la escápula se separe completamente para trabajar el rango completo`,`Especial atención al lado derecho — puede ser el déficit relacionado con el patrón 51/49`],
-        prevencion:`Fortalece los retractores escapulares y corrige asimetrías de la cadena posterior alta. Directamente relacionado con la postura dorsal en carrera.`
-      },
-      {
-        nombre:`Press militar con mancuernas`,
-        peso:`14 kg por brazo aprox`,
-        series:`3×6`,
-        descanso:`2'`,
-        descripcion:`De pie o sentado, mancuernas a la altura de los hombros con los codos a 45°. Empuja hacia arriba hasta extensión completa. Baja de forma controlada.`,
-        claves:[`No arquear la zona lumbar para empujar — activa el core antes de subir`,`Los codos no deben irse demasiado hacia atrás en el punto de inicio`,`Bajar de forma controlada — no dejar caer las mancuernas`,`Precaución antecedente dorsal: si aparece tensión dorsal, reducir peso y comunicar`],
-        prevencion:`Refuerza el deltoides y el trapecio superior. Mantiene la postura de hombros en carrera y previene la caída de hombros bajo fatiga.`
-      },
-      {
-        nombre:`Split squat isométrico`,
-        peso:`Peso corporal o ligero`,
-        series:`3×30" por pierna`,
-        descanso:`90"`,
-        descripcion:`Posición de zancada larga. Baja hasta que la rodilla trasera casi toque el suelo y mantén la posición. El torso erguido, la rodilla delantera en línea con el pie.`,
-        claves:[`La rodilla delantera no debe irse hacia dentro`,`Distribuye el peso entre ambas piernas de forma equilibrada`,`Respira con normalidad durante la isometría`,`Si tiembla el cuádriceps delantero, es normal — es la señal de que está trabajando`],
-        prevencion:`Isometría bajo carga para el cuádriceps y el glúteo. Especialmente útil para la prevención de lesiones de rodilla y para fortalecer los tendones en el corredor.`
-      },
-      {
-        nombre:`Elevación de gemelo unilateral`,
-        peso:`Peso corporal o mancuerna ligera`,
-        series:`3×12 por pierna`,
-        descanso:`60"-90"`,
-        descripcion:`De pie sobre el borde de un escalón o plataforma, talón colgando. Baja el talón por debajo de la plataforma (carga excéntrica) y sube hasta la punta del pie. Hazlo con una sola pierna.`,
-        claves:[`El movimiento excéntrico (bajada) es el más importante — hazlo en 3-4 segundos`,`No usar impulso para subir`,`Si hay dolor en el tendón de Aquiles, reducir el rango de movimiento excéntrico`,`La rodilla permanece ligeramente flexionada para activar también el sóleo`],
-        prevencion:`Fortalecimiento excéntrico del complejo gemelo-sóleo. Prevención directa de la tendinopatía del Aquiles — riesgo habitual en corredores en fase de aumento de carga.`
-      },
-      {
-        nombre:`Farmer carry unilateral`,
-        peso:`Mancuerna o KB pesada`,
-        series:`3×30-40m por lado`,
-        descanso:`90"`,
-        descripcion:`Agarra una mancuerna o KB pesada en una mano y camina manteniendo el torso completamente vertical. El lado que carga el peso intentará que el hombro caiga — resiste activamente.`,
-        claves:[`El hombro del lado cargado no debe caer — activa activamente el trapecio medio`,`El torso no debe inclinarse lateralmente`,`La cadera no debe escaparse hacia el lado libre`,`Camina con zancada normal, no excesivamente lenta`],
-        prevencion:`Entrena la estabilidad lateral del core y el glúteo medio bajo carga asimétrica — directamente transferible a la estabilidad pélvica en carrera. Corrector del patrón 51/49.`
-      },
-      {
-        nombre:`Plancha lateral`,
-        peso:`Peso corporal`,
-        series:`3×25-35" por lado`,
-        descanso:`60"-90"`,
-        descripcion:`Apoyado sobre el codo y el borde externo del pie inferior. Cuerpo en línea recta lateral. Eleva activamente la cadera — no dejes que cuelgue.`,
-        claves:[`Énfasis especial en el lado DERECHO — es el lado deficitario según los datos de equilibrio`,`La cadera no debe caer ni sobreelevarse`,`El hombro de apoyo activo, no hundido`,`Variación: añadir elevación de cadera (bajar y subir) para trabajo dinámico`],
-        prevencion:`Activa directamente el glúteo medio — el músculo más relacionado con el control de la pelvis en carrera y con la corrección del desequilibrio 51/49 detectado.`
-      },
-      {
-        nombre:`Face pull en polea`,
-        peso:`Polea alta, carga ligera`,
-        series:`3×12`,
-        descanso:`90"`,
-        descripcion:`De pie frente a la polea alta con cuerda. Tira hacia la cara con los codos altos (a la altura de los hombros o por encima). Al final del movimiento, los pulgares apuntan hacia atrás y las manos quedan a los lados de la cara.`,
-        claves:[`Los codos se mantienen altos durante todo el movimiento`,`Al final, retrae y deprime las escápulas activamente`,`No uses la inercia — movimiento lento y controlado`,`Carga ligera: el objetivo es activación, no fuerza máxima`],
-        prevencion:`Prevención activa de la lesión dorsal: activa los rotadores externos del hombro y los retractores escapulares. Contrarresta directamente la cifosis torácica bajo fatiga.`
-      },
-    ]
-  },
-  {
-    id:`mov`,
-    name:`Protocolo de movilidad`,
-    icon:`🔄`,
-    objetivo:`Mínimo 3 veces por semana. Prioridad: columna torácica y cadena posterior alta. Duración: 15-20 min.`,
-    ejercicios:[
-      {
-        nombre:`Extensión torácica en foam roller`,
-        peso:`—`,
-        series:`1 serie`,
-        descanso:`—`,
-        descripcion:`Foam roller perpendicular a la columna a la altura dorsal media (T4-T8). Brazos cruzados en el pecho o manos en nuca. Deja caer el peso hacia atrás sobre el roller con respiración lenta y profunda.`,
-        claves:[`NO forzar con las manos — la gravedad hace el trabajo`,`Exhala lento en cada extensión`,`Desplaza el roller 2-3 cm hacia arriba entre puntos`,`4-5 puntos diferentes a lo largo de la dorsal`],
-        prevencion:`Prioritario siempre. Si solo puedes hacer un ejercicio de movilidad, es este. Combate directamente la restricción torácica post-entrenamiento.`
-      },
-      {
-        nombre:`Rotaciones torácicas en cuadrupedia`,
-        peso:`—`,
-        series:`2×10 por lado`,
-        descanso:`—`,
-        descripcion:`A cuatro patas, mano detrás de la cabeza. Rota el codo hacia el techo hasta el máximo rango disponible. Vuelve al centro controladamente. Las caderas permanecen quietas.`,
-        claves:[`La cadera NO rota — solo la zona dorsal trabaja`,`Si notas compensación lumbar, reduce el rango`,`Movimiento lento y controlado`,`Obligatorio antes de gym y antes de rodar`],
-        prevencion:`Mejora la movilidad de rotación torácica — esencial para la mecánica de brazos en carrera y para prevenir compensaciones lumbares.`
-      },
-      {
-        nombre:`Camel-cat`,
-        peso:`—`,
-        series:`2×10 repeticiones completas`,
-        descanso:`—`,
-        descripcion:`A cuatro patas. Alterna entre extensión dorsal completa (camel: cabeza arriba, pelvis hacia arriba) y flexión completa (cat: espalda redondeada, cabeza abajo). Movimiento fluido.`,
-        claves:[`El movimiento recorre TODA la columna — no solo la lumbar`,`Inicio de cada sesión de movilidad`,`Fluido, sin pausa brusca entre posiciones`,`Respira: inhala en camel, exhala en cat`],
-        prevencion:`Activa toda la cadena de la columna. Ideal como primer ejercicio de cualquier sesión de movilidad para despertar el sistema.`
-      },
-      {
-        nombre:`Dead bug`,
-        peso:`Peso corporal`,
-        series:`2×8 por lado`,
-        descanso:`—`,
-        descripcion:`Tumbado boca arriba, rodillas a 90°, brazos al techo. Extiende simultáneamente brazo derecho hacia atrás y pierna izquierda hacia adelante SIN que la zona lumbar se despegue del suelo. Vuelve al centro. Alterna.`,
-        claves:[`La zona lumbar debe permanecer pegada al suelo en todo momento`,`Si se despega → reduce el rango hasta que no ocurra`,`Respiración: exhala al extender, inhala al recoger`,`Ejercicio clave para corregir el patrón de desequilibrio 51/49`],
-        prevencion:`Activa el core profundo de forma que obliga a estabilizar la pelvis simétricamente. Corrector directo del patrón de asimetría detectado en las sesiones de running.`
-      },
-      {
-        nombre:`Estiramiento isquiotibiales activo`,
-        peso:`—`,
-        series:`2×30" por lado`,
-        descanso:`—`,
-        descripcion:`De pie, apoya el talón sobre una superficie a la altura de la cadera. Mantén la rodilla extendida y flexiona el tronco hacia adelante con la ESPALDA RECTA.`,
-        claves:[`Espalda recta obligatoria — si se redondea la dorsal, baja la altura del apoyo`,`El objetivo es sentir el estiramiento en la parte trasera del muslo, no en la espalda`,`Post-rodaje siempre`,`No forzar el rango — el estiramiento debe ser tolerable`],
-        prevencion:`Mantiene la extensibilidad de los isquiotibiales — cadena posterior clave para la prevención de lesiones en corredor y para la postura dorsal.`
-      },
-      {
-        nombre:`Estiramiento piriforme / glúteo profundo`,
-        peso:`—`,
-        series:`1×45" por lado`,
-        descanso:`—`,
-        descripcion:`Tumbado boca arriba. Cruza el tobillo derecho sobre la rodilla izquierda (postura "4"). Empuja suavemente la rodilla derecha hacia fuera mientras acercas las piernas al pecho.`,
-        claves:[`Respiración lenta — no forzar el rango`,`El glúteo profundo es clave para la estabilidad pélvica en running`,`Post-rodaje y días de descanso`,`Si hay ciática conocida, consultar antes de hacerlo`],
-        prevencion:`Libera el piriforme y el glúteo profundo — músculos que se sobrecargan en el corredor y que pueden comprimir el nervio ciático si están tensos.`
-      },
-    ]
-  },
-  {
-    id:`prerodaje`,
-    name:`Protocolo pre-rodaje`,
-    icon:`🏃`,
-    objetivo:`5-7 minutos obligatorios antes de cada salida. Activa el patrón postural dorsal antes de que la fatiga lo comprometa.`,
-    ejercicios:[
-      {
-        nombre:`1. Activación escapular`,
-        peso:`—`,
-        series:`30 segundos`,
-        descanso:`—`,
-        descripcion:`De pie, brazos extendidos a los lados a la altura del hombro. Describe círculos pequeños hacia atrás (10 rep) y luego hacia adelante (10 rep). Termina con las palmas hacia arriba y los hombros conscientemente abajo.`,
-        claves:[`Los hombros deben terminar MÁS BAJOS que al inicio`,`Si siguen elevados → repetir hasta conseguirlo`,`Este es el punto de partida: hombros abajo y atrás`],
-        prevencion:`Activa los depresores y retractores escapulares antes de que el patrón de elevación de hombros aparezca bajo fatiga.`
-      },
-      {
-        nombre:`2. Extensión torácica rápida`,
-        peso:`—`,
-        series:`4-5 respiraciones profundas`,
-        descanso:`—`,
-        descripcion:`Foam roller perpendicular a T5-T7. Brazos cruzados o manos en nuca. 4-5 respiraciones profundas y lentas dejando que la gravedad extienda la zona dorsal. Sin forzar con las manos.`,
-        claves:[`Notar apertura en el pecho y entre escápulas`,`Si no hay foam roller: respaldo de silla rígido, 8 respiraciones`,`No sustituible — es el ejercicio más importante del protocolo`],
-        prevencion:`Abre la zona torácica antes del rodaje. Previene la cifosis que aparece bajo fatiga y que ha generado la molestia dorsal recurrente.`
-      },
-      {
-        nombre:`3. Rotaciones torácicas activas`,
-        peso:`—`,
-        series:`10 por lado`,
-        descanso:`—`,
-        descripcion:`A cuatro patas, mano derecha detrás de la cabeza. Rota el codo hacia el techo 10 veces. Repite lado izquierdo. Movimiento lento y controlado. Las caderas permanecen quietas.`,
-        claves:[`Si un lado tiene menos rango → ese lado necesita más atención ese día`,`Las caderas quietas en todo momento`,`Identifica la asimetría antes de salir a correr`],
-        prevencion:`Detecta asimetrías de movilidad del día. Si el lado derecho está más restringido, estará más propenso a compensar durante el rodaje.`
-      },
-      {
-        nombre:`4. Puente de glúteo con pausa`,
-        peso:`—`,
-        series:`10 repeticiones`,
-        descanso:`—`,
-        descripcion:`Tumbado boca arriba, rodillas flexionadas, pies en el suelo. Eleva las caderas hasta línea recta rodilla-cadera-hombro. Aguanta 2 segundos arriba, baja despacio. 10 repeticiones.`,
-        claves:[`Al llegar arriba: apretar glúteos activamente`,`Verificar que la pelvis está nivelada (no cae hacia ningún lado)`,`Conecta con el patrón 50/50 que buscamos en carrera`,`Bajada controlada: 2-3 segundos`],
-        prevencion:`Activa los glúteos antes de correr — los estabilizadores principales de la pelvis. Mejora directamente el patrón de equilibrio durante la carrera.`
-      },
-      {
-        nombre:`5. Check postural de salida`,
-        peso:`—`,
-        series:`30 segundos`,
-        descanso:`—`,
-        descripcion:`De pie, pies a la anchura de las caderas. Secuencia: (1) hombros abajo y atrás conscientemente, (2) pecho ligeramente abierto, (3) cabeza neutra con mirada al frente, (4) activar suavemente el core, (5) arrancar.`,
-        claves:[`Esta postura es tu referencia durante el rodaje`,`Si notas tensión dorsal al correr → reproducir mentalmente este check y corregir sin parar`,`Si no cede en 5 min → reducir ritmo y evaluar`],
-        prevencion:`Graba el patrón postural correcto antes de arrancar. Reduce el tiempo hasta que aparece la compensación dorsal bajo fatiga.`
-      },
-      {
-        nombre:`POST: Extensión torácica (foam roller)`,
-        peso:`—`,
-        series:`2-3 minutos`,
-        descanso:`—`,
-        descripcion:`Igual que en el pre-rodaje pero con más tiempo. 5-6 respiraciones profundas en cada punto desde T4 a T8. Si solo puedes hacer un ejercicio post-rodaje, es este.`,
-        claves:[`Prioritario siempre después de rodar`,`Más tiempo que en el pre porque la musculatura está más tensa`,`Respiración profunda: inhala expandiendo el pecho, exhala dejando caer el peso`],
-        prevencion:`Revierte la compresión torácica acumulada durante el rodaje. Especialmente importante en sesiones de calidad o tiradas largas.`
-      },
+      {nombre:`Movilidad torácica`,peso:`—`,series:`8 min al inicio`,descanso:`—`,descripcion:`Foam roller dorsal + rotaciones en cuadrupedia 2x10 + cat-camel 2x12. Obligatorio antes de cargar.`,claves:[`Igual que en Gym A — no saltarse aunque parezca rutina`,`8 minutos reales, no 2 minutos apresurados`],prevencion:`Obligatorio por antecedente dorsal. Reduce la tensión acumulada antes de los swings y el remo.`},
+      {nombre:`Kettlebell swing`,peso:`20 kg (Bloque 1) → 24 kg (Bloque 2)`,series:`4×15`,descanso:`90"`,descripcion:`Pies a la anchura de caderas, kettlebell entre los pies. Bisagra de cadera atrás (no sentadilla), explosión de cadera al frente. La KB llega hasta la altura de los hombros por inercia — no levantarla con los brazos.`,claves:[`Bisagra de cadera — no es una sentadilla`,`Explosión de cadera: glúteo y core activos en la parte alta`,`La KB sube por inercia — los brazos no hacen fuerza`,`Espalda neutra durante todo el movimiento`],prevencion:`Ejercicio de potencia de cadena posterior. Fortalece glúteo, isquios y espalda baja — la base de la propulsión en carrera. Solo subir a 24kg cuando el movimiento sea completamente limpio a 20kg.`},
+      {nombre:`Step down`,peso:`5 kg/mano`,series:`4×8 por pierna`,descanso:`90"`,descripcion:`De pie en un escalón o step. Bajar una pierna de forma controlada hasta casi tocar el suelo (3 segundos de bajada). La pierna que trabaja es la que queda en el step. Subir empujando con el talón.`,claves:[`Bajada excéntrica de 3 segundos — lenta y controlada`,`Rodilla de la pierna de trabajo no colapsa hacia adentro`,`No usar la pierna que baja para impulsarse`,`Vigilar respuesta de rodilla izquierda (antecedente tendinopatía rotuliana)`],prevencion:`El ejercicio más específico para el tendón rotuliano. El componente excéntrico de la bajada es exactamente el mecanismo que se lesionó — fortalecerlo de forma controlada es la mejor prevención de recaída.`},
+      {nombre:`Remo unilateral`,peso:`16 kg (Bloque 1) → 18 kg (Bloque 2)`,series:`4×12 por brazo`,descanso:`90"`,descripcion:`Apoyo con una mano en banco, espalda plana y paralela al suelo. Tirar del codo hacia arriba y atrás. Completar todas las repeticiones de un lado antes de cambiar.`,claves:[`Espalda neutra y paralela al suelo — no torcer para compensar`,`Codo hacia arriba y atrás, no hacia el lado`,`El hombro de la espalda no sube en la parte alta del movimiento`,`Completar un lado antes de cambiar`],prevencion:`Tracción horizontal unilateral. Dorsal + bíceps + retractores escapulares. Clave para la simetría de fuerza entre lado izquierdo y derecho — relevante dado el patrón de equilibrio 51/49.`},
+      {nombre:`Press pecho en polea a un brazo`,peso:`10 kg por lado`,series:`4×10 por lado`,descanso:`90"`,descripcion:`De pie lateral a la polea alta, agarre a la altura del pecho. Empujar hacia adelante y ligeramente hacia el centro. Un brazo cada vez. Si hay máquina de pecho disponible → usarla a 45 kg.`,claves:[`Omóplatos retraídos antes de empujar`,`No rotar el torso al empujar`,`Si hay máquina disponible, preferirla — más aislamiento`],prevencion:`Pecho como grupo principal en el Gym B. El bíceps ya trabajó en el remo — el orden está pensado para que cada grupo llegue fresco a su ejercicio de aislamiento.`},
+      {nombre:`Farmer carry`,peso:`20 kg (Bloque 1) → 24 kg (Bloque 2)`,series:`4×30m`,descanso:`90"`,descripcion:`Mancuernas o kettlebells en cada mano. Caminar erguido, hombros atrás y abajo, core activo. 30 metros por serie — contar la distancia o usar el tiempo (40 seg aproximado).`,claves:[`Torso erguido — no inclinarse hacia los lados`,`Hombros activos, no dejar que la carga los tire hacia abajo`,`Core activo durante todo el recorrido`,`Pisada controlada — no arrastrar los pies`],prevencion:`Anti-lateral bajo carga. Muy funcional para el corredor — simula la estabilización de cadera y core durante la fase de apoyo. Strava: Caminata del granjero / Paseo del granjero.`},
+      {nombre:`Face pull`,peso:`11,5 kg`,series:`4×12`,descanso:`60"`,descripcion:`Polea a la altura de la cara. Tirar hacia la cara con los codos altos, como si fuera a poner las manos detrás de la cabeza. Retracción escapular en la posición final.`,claves:[`Codos altos — a la altura de los hombros o por encima`,`Retracción escapular activa en la parte final`,`No tirar hacia el pecho — hacia la cara`,`Carga ligera que permita hacer el gesto correctamente`],prevencion:`Prioritario para la prevención dorsal. Trabaja el hombro posterior y los retractores escapulares — los músculos que contrarrestan la cifosis torácica del corredor. No omitir nunca.`},
+      {nombre:`Tríceps en polea`,peso:`13,5 kg`,series:`3×12`,descanso:`60"`,descripcion:`De pie frente a la polea alta. Codos fijos al lado del cuerpo. Extender los codos hacia abajo hasta bloqueo. Volver de forma controlada.`,claves:[`Codos fijos — no los muevas durante el movimiento`,`Extensión completa en la parte baja`,`Sin balanceo de tronco`,`Va al final — el tríceps ya trabajó en el press pecho`],prevencion:`Aislamiento de tríceps al final de la sesión. En Gym A el tríceps ya trabajó en press banca y press militar — en Gym B llega fresco y este es su ejercicio principal.`},
+      {nombre:`Gemelo unilateral`,peso:`Peso corporal`,series:`3×15 por pierna`,descanso:`60"`,descripcion:`De pie, apoyo con una mano para equilibrarse. Subir de puntillas con una sola pierna de forma lenta y controlada. Bajar hasta el suelo sin rebote. Si hay escalón disponible, usarlo para mayor rango.`,claves:[`Subida lenta (2 seg) y bajada muy lenta (3 seg)`,`Sin rebote al llegar abajo`,`Rango completo si hay escalón disponible`,`Completar todas las reps de un lado antes de cambiar`],prevencion:`Prevención del tendón de Aquiles y de la fascia plantar. El trabajo excéntrico lento es el más específico para la prevención de lesiones en la cadena posterior baja del corredor.`},
+      {nombre:`Estiramientos + foam roller dorsal`,peso:`—`,series:`8 min al final`,descanso:`—`,descripcion:`Foam roller dorsal zona media-alta + estiramiento de cadena posterior (isquio, cadera) + gemelo. Obligatorio al final del Gym B.`,claves:[`Foam roller: zona dorsal media, no lumbar`,`Isquio: 30-45 seg por lado sin forzar`,`Cadera: flexor del muslo 30-45 seg`,`No omitir — el swing y el step down cargan la cadena posterior intensamente`],prevencion:`Descarga post-sesión. El Gym B trabaja cadena posterior de forma intensa (swing, step down, remo) — la recuperación activa reduce la rigidez y acelera la recuperación.`},
     ]
   },
 ];
@@ -1015,7 +760,8 @@ function buildExpandableBlocks(blocks,showDoneOnly,filterBlockId,prefix){
 
 // ── HISTÓRICO ──────────────────────────────────────────────────────────
 function renderHistorico(){
-  const opts=DATA.blocks.map(b=>`<option value="${b.id}">${b.name}</option>`).join('');
+  const histBlocks=DATA.blocks.filter(b=>b.id==='b1');
+  const opts=histBlocks.map(b=>`<option value="${b.id}">${b.name}</option>`).join('');
   document.getElementById('tab-historico').innerHTML=`
     <div class="exp-filters">
       <label>Bloque</label>
@@ -1023,14 +769,15 @@ function renderHistorico(){
       <button class="filter-btn" onclick="applyHistorico()">Filtrar</button>
       <button class="filter-btn secondary" onclick="resetHistorico()">Limpiar</button>
     </div>
-    <div id="hist-content">${buildExpandableBlocks(DATA.blocks,true,'','h')}</div>`;
+    <div id="hist-content">${buildExpandableBlocks(histBlocks,false,'','h')}</div>`;
 }
 function applyHistorico(){document.getElementById('hist-content').innerHTML=buildExpandableBlocks(DATA.blocks,true,document.getElementById('hist-block').value,'h')}
 function resetHistorico(){document.getElementById('hist-block').value='';document.getElementById('hist-content').innerHTML=buildExpandableBlocks(DATA.blocks,true,'','h')}
 
 // ── PLANIFICACIÓN ──────────────────────────────────────────────────────
 function renderPlanificacion(){
-  const opts=DATA.blocks.map(b=>`<option value="${b.id}">${b.name}</option>`).join('');
+  const planBlocks=DATA.blocks.filter(b=>b.id!=='b1');
+  const opts=planBlocks.map(b=>`<option value="${b.id}">${b.name}</option>`).join('');
   document.getElementById('tab-planificacion').innerHTML=`
     <div class="exp-filters">
       <label>Bloque</label>
@@ -1038,10 +785,10 @@ function renderPlanificacion(){
       <button class="filter-btn" onclick="applyPlan()">Filtrar</button>
       <button class="filter-btn secondary" onclick="resetPlan()">Ver todos</button>
     </div>
-    <div id="plan-content">${buildExpandableBlocks(DATA.blocks,false,'','p')}</div>`;
+    <div id="plan-content">${buildExpandableBlocks(planBlocks,false,'','p')}</div>`;
 }
-function applyPlan(){document.getElementById('plan-content').innerHTML=buildExpandableBlocks(DATA.blocks,false,document.getElementById('plan-block').value,'p')}
-function resetPlan(){document.getElementById('plan-block').value='';document.getElementById('plan-content').innerHTML=buildExpandableBlocks(DATA.blocks,false,'','p')}
+function applyPlan(){const planBlocks=DATA.blocks.filter(b=>b.id!=='b1');document.getElementById('plan-content').innerHTML=buildExpandableBlocks(planBlocks,false,document.getElementById('plan-block').value,'p')}
+function resetPlan(){const planBlocks=DATA.blocks.filter(b=>b.id!=='b1');document.getElementById('plan-block').value='';document.getElementById('plan-content').innerHTML=buildExpandableBlocks(planBlocks,false,'','p')}
 
 // ── RUTINAS ────────────────────────────────────────────────────────────
 function renderRutinas(){
