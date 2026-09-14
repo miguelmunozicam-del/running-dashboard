@@ -483,7 +483,7 @@ const RUTINAS = [
     objetivo:`Cadena posterior + empuje + core + brazos. Sesión principal de fuerza. 80-90 min.`,
     ejercicios:[
       {nombre:`Movilidad torácica`,peso:`—`,series:`8 min al inicio`,descanso:`—`,descripcion:`Foam roller dorsal + rotaciones en cuadrupedia 2x10 + cat-camel 2x12. Obligatorio antes de cargar. Prioridad máxima por antecedente dorsal.`,claves:[`Foam roller: 2 min rodando zona media-alta`,`Rotaciones cuadrupedia: codo al techo, lento y controlado`,`Cat-camel: 12 repeticiones lentas, respirando en cada extremo`,`No sustituir por estiramientos estáticos — el movimiento activo es clave`],prevencion:`Prevención activa de la zona torácica antes de cualquier carga. Reduce el riesgo de molestia entre escápulas durante el press y el hexagonal.`},
-      {nombre:`Peso muerto hexagonal`,peso:`65 kg (Bloque 1) → 70 kg (Bloque 2)`,series:`4×6`,descanso:`2'30"`,descripcion:`Barra hexagonal, pie dentro del hexágono. Caderas atrás al bajar, extensión de cadera al subir. Espalda neutra en todo momento. Si no disponible → Press de pierna 4x10.`,claves:[`Espalda neutra — nunca redondear lumbar`,`Caderas atrás al bajar (no flexión de rodilla pura)`,`Extensión de cadera al subir — glúteo activo en la parte alta`,`Mirada al frente, no abajo`],prevencion:`La barra hexagonal reduce la carga en columna respecto a la barra convencional. Si hay molestia dorsal post-sesión, bajar a 60kg hasta resolución.`},
+      {nombre:`Peso muerto hexagonal`,peso:`65 kg (Bloque 1) → 70 kg (Bloque 2)`,series:`4×6`,descanso:`2m30s`,descripcion:`Barra hexagonal, pie dentro del hexágono. Caderas atrás al bajar, extensión de cadera al subir. Espalda neutra en todo momento. Si no disponible → Press de pierna 4x10.`,claves:[`Espalda neutra — nunca redondear lumbar`,`Caderas atrás al bajar (no flexión de rodilla pura)`,`Extensión de cadera al subir — glúteo activo en la parte alta`,`Mirada al frente, no abajo`],prevencion:`La barra hexagonal reduce la carga en columna respecto a la barra convencional. Si hay molestia dorsal post-sesión, bajar a 60kg hasta resolución.`},
       {nombre:`Press banca guiado (Smith)`,peso:`40 kg (Bloque 1) → 42,5-45 kg (Bloque 2)`,series:`4×8`,descanso:`2'`,descripcion:`Smith machine. Pies planos en el suelo, omóplatos retraídos y apoyados en el banco. Curva lumbar natural — no forzar ni aplanar. Bajar la barra hasta el pecho de forma controlada.`,claves:[`Pies planos en el suelo — nunca subirlos al banco`,`Omóplatos retraídos antes de descolgar la barra`,`Curva lumbar natural, no exagerada ni aplanada`,`Bajar en 2-3 seg, subir con potencia controlada`],prevencion:`La Smith machine reduce la demanda de estabilización de hombro respecto a barra libre — correcto para el antecedente dorsal. Vigilar tensión entre escápulas después de la sesión.`},
       {nombre:`Búlgara con mancuernas`,peso:`10 kg/mano (Bloque 1) → 12 kg/mano (Bloque 2)`,series:`4×8 por lado`,descanso:`2'`,descripcion:`Pie trasero en banco o step, pie delantero adelantado. Bajar hasta que la rodilla trasera casi toque el suelo. Torso erguido. La pierna delantera es la que trabaja.`,claves:[`Torso erguido, no inclinado hacia adelante`,`Rodilla delantera no sobrepasa excesivamente la punta del pie`,`Controlar el descenso — 2-3 seg bajando`,`Completar todas las reps de un lado antes de cambiar`],prevencion:`Ejercicio unilateral clave para el corredor. Fortalece glúteo, isquio y cuádriceps de forma asimétrica, igual que en la carrera. Vigilar respuesta de rodilla izquierda (antecedente tendinopatía).`},
       {nombre:`Jalón con polea`,peso:`40 kg (Bloque 1) → 42,5 kg (Bloque 2)`,series:`4×10`,descanso:`90"`,descripcion:`Agarre medio-ancho, palmas hacia adelante. Tirar de los codos hacia abajo y atrás. No balancear el torso.`,claves:[`Codos hacia abajo y atrás — no hacia los lados`,`Sin balanceo de tronco para ayudarse`,`Retracción escapular en la parte baja del movimiento`,`Volver arriba de forma controlada, sin dejar caer el peso`],prevencion:`Tracción vertical prioritaria. Activa dorsal y bíceps. Equilibra el empuje del press banca.`},
@@ -833,12 +833,12 @@ function renderRutinas(){
 // ── INIT ───────────────────────────────────────────────────────────────
 function initApp(){
   document.getElementById('last-update-label').textContent='Actualizado: '+DATA.lastUpdate;
-  renderSemana();
-  renderProgresion();
-  renderCompeticiones();
-  renderHistorico();
-  renderPlanificacion();
-  renderRutinas();
+  try{renderSemana();}catch(e){console.error('renderSemana:',e);}
+  try{renderProgresion();}catch(e){console.error('renderProgresion:',e);}
+  try{renderCompeticiones();}catch(e){console.error('renderCompeticiones:',e);}
+  try{renderHistorico();}catch(e){console.error('renderHistorico:',e);document.getElementById('tab-historico').innerHTML='<div style="padding:20px;color:red">Error: '+e.message+'</div>';}
+  try{renderPlanificacion();}catch(e){console.error('renderPlanificacion:',e);document.getElementById('tab-planificacion').innerHTML='<div style="padding:20px;color:red">Error: '+e.message+'</div>';}
+  try{renderRutinas();}catch(e){console.error('renderRutinas:',e);document.getElementById('tab-rutinas').innerHTML='<div style="padding:20px;color:red">Error: '+e.message+'</div>';}
 }
 
 if(sessionStorage.getItem('auth')==='1'){
