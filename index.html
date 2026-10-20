@@ -2,11 +2,23 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#272e61" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0e1016" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Running">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
 <title>Running Dashboard — Miguel</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
 :root{--bg:#f7f8fa;--bg2:#fff;--bg3:#f0f2f5;--bg4:#e8eaed;--border:rgba(0,0,0,0.07);--border2:rgba(0,0,0,0.12);--text:#1a1d23;--text2:#5c6370;--text3:#9aa0ad;--blue:#2563eb;--blue-dim:#eff4ff;--blue-bdr:#bfcffe;--green:#16a34a;--green-dim:#f0fdf4;--green-bdr:#bbf7d0;--amber:#d97706;--amber-dim:#fffbeb;--amber-bdr:#fde68a;--coral:#dc2626;--coral-dim:#fef2f2;--coral-bdr:#fecaca;--mono:'JetBrains Mono',monospace;--sans:'Inter',sans-serif;--radius:10px;--radius-sm:6px;--shadow:0 1px 3px rgba(0,0,0,0.06),0 1px 2px rgba(0,0,0,0.04)}
 *{box-sizing:border-box;margin:0;padding:0}body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14px;line-height:1.5;min-height:100vh}
 #login-screen{display:flex;align-items:center;justify-content:center;min-height:100vh}
@@ -103,6 +115,71 @@
 .rut-prevention{background:var(--green-dim);border:0.5px solid var(--green-bdr);border-radius:var(--radius-sm);padding:9px 13px;font-size:11px;color:var(--green)}
 @media(max-width:700px){.metrics{grid-template-columns:repeat(2,1fr)}.week-grid{grid-template-columns:repeat(4,1fr)}.main{padding:16px}.topbar{padding:0 16px}.tab-btn{padding:6px 10px;font-size:12px}}
 @media(max-width:480px){.week-grid{grid-template-columns:repeat(2,1fr)}.metrics{grid-template-columns:1fr 1fr}}
+
+/* ===== Capa de diseño v2 (20 oct 2026): identidad, móvil, accesibilidad, modo oscuro ===== */
+:root{--brand:#272e61;--brand-red:#cb3524;--text3:#6b7280;--safe-t:env(safe-area-inset-top,0px);--safe-b:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root{--bg:#0e1016;--bg2:#161923;--bg3:#1e222d;--bg4:#2a2f3c;--border:rgba(255,255,255,.08);--border2:rgba(255,255,255,.14);--text:#eceef3;--text2:#b2b8c5;--text3:#8f97a6;--brand:#3d4ba3;--blue:#8aa4ff;--blue-dim:#182142;--blue-bdr:#2c3c80;--green:#4ade80;--green-dim:#0f2a1b;--green-bdr:#1e5a37;--amber:#fbbf24;--amber-dim:#2b2208;--amber-bdr:#5c4710;--coral:#f87171;--coral-dim:#2e1414;--coral-bdr:#6b2323;--shadow:0 1px 3px rgba(0,0,0,.4)}}
+body{-webkit-text-size-adjust:100%;padding-bottom:var(--safe-b)}
+button{font-family:inherit}
+:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+#login-screen{padding:24px}
+.login-box{padding:32px 28px}
+.login-logo::before,.topbar-logo::before{background:var(--brand-red)}
+.login-box input{font-size:16px;min-height:44px}
+.login-box button{background:var(--brand);min-height:44px}
+.topbar{padding:var(--safe-t) 20px 0;height:calc(52px + var(--safe-t));gap:12px}
+.topbar>div:first-child{min-width:0}
+.topbar-title{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.topbar-title b{font-weight:600}.topbar-sub{color:var(--text2);font-weight:400}
+.logout-btn{min-height:32px;padding:6px 12px;flex-shrink:0}
+.update-line{font-size:12px;color:var(--text3);margin:-6px 0 14px;line-height:1.45}
+.tabs{max-width:100%;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.tabs::-webkit-scrollbar{display:none}
+.tab-btn{flex:0 0 auto;min-height:36px}
+.tab-btn.active{background:var(--brand);color:#fff}
+.filter-btn{background:var(--brand)}
+.metric-label{font-size:10.5px}
+.today-card{background:var(--bg2);border:1px solid var(--border2);border-left:4px solid var(--brand-red);border-radius:var(--radius);box-shadow:var(--shadow);margin-bottom:20px;overflow:hidden}
+.today-row{all:unset;box-sizing:border-box;display:grid;grid-template-columns:1fr auto;align-items:center;gap:3px 12px;width:100%;padding:14px 16px;cursor:pointer;color:var(--text)}
+.today-row+.today-row{border-top:1px solid var(--border)}
+.today-row:focus-visible{outline:2px solid var(--blue);outline-offset:-2px}
+.today-tag{grid-column:1/-1;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:var(--brand-red);font-weight:600;text-transform:uppercase}
+.today-tag.alt{color:var(--text3)}
+.today-title{font-size:16px;font-weight:600}
+.today-pill{font-size:11px;font-family:var(--mono);padding:2px 9px;border-radius:20px;background:var(--bg3);color:var(--text2)}
+.today-pill.done{background:var(--green-dim);color:var(--green)}
+.today-meta{grid-column:1/-1;font-size:12.5px;color:var(--text2);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.day-card{display:flex;flex-direction:column;-webkit-tap-highlight-color:transparent}
+.day-card.done{border-color:var(--green-bdr)}.day-card.modified{border-color:var(--amber-bdr)}
+.day-card.today{box-shadow:0 0 0 2px var(--brand-red)}
+.today-chip{margin-left:8px;font-size:9px;letter-spacing:.08em;background:var(--brand-red);color:#fff;border-radius:20px;padding:1px 7px;vertical-align:1px}
+.day-card.open{grid-column:1/-1}
+.day-detail{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.day-card.open .day-detail{display:none}
+.day-main{min-width:0}
+.day-status{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--text3);margin-top:auto;padding-top:8px}
+.day-status .day-dot{margin:0}
+.day-detail-full{font-size:12.5px;line-height:1.55}
+.day-comment{font-family:var(--sans);font-style:normal;font-size:12.5px;line-height:1.55;color:var(--text);background:var(--bg3);border-left:3px solid var(--green);border-radius:0 6px 6px 0;padding:8px 10px;margin:8px 0;overflow-wrap:anywhere}
+.day-comment.pending{border-left-color:var(--border2);color:var(--text3)}
+.day-adjust-text{font-size:12px;line-height:1.5}
+.day-adjust-detail{overflow-x:auto}
+.adjust-table{font-size:12px}
+.notes-box{font-size:13.5px;line-height:1.65}
+.notes-box.clamp{display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden}
+.notes-toggle{all:unset;cursor:pointer;color:var(--blue);font-size:12.5px;font-weight:500;margin-top:8px;display:inline-block;padding:6px 0}
+.chart-fallback{padding:40px 16px;text-align:center;color:var(--text3);font-size:13px}
+@media(min-width:701px){.tabs{width:fit-content}}
+@media(max-width:700px){
+  .topbar{padding-left:16px;padding-right:16px}
+  .tabs{position:sticky;top:calc(52px + var(--safe-t));z-index:9;margin-left:-16px;margin-right:-16px;width:calc(100% + 32px);max-width:none;border-radius:0;border-left:0;border-right:0;padding:6px 12px;margin-bottom:16px}
+  .week-grid{grid-template-columns:1fr;gap:10px}
+  .day-card{padding:14px 16px;min-height:0}
+  .day-name{font-size:11px}.day-type{font-size:14.5px;font-weight:600}.day-detail{font-size:12.5px}
+  .metric-card{padding:14px 16px}
+}
+@media(max-width:560px){.topbar-sub{display:none}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 </head>
 <body>
@@ -120,15 +197,15 @@
   <div class="topbar">
     <div style="display:flex;align-items:center">
       <div class="topbar-logo">running</div>
-      <div class="topbar-title">Miguel · Seguimiento de entrenamiento</div>
+      <div class="topbar-title"><b>Miguel</b><span class="topbar-sub"> · Seguimiento de entrenamiento</span></div>
     </div>
-    <div style="display:flex;align-items:center;gap:12px">
-      <span class="last-update" id="last-update-label"></span>
+    <div style="display:flex;align-items:center">
       <button class="logout-btn" onclick="logout()">Salir</button>
     </div>
   </div>
   <div class="main">
-    <div class="tabs">
+    <div class="update-line"><span id="last-update-label"></span></div>
+    <div class="tabs" role="tablist">
       <button class="tab-btn active" onclick="showTab('semana',this)">Estado semanal</button>
       <button class="tab-btn" onclick="showTab('progresion',this)">Progresión</button>
       <button class="tab-btn" onclick="showTab('competiciones',this)">Competiciones</button>
@@ -564,7 +641,8 @@ function showTab(name,btn){
   document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
   document.getElementById('tab-'+name).classList.add('active');
-  if(btn)btn.classList.add('active');
+  if(btn){btn.classList.add('active');try{btn.scrollIntoView({inline:'center',block:'nearest',behavior:'smooth'})}catch(e){}}
+  window.scrollTo({top:0});
 }
 function toggleBlock(id){
   const b=document.getElementById(id),c=document.getElementById('chev-'+id);
@@ -580,6 +658,8 @@ function toggleDayExpand(id,event){
   if(!el)return;
   const open=el.classList.toggle('open');
   if(icon)icon.classList.toggle('open',open);
+  const card=el.closest('.day-card');
+  if(card){card.classList.toggle('open',open);card.setAttribute('aria-expanded',open?'true':'false')}
 }
 function toggleAdjust(id){
   const el=document.getElementById(id),tog=document.getElementById('tog-'+id);
@@ -592,22 +672,34 @@ function toggleRutExercise(id){
 }
 
 // ── DAY CARDS ──────────────────────────────────────────────────────────
+function dayIsRest(d){return /^(Descanso|Sin sesi)/i.test(d.type||'')}
+function dayIsDone(d){return d.status==='done'||(d.status==='modified'&&d.result&&!/^Sin sesi/i.test(d.result))}
+function todayIdx(days){const n=['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'][new Date().getDay()];return days.findIndex(d=>d.name===n)}
+function openDay(ctxId,di){
+  const id=`exp-${ctxId}-${di}`,el=document.getElementById(id);if(!el)return;
+  if(!el.classList.contains('open'))toggleDayExpand(id);
+  const card=el.closest('.day-card');if(card)card.scrollIntoView({behavior:'smooth',block:'center'});
+}
 function buildDayCards(days,showResult,ctxId){
   const sc={done:'done',modified:'modified',pending:''};
   const dc={done:'dot-done',modified:'dot-modified',pending:'dot-pending'};
+  const sl={done:'Hecho',modified:'Ajustado',pending:'Pendiente'};
+  const ti=ctxId==='sw'?todayIdx(days):-1;
   return `<div class="week-grid">${days.map((d,di)=>{
     const hasAdjust=d.adjust;
     const adjId=`adj-${ctxId||'w'}-${di}`;
     const expId=`exp-${ctxId||'w'}-${di}`;
     const resultText=d.result||'Pendiente';
     const resultClass=d.result?'day-comment':'day-comment pending';
-    const shortDetail=d.detail.length>42?d.detail.substring(0,40)+'…':d.detail;
-    return `<div class="day-card ${sc[d.status]}${hasAdjust?' has-adjust':''}" onclick="toggleDayExpand('${expId}',event)">
+    const rest=dayIsRest(d);
+    const label=(rest&&d.status==='pending')?'Descanso':sl[d.status];
+    const isToday=di===ti;
+    return `<div class="day-card ${sc[d.status]}${isToday?' today':''}" role="button" tabindex="0" aria-expanded="false" onclick="toggleDayExpand('${expId}',event)" onkeydown="if(event.target===this&&(event.key==='Enter'||event.key===' ')){event.preventDefault();toggleDayExpand('${expId}',event)}">
       <div class="day-card-header">
-        <div>
-          <div class="day-name">${d.name}</div>
+        <div class="day-main">
+          <div class="day-name">${d.name}${isToday?'<span class="today-chip">HOY</span>':''}</div>
           <div class="day-type">${d.type}</div>
-          <div class="day-detail">${shortDetail}</div>
+          <div class="day-detail">${d.detail}</div>
         </div>
         <span class="day-expand-icon" id="icon-${expId}">›</span>
       </div>
@@ -627,31 +719,57 @@ function buildDayCards(days,showResult,ctxId){
           </table>
         </div>`:''}
       </div>
-      <div class="day-dot ${dc[d.status]}"></div>
+      <div class="day-status"><span class="day-dot ${dc[d.status]}"></span>${label}</div>
     </div>`;
   }).join('')}</div>`;
 }
 
 // ── SEMANA ─────────────────────────────────────────────────────────────
+function toggleNotes(){
+  const bx=document.getElementById('notes-box'),t=document.getElementById('notes-toggle');
+  if(!bx||!t)return;const c=bx.classList.toggle('clamp');t.textContent=c?'Leer completo ›':'Mostrar menos ‹';
+}
 function renderSemana(){
   const d=DATA;
-  const loadColor=d.weekLoad>85?'#dc2626':d.weekLoad>65?'#d97706':'#16a34a';
+  const act=d.weekDays.filter(x=>!dayIsRest(x));
+  const done=act.filter(dayIsDone).length,total=act.length;
+  const pct=total?Math.round(done/total*100):0;
   let html='';
+  const ti=todayIdx(d.weekDays);
+  if(ti>=0){
+    const t=d.weekDays[ti];
+    let nx=-1;
+    for(let j=ti+1;j<d.weekDays.length;j++){if(!dayIsRest(d.weekDays[j])&&!dayIsDone(d.weekDays[j])){nx=j;break}}
+    const tRest=dayIsRest(t),tDone=dayIsDone(t);
+    const tPill=tDone?'<span class="today-pill done">Hecho ✓</span>':(tRest?'<span class="today-pill">Descanso</span>':'<span class="today-pill">Pendiente</span>');
+    html+=`<div class="today-card">
+      <button class="today-row" onclick="openDay('sw',${ti})">
+        <span class="today-tag">Hoy · ${t.name}</span>
+        <span class="today-title">${t.type}</span>${tPill}
+        <span class="today-meta">${t.detail}</span>
+      </button>
+      ${nx>=0?`<button class="today-row" onclick="openDay('sw',${nx})">
+        <span class="today-tag alt">Siguiente · ${d.weekDays[nx].name}</span>
+        <span class="today-title">${d.weekDays[nx].type}</span><span class="today-pill">Pendiente</span>
+        <span class="today-meta">${d.weekDays[nx].detail}</span>
+      </button>`:''}
+    </div>`;
+  }
   html+=`<div class="metrics">
     <div class="metric-card accent-blue"><div class="metric-label">Bloque actual</div><div class="metric-val blue" style="font-size:17px">${d.currentBlock}</div><div class="metric-sub">Semana ${d.weekNumber} de ${d.weekTotal}</div></div>
     <div class="metric-card"><div class="metric-label">Fatiga</div><div class="metric-val ${d.fatigueLevel>=7?'coral':d.fatigueLevel>=5?'amber':'green'}">${d.fatigueLevel}/10</div><div class="metric-sub">${d.fatigueLevel<=4?'baja':d.fatigueLevel<=6?'moderada':'alta'}</div></div>
-    <div class="metric-card"><div class="metric-label">Carga semanal</div><div class="metric-val">${d.weekLoad}%</div><div class="metric-sub">del objetivo</div></div>
+    <div class="metric-card"><div class="metric-label">Sesiones</div><div class="metric-val">${done}/${total}</div><div class="metric-sub">completadas esta semana</div></div>
     <div class="metric-card ${d.dorsalOk?'accent-green':'accent-coral'}"><div class="metric-label">Espalda dorsal</div><div class="metric-val ${d.dorsalOk?'green':'coral'}" style="font-size:17px">${d.dorsalOk?'OK':'Atención'}</div><div class="metric-sub">${d.dorsalStatus}</div></div>
   </div>`;
-  html+=`<div class="load-wrap"><div class="load-label"><span>carga acumulada semana</span><span>${d.weekLoad}%</span></div><div class="load-track"><div class="load-fill" style="width:${d.weekLoad}%;background:${loadColor}"></div></div></div>`;
+  html+=`<div class="load-wrap"><div class="load-label"><span>progreso de la semana</span><span>${done} de ${total} sesiones</span></div><div class="load-track"><div class="load-fill" style="width:${pct}%;background:var(--green)"></div></div></div>`;
   html+=`<div class="section-label">Semana ${d.weekNumber} — día a día</div>`;
   html+=buildDayCards(d.weekDays,true,'sw');
   html+=`<div class="status-legend">
-    <span><span style="width:6px;height:6px;border-radius:50%;background:#16a34a;display:inline-block"></span>ejecutado</span>
-    <span><span style="width:6px;height:6px;border-radius:50%;background:#d97706;display:inline-block"></span>ajustado</span>
-    <span><span style="width:6px;height:6px;border-radius:50%;background:#9aa0ad;display:inline-block"></span>pendiente</span>
+    <span><span style="width:6px;height:6px;border-radius:50%;background:var(--green);display:inline-block"></span>hecho</span>
+    <span><span style="width:6px;height:6px;border-radius:50%;background:var(--amber);display:inline-block"></span>ajustado</span>
+    <span><span style="width:6px;height:6px;border-radius:50%;background:var(--text3);display:inline-block"></span>pendiente</span>
   </div>`;
-  if(d.weekNotes)html+=`<div class="section-label">Notas del entrenador</div><div class="notes-box">${d.weekNotes}</div>`;
+  if(d.weekNotes)html+=`<div class="section-label">Notas del entrenador</div><div class="notes-box clamp" id="notes-box">${d.weekNotes}</div><button class="notes-toggle" id="notes-toggle" onclick="toggleNotes()">Leer completo ›</button>`;
   document.getElementById('tab-semana').innerHTML=html;
 }
 
@@ -685,6 +803,7 @@ function renderProgresion(){
         <div class="tl-desc">${b.desc}</div>
         <div class="tl-tags">${b.tags.map(t=>`<span class="tag ${tc[b.type]}">${t}</span>`).join('')}</div>
       </div>`).join('')}</div>`;
+  if(typeof Chart==='undefined'){const c=document.getElementById('progChart');if(c&&c.parentElement)c.parentElement.innerHTML='<div class="chart-fallback">No se pudo cargar la librería de gráficos. Comprueba la conexión y recarga la página.</div>';return;}
   if(window._progChart)window._progChart.destroy();
   window._progChart=new Chart(document.getElementById('progChart'),{
     type:'line',
@@ -727,6 +846,7 @@ function renderCompeticiones(){
         <td><span class="badge ${c.phase==='best'?'badge-best':c.phase==='post'?'badge-post':'badge-pre'}">${c.phase==='best'?'mejor marca':c.phase==='post'?'post-lesión':'pre-lesión'}</span></td>
       </tr>`).join('')}</tbody>
     </table>`;
+  if(typeof Chart==='undefined'){const c=document.getElementById('compChart');if(c&&c.parentElement)c.parentElement.innerHTML='<div class="chart-fallback">No se pudo cargar la librería de gráficos. Comprueba la conexión y recarga la página.</div>';return;}
   if(window._compChart)window._compChart.destroy();
   window._compChart=new Chart(document.getElementById('compChart'),{
     type:'bar',
@@ -855,6 +975,7 @@ function renderRutinas(){
 
 // ── INIT ───────────────────────────────────────────────────────────────
 function initApp(){
+  if(typeof Chart!=='undefined'&&window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches){Chart.defaults.color='#aab0bd';Chart.defaults.borderColor='rgba(255,255,255,.1)';}
   document.getElementById('last-update-label').textContent='Actualizado: '+DATA.lastUpdate;
   try{renderSemana();}catch(e){console.error('renderSemana:',e);}
   try{renderProgresion();}catch(e){console.error('renderProgresion:',e);}
