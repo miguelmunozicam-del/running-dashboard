@@ -365,6 +365,7 @@ const PWD = `271975`;
 const DATA = {
   currentBlock: `Q4 2026 — Bloque 2 Desarrollo`,
   weekNumber: 7,
+  weekStart: `2026-10-26`,
   weekTotal: 14,
   currentVo2: 45,
   currentPace: `5:30-5:45`,
@@ -817,7 +818,7 @@ function dayIsDone(d){return d.status==='done'||(d.status==='modified'&&d.result
 const DOW=['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
 const DOWFULL={Lun:'Lunes',Mar:'Martes','Mié':'Miércoles',Jue:'Jueves',Vie:'Viernes','Sáb':'Sábado',Dom:'Domingo'};
 const DOWLET={Lun:'L',Mar:'M','Mié':'X',Jue:'J',Vie:'V','Sáb':'S',Dom:'D'};
-function todayIdx(days){const n=DOW[new Date().getDay()];return days.findIndex(d=>d.name===n)}
+function todayIdx(days){if(DATA.weekStart){const k=-daysUntil(DATA.weekStart);return k>=0&&k<days.length?k:-1}const n=DOW[new Date().getDay()];return days.findIndex(d=>d.name===n)}
 function daysUntil(iso){const [y,m,d]=iso.split('-').map(Number);const t=new Date();t.setHours(0,0,0,0);return Math.round((new Date(y,m-1,d)-t)/86400000)}
 
 // ── ACCESO Y NAVEGACIÓN ────────────────────────────────────────────────
